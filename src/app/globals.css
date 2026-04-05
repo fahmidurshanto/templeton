@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdfdfd;
+  --foreground: #171717;
+  
+  /* Centralized Theme Colors (Templeton Blue) */
+  --color-brand-primary: #2E5F9E;
+  --color-brand-secondary: #ffffff;
+  --color-brand-muted: #1A3C61;
+  --color-brand-border: #B8C6DB;
+
+  /* Gradients based on New Logo */
+  --gradient-blue: linear-gradient(135deg, #2E5F9E 0%, #4A90E2 50%, #1A3C61 100%);
+  --gradient-silver: linear-gradient(180deg, #E5E7EB 0%, #B8C6DB 100%);
+  --gradient-silver-horizontal: linear-gradient(90deg, #F3F4F6 0%, #B8C6DB 50%, #F3F4F6 100%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-secondary: var(--color-brand-secondary);
+  --color-brand-muted: var(--color-brand-muted);
+  --color-brand-border: var(--color-brand-border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+.bg-gradient-blue {
+  background: var(--gradient-blue);
+}
+.text-gradient-blue {
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.border-gradient-blue {
+  border-image: var(--gradient-blue) 1;
+}
+
+.bg-gradient-silver {
+  background: var(--gradient-silver);
+}
+.bg-gradient-silver-horizontal {
+  background: var(--gradient-silver-horizontal);
+}
+.text-gradient-silver {
+  background: var(--gradient-silver);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Global Interactive Element Styles */
+button, 
+[role="button"],
+[role="tab"],
+[role="menuitem"],
+[role="link"],
+a,
+select,
+input[type="submit"],
+input[type="button"],
+input[type="checkbox"],
+input[type="radio"],
+.cursor-pointer,
+.clickable {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"]:disabled {
+  cursor: not-allowed;
+}
