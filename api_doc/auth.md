@@ -1,6 +1,6 @@
 # Auth & User Management API
 
-This document covers all authentication and core user profile management APIs currently integrated into the Templeton frontend.
+This document covers all authentication and core user profile management APIs currently integrated into the Hutchinson frontend.
 
 ## Base URL
 All API calls are prefixed with your backend's base URL, e.g., ``/api/v1``

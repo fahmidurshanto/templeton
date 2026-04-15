@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useRef } from 'react';
 import { useAppContext } from '@/context/AppContext';
@@ -23,7 +23,7 @@ export default function AdminDocumentsPage() {
                     icon: 'success',
                     title: 'Document Uploaded',
                     text: `${file.name} has been added to the vault.`,
-                    confirmButtonColor: '#2E5F9E'
+                    confirmButtonColor: '#D4AF37'
                 });
             } catch (error) {
                 Swal.fire({
@@ -106,7 +106,7 @@ export default function AdminDocumentsPage() {
             {/* Header Section */}
             <div className="w-full text-center py-6 md:py-14 mb-2 animate__animated animate__fadeIn relative flex flex-col items-center justify-center min-h-[15vh] px-4">
                 <div className="relative z-10 w-full">
-                    <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 tracking-wide text-gradient-blue bg-clip-text uppercase">
+                    <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 tracking-wide text-gradient-gold bg-clip-text uppercase">
                         Secure Vault
                     </h1>
                     <p className="text-gray-500 text-xs sm:text-sm md:text-lg font-medium mb-6 sm:mb-8">
@@ -116,7 +116,7 @@ export default function AdminDocumentsPage() {
                     {isAdmin && (
                         <button
                             onClick={handleUploadClick}
-                            className="px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-blue rounded-full text-black font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-xl hover:scale-105 transition-all flex items-center gap-2 mx-auto"
+                            className="px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-gold rounded-full text-black font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-xl hover:scale-105 transition-all flex items-center gap-2 mx-auto"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -132,7 +132,7 @@ export default function AdminDocumentsPage() {
                 {categories.map((category, gIdx) => (
                     <div key={gIdx} className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                         <div className="bg-gray-50 px-5 sm:px-8 py-4 sm:py-5 border-b border-gray-100 flex items-center gap-3 sm:gap-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 sm:w-5 h-5 text-[#2E5F9E]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 sm:w-5 h-5 text-[#D4AF37]">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h2.25m9 0h2.25A2.25 2.25 0 0121 6v3.776m-12 0h6m-9-3h9m-9-3h9" />
                             </svg>
                             <h3 className="font-black text-[10px] sm:text-xs uppercase tracking-[0.2em] text-gray-500">{category}</h3>
@@ -145,13 +145,13 @@ export default function AdminDocumentsPage() {
                                     <div key={dIdx} className="p-4 sm:p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group gap-4">
                                         <div className="flex items-center gap-3 sm:gap-5 min-w-0">
                                             <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all flex-shrink-0
-                                                ${isViewed ? 'bg-gray-100 text-gray-300' : 'bg-gray-50 text-gray-400 group-hover:bg-gradient-blue group-hover:text-black'}`}>
+                                                ${isViewed ? 'bg-gray-100 text-gray-300' : 'bg-gray-50 text-gray-400 group-hover:bg-gradient-gold group-hover:text-black'}`}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                                                 </svg>
                                             </div>
                                             <div className="min-w-0">
-                                                <p className={`text-xs sm:text-sm font-bold tracking-tight transition-colors truncate ${isViewed ? 'text-gray-300' : 'text-gray-900 group-hover:text-[#1A3C61]'}`}>{doc.name}</p>
+                                                <p className={`text-xs sm:text-sm font-bold tracking-tight transition-colors truncate ${isViewed ? 'text-gray-300' : 'text-gray-900 group-hover:text-[#A67C00]'}`}>{doc.name}</p>
                                                 <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase mt-0.5 sm:mt-1 truncate">
                                                     {doc.date} <span className="hidden sm:inline">• {doc.size}</span>
                                                     {isViewed && <span className="ml-2 text-red-300">• VIEWED</span>}
@@ -166,7 +166,7 @@ export default function AdminDocumentsPage() {
                                                 className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-black text-[9px] sm:text-[10px] uppercase tracking-widest transition-all
                                                     ${isViewed
                                                         ? 'bg-gray-100 text-gray-300 border border-gray-100 cursor-not-allowed'
-                                                        : 'bg-white text-black border-2 border-gray-100 hover:border-[#2E5F9E] hover:shadow-md'}`}
+                                                        : 'bg-white text-black border-2 border-gray-100 hover:border-[#D4AF37] hover:shadow-md'}`}
                                             >
                                                 {isViewed ? 'Seen' : 'View'}
                                             </button>
@@ -192,7 +192,7 @@ export default function AdminDocumentsPage() {
             </div>
 
             <div className="w-full text-center py-12 mt-8">
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Templeton Trust Fund Limited • Secure Infrastructure</p>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Templeton APAC Limited • Secure Infrastructure</p>
             </div>
         </div>
     );

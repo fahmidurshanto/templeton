@@ -4,16 +4,16 @@
   --background: #fdfdfd;
   --foreground: #171717;
   
-  /* Centralized Theme Colors (Templeton Blue) */
-  --color-brand-primary: #2E5F9E;
+  /* Centralized Theme Colors */
+  --color-brand-primary: #D4AF37;
   --color-brand-secondary: #ffffff;
-  --color-brand-muted: #1A3C61;
-  --color-brand-border: #B8C6DB;
+  --color-brand-muted: #A67C00;
+  --color-brand-border: #F3E5AB;
 
-  /* Gradients based on New Logo */
-  --gradient-blue: linear-gradient(135deg, #2E5F9E 0%, #4A90E2 50%, #1A3C61 100%);
-  --gradient-silver: linear-gradient(180deg, #E5E7EB 0%, #B8C6DB 100%);
-  --gradient-silver-horizontal: linear-gradient(90deg, #F3F4F6 0%, #B8C6DB 50%, #F3F4F6 100%);
+  /* Gradients based on logo */
+  --gradient-gold: linear-gradient(135deg, #e6c875 0%, #f2d272 50%, #b38b22 100%);
+  --gradient-silver: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%);
+  --gradient-silver-horizontal: linear-gradient(90deg, #f0f0f0 0%, #d9d9d9 50%, #f0f0f0 100%);
 }
 
 @theme inline {
@@ -27,17 +27,17 @@
   --font-mono: var(--font-geist-mono);
 }
 
-.bg-gradient-blue {
-  background: var(--gradient-blue);
+.bg-gradient-gold {
+  background: var(--gradient-gold);
 }
-.text-gradient-blue {
-  background: var(--gradient-blue);
+.text-gradient-gold {
+  background: var(--gradient-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.border-gradient-blue {
-  border-image: var(--gradient-blue) 1;
+.border-gradient-gold {
+  border-image: var(--gradient-gold) 1;
 }
 
 .bg-gradient-silver {
@@ -83,7 +83,11 @@ input[type="radio"],
   cursor: pointer;
 }
 
-button:disabled,
-[role="button"]:disabled {
-  cursor: not-allowed;
+/* Utility classes */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

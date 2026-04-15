@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { Fragment } from 'react';
 
@@ -36,8 +36,8 @@ export default function DashboardModal({ isOpen, onClose, title, icon, children,
                     >
                         <DialogPanel className="w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
 
-                            {/* Header — Templeton Blue Gradient */}
-                            <div className="bg-gradient-blue px-6 py-4 flex items-center justify-between border-b border-[#1E3F66]">
+                            {/* Header — Golden Gradient */}
+                            <div className="bg-gradient-gold px-6 py-4 flex items-center justify-between border-b border-[#b38b22]">
                                 <div className="flex items-center gap-3">
                                     {icon && (
                                         <span className="text-black">{icon}</span>
@@ -68,7 +68,7 @@ export default function DashboardModal({ isOpen, onClose, title, icon, children,
                                 {footer ?? (
                                     <button
                                         onClick={onClose}
-                                        className="px-6 cursor-pointer py-2 bg-gradient-blue text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
+                                        className="px-6 cursor-pointer py-2 bg-gradient-gold text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
                                     >
                                         Close
                                     </button>

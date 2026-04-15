@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState, useEffect } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import NotFound from '@/components/ui/NotFound';
@@ -18,9 +18,9 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/90 backdrop-blur-sm p-3 border-2 border-[#2E5F9E] rounded-lg shadow-xl">
+            <div className="bg-white/90 backdrop-blur-sm p-3 border-2 border-[#D4AF37] rounded-lg shadow-xl">
                 <p className="font-bold text-gray-800">{label}</p>
-                <p className="text-[#2E5F9E] font-bold">
+                <p className="text-[#D4AF37] font-bold">
                     ${payload[0].value.toLocaleString()}
                 </p>
             </div>
@@ -101,7 +101,7 @@ export default function ReportsPage() {
             {/* Header Section */}
             <div className="w-full text-center py-8 md:py-14 animate__animated animate__fadeIn relative flex flex-col items-center justify-center min-h-[15vh] md:min-h-[25vh]">
                 <div className="relative z-10 w-full px-4">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 tracking-tight text-gradient-blue bg-clip-text uppercase leading-none">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 tracking-tight text-gradient-gold bg-clip-text uppercase leading-none">
                         Reports
                     </h1>
                     <p className="text-[10px] sm:text-xs md:text-base text-gray-400 font-bold uppercase tracking-[0.3em] max-w-2xl mx-auto opacity-70">
@@ -117,7 +117,7 @@ export default function ReportsPage() {
                         onClick={() => setViewMode('monthly')}
                         className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2
                             ${viewMode === 'monthly'
-                                ? 'bg-gradient-blue text-black shadow-md scale-[1.03]'
+                                ? 'bg-gradient-gold text-black shadow-md scale-[1.03]'
                                 : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
@@ -130,7 +130,7 @@ export default function ReportsPage() {
                         onClick={() => setViewMode('yearly')}
                         className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2
                             ${viewMode === 'yearly'
-                                ? 'bg-gradient-blue text-black shadow-md scale-[1.03]'
+                                ? 'bg-gradient-gold text-black shadow-md scale-[1.03]'
                                 : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
@@ -156,7 +156,7 @@ export default function ReportsPage() {
                                 onClick={() => setSelectedYear(year)}
                                 className={`px-5 sm:px-6 py-2.5 sm:py-3.5 lg:py-4 rounded-xl font-black text-[10px] sm:text-xs tracking-widest transition-all duration-300 shadow-sm whitespace-nowrap border
                                     ${selectedYear === year
-                                        ? 'bg-gradient-blue text-black border-[#2E5F9E] scale-105 z-10'
+                                        ? 'bg-gradient-gold text-black border-[#D4AF37] scale-105 z-10'
                                         : 'bg-white text-gray-400 hover:bg-gray-50 border-gray-100'
                                     }`}
                             >
@@ -169,15 +169,15 @@ export default function ReportsPage() {
                 {/* Right Column: Chart */}
                 <div className="flex-1 bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 sm:p-8 md:p-10 shadow-xl border border-gray-100 relative overflow-hidden mx-2 sm:mx-0">
                     {/* Subtle Background Pattern */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#2E5F9E]/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
 
                     <div className="relative z-10 flex flex-col">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
                             <div>
                                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-950 leading-tight uppercase tracking-tight">
                                     {viewMode === 'monthly'
-                                        ? <>Allocation <span className="text-gradient-blue">{selectedYear}</span></>
-                                        : <>Yearly <span className="text-gradient-blue">Overview</span></>
+                                        ? <>Allocation <span className="text-gradient-gold">{selectedYear}</span></>
+                                        : <>Yearly <span className="text-gradient-gold">Overview</span></>
                                     }
                                 </h2>
                                 <p className="text-[10px] md:text-xs text-gray-400 mt-1 uppercase tracking-[0.2em] font-black opacity-70">
@@ -193,9 +193,9 @@ export default function ReportsPage() {
                         {viewMode === 'yearly' && !loading && displayData.length > 0 && (
                             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
                                 {displayData.map(d => (
-                                    <div key={d.label} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 text-center hover:border-[#2E5F9E]/40 transition-all">
+                                    <div key={d.label} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 text-center hover:border-[#D4AF37]/40 transition-all">
                                         <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{d.label}</p>
-                                        <p className="text-sm font-black text-[#2E5F9E] tracking-tight">
+                                        <p className="text-sm font-black text-[#D4AF37] tracking-tight">
                                             ${d.amount.toLocaleString()}
                                         </p>
                                     </div>
@@ -206,7 +206,7 @@ export default function ReportsPage() {
                         <div className="w-full h-[350px] md:h-[450px]">
                             {loading ? (
                                 <div className="w-full h-full flex items-center justify-center">
-                                    <div className="w-8 h-8 border-4 border-gray-200 border-t-[#2E5F9E] rounded-full animate-spin"></div>
+                                    <div className="w-8 h-8 border-4 border-gray-200 border-t-[#D4AF37] rounded-full animate-spin"></div>
                                 </div>
                             ) : isMounted && (
                                 <ResponsiveContainer width="100%" height="100%">
@@ -216,8 +216,8 @@ export default function ReportsPage() {
                                     >
                                         <defs>
                                             <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="0%" stopColor="#2E5F9E" />
-                                                <stop offset="100%" stopColor="#1E3F66" />
+                                                <stop offset="0%" stopColor="#e6c875" />
+                                                <stop offset="100%" stopColor="#b38b22" />
                                             </linearGradient>
                                         </defs>
                                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />

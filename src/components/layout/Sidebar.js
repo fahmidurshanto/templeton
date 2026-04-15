@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React from 'react';
 import { useAppContext } from '../../context/AppContext';
 
@@ -51,7 +51,7 @@ export default function Sidebar() {
                     <button 
                         key={item.id} 
                         onClick={() => setActiveTab(item.id)}
-                        className={`cursor-pointer w-12 h-12 flex items-center justify-center rounded-r-md transition-colors ${activeTab === item.id ? 'bg-gradient-blue text-black shadow-md' : 'text-gray-400 hover:bg-gray-100 hover:text-gray-700'}`}
+                        className={`cursor-pointer w-12 h-12 flex items-center justify-center rounded-r-md transition-colors ${activeTab === item.id ? 'bg-gradient-gold text-black shadow-md' : 'text-gray-400 hover:bg-gray-100 hover:text-gray-700'}`}
                     >
                         {item.icon}
                     </button>

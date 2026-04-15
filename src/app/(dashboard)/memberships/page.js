@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState, useEffect } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import api from '@/lib/api';
@@ -46,7 +46,7 @@ export default function MembershipsPage() {
     if (loading) {
         return (
             <div className="w-full h-screen flex items-center justify-center bg-white">
-                <div className="w-8 h-8 border-4 border-[#2E5F9E] border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-8 h-8 border-4 border-[#D4AF37] border-t-transparent rounded-full animate-spin"></div>
             </div>
         );
     }
@@ -69,7 +69,7 @@ export default function MembershipsPage() {
             {/* Header Section */}
             <div className="w-full text-center py-8 md:py-14 animate__animated animate__fadeIn relative flex flex-col items-center justify-center min-h-[15vh] md:min-h-[25vh]">
                 <div className="relative z-10 w-full px-4">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 tracking-tight text-gradient-blue bg-clip-text uppercase leading-none">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 tracking-tight text-gradient-gold bg-clip-text uppercase leading-none">
                         Strategic Partners
                     </h1>
                     <p className="text-[10px] sm:text-xs md:text-base text-gray-400 font-bold uppercase tracking-[0.3em] max-w-2xl mx-auto opacity-70">
@@ -84,7 +84,7 @@ export default function MembershipsPage() {
                 {/* Primary Column */}
                 <div className="flex flex-col">
                     <div className="flex items-center gap-4 sm:gap-6 mb-6 md:mb-10">
-                        <div className="h-[2px] w-6 sm:w-10 bg-[#2E5F9E] rounded-full"></div>
+                        <div className="h-[2px] w-6 sm:w-10 bg-[#D4AF37] rounded-full"></div>
                         <h2 className="text-sm sm:text-lg font-black text-gray-900 tracking-[0.3em] uppercase">
                             Primary
                         </h2>
@@ -117,7 +117,7 @@ export default function MembershipsPage() {
             </div>
 
             <div className="w-full text-center py-20 mt-10">
-                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-[0.4em] opacity-60">Templeton Trust Fund Limited • Privilege Redefined • Since 2025</p>
+                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-[0.4em] opacity-60">Templeton APAC Limited • Privilege Redefined • Since 2025</p>
             </div>
         </div>
     );

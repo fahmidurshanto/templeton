@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Swal from 'sweetalert2';
@@ -186,8 +186,8 @@ function AddMembershipModal({ available, currentTiers, onClose, onAdd }) {
             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
             <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-100 w-full max-w-md mx-4 p-8 flex flex-col gap-6 animate-fadeInScale" onClick={e => e.stopPropagation()}>
                 <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-                    <div className="w-10 h-10 rounded-full bg-[#2E5F9E]/10 flex items-center justify-center shrink-0">
-                        <svg className="w-5 h-5 text-[#2E5F9E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center shrink-0">
+                        <svg className="w-5 h-5 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
@@ -201,13 +201,13 @@ function AddMembershipModal({ available, currentTiers, onClose, onAdd }) {
                 <div className="flex bg-gray-100 rounded-xl p-1 gap-1">
                     <button
                         onClick={() => setMode('select')}
-                        className={`flex-1 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] rounded-lg transition-all ${mode === 'select' ? 'bg-white shadow-sm text-[#2E5F9E]' : 'text-gray-500 hover:text-gray-700'}`}
+                        className={`flex-1 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] rounded-lg transition-all ${mode === 'select' ? 'bg-white shadow-sm text-[#D4AF37]' : 'text-gray-500 hover:text-gray-700'}`}
                     >
                         From List
                     </button>
                     <button
                         onClick={() => setMode('custom')}
-                        className={`flex-1 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] rounded-lg transition-all ${mode === 'custom' ? 'bg-white shadow-sm text-[#2E5F9E]' : 'text-gray-500 hover:text-gray-700'}`}
+                        className={`flex-1 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] rounded-lg transition-all ${mode === 'custom' ? 'bg-white shadow-sm text-[#D4AF37]' : 'text-gray-500 hover:text-gray-700'}`}
                     >
                         Custom
                     </button>
@@ -216,9 +216,9 @@ function AddMembershipModal({ available, currentTiers, onClose, onAdd }) {
                 <div className="flex flex-col gap-4">
                     {mode === 'select' ? (
                         <div className="flex flex-col gap-2 animate__animated animate__fadeIn animate__faster">
-                            <label className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#2E5F9E]">Available Partnerships</label>
+                            <label className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#D4AF37]">Available Partnerships</label>
                             <select
-                                className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-900 focus:border-[#2E5F9E] outline-none transition-all cursor-pointer appearance-none"
+                                className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-900 focus:border-[#D4AF37] outline-none transition-all cursor-pointer appearance-none"
                                 value={selectedMembership}
                                 onChange={e => setSelectedMembership(e.target.value)}
                             >
@@ -231,19 +231,19 @@ function AddMembershipModal({ available, currentTiers, onClose, onAdd }) {
                     ) : (
                         <div className="flex flex-col gap-4 animate__animated animate__fadeIn animate__faster">
                             <div className="flex flex-col gap-2">
-                                <label className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#2E5F9E]">Custom Name</label>
+                                <label className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#D4AF37]">Custom Name</label>
                                 <input
                                     type="text"
                                     placeholder="Enter membership name"
-                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-900 focus:border-[#2E5F9E] outline-none transition-all"
+                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-900 focus:border-[#D4AF37] outline-none transition-all"
                                     value={customName}
                                     onChange={e => setCustomName(e.target.value)}
                                 />
                             </div>
                             <div className="flex flex-col gap-2">
-                                <label className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#2E5F9E]">Partnership Type</label>
+                                <label className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#D4AF37]">Partnership Type</label>
                                 <select
-                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-900 focus:border-[#2E5F9E] outline-none transition-all cursor-pointer appearance-none"
+                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-900 focus:border-[#D4AF37] outline-none transition-all cursor-pointer appearance-none"
                                     value={customType}
                                     onChange={e => setCustomType(e.target.value)}
                                 >
@@ -262,7 +262,7 @@ function AddMembershipModal({ available, currentTiers, onClose, onAdd }) {
                     <button
                         onClick={handleConfirm}
                         disabled={isAddDisabled}
-                        className="flex-1 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest text-white bg-[#2E5F9E] hover:bg-[#C5A030] shadow-md shadow-[#2E5F9E]/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex-1 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest text-white bg-[#D4AF37] hover:bg-[#C5A030] shadow-md shadow-[#D4AF37]/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         Add
                     </button>
@@ -391,7 +391,7 @@ export default function MembershipsPage() {
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
-            cancelButtonColor: '#2E5F9E',
+            cancelButtonColor: '#D4AF37',
             confirmButtonText: 'Yes, Remove It',
             reverseButtons: true
         }).then(async (result) => {
@@ -434,7 +434,7 @@ export default function MembershipsPage() {
                 <button
                     onClick={() => setEditTarget({ tier, globalIdx })}
                     title="Change status"
-                    className="w-7 h-7 rounded-full flex items-center justify-center text-gray-300 hover:text-[#2E5F9E] hover:bg-blue-50 border border-transparent hover:border-blue-100 transition-all duration-200"
+                    className="w-7 h-7 rounded-full flex items-center justify-center text-gray-300 hover:text-[#D4AF37] hover:bg-amber-50 border border-transparent hover:border-amber-100 transition-all duration-200"
                 >
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536M9 13l-4 1 1-4 9.293-9.293a1 1 0 011.414 0l2.586 2.586a1 1 0 010 1.414L9 13z" />
@@ -461,7 +461,7 @@ export default function MembershipsPage() {
     if (loading) {
         return (
             <div className="w-full h-screen flex items-center justify-center bg-white">
-                <div className="w-8 h-8 border-4 border-[#2E5F9E] border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-8 h-8 border-4 border-[#D4AF37] border-t-transparent rounded-full animate-spin"></div>
             </div>
         );
     }
@@ -475,7 +475,7 @@ export default function MembershipsPage() {
             {/* Header Section */}
             <div className="w-full text-center py-8 md:py-14 mb-10 animate__animated animate__fadeIn relative flex flex-col items-center justify-center min-h-[30vh]">
                 <div className="relative z-10 w-full px-4">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter text-gradient-blue bg-clip-text uppercase">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter text-gradient-gold bg-clip-text uppercase">
                         Partnerships
                     </h1>
                     <p className="text-gray-500 text-base md:text-xl font-medium max-w-2xl mx-auto">
@@ -485,7 +485,7 @@ export default function MembershipsPage() {
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
                         <button
                             onClick={() => setIsAddModalOpen(true)}
-                            className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-blue text-black font-black text-xs uppercase tracking-widest shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition-all"
+                            className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-gold text-black font-black text-xs uppercase tracking-widest shadow-lg hover:shadow-gold-500/30 hover:scale-[1.02] transition-all"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -502,7 +502,7 @@ export default function MembershipsPage() {
                 {/* Primary Column */}
                 <div className="flex flex-col">
                     <div className="flex items-center gap-6 mb-12">
-                        <div className="h-[3px] w-12 bg-[#2E5F9E] rounded-full"></div>
+                        <div className="h-[3px] w-12 bg-[#D4AF37] rounded-full"></div>
                         <h2 className="text-2xl font-black text-gray-900 tracking-[0.2em] uppercase">
                             Primary
                         </h2>
@@ -529,7 +529,7 @@ export default function MembershipsPage() {
             </div>
 
             <div className="w-full text-center py-20 mt-10">
-                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-[0.4em] opacity-60">Templeton Trust Fund Limited • Privilege Redefined • Since 2025</p>
+                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-[0.4em] opacity-60">Templeton APAC Limited • Privilege Redefined • Since 2025</p>
             </div>
 
             {/* Edit Status Modal */}

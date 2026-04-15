@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Templeton Partnership Portal",
-  description: "Secure login for the Templeton Trust Fund Ltd. Partnership Portal",
+  description: "Secure login for the Templeton APAC Ltd. Partnership Portal",
 };
 
 export default function RootLayout({ children }) {

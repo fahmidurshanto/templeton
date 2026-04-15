@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState, useRef } from 'react';
 import DashboardModal from '../../../components/ui/DashboardModal';
 
@@ -39,7 +39,7 @@ export default function DocumentsModal({ isOpen, onClose }) {
                 {/* Floating Add Button */}
                 <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="cursor-pointer absolute -top-2 -right-2 w-10 h-10 bg-gradient-blue text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-200 z-20 group"
+                    className="cursor-pointer absolute -top-2 -right-2 w-10 h-10 bg-gradient-gold text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-200 z-20 group"
                     title="Upload Document"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
@@ -73,7 +73,7 @@ export default function DocumentsModal({ isOpen, onClose }) {
                         <div className="w-full space-y-3 animate__animated animate__fadeIn">
                             <h4 className="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-2">Uploaded Files</h4>
                             {documents.map((doc) => (
-                                <div key={doc.id} className="bg-white border border-gray-100 p-3 rounded-lg flex items-center justify-between group hover:border-[#2E5F9E]/30 transition-all duration-200">
+                                <div key={doc.id} className="bg-white border border-gray-100 p-3 rounded-lg flex items-center justify-between group hover:border-[#D4AF37]/30 transition-all duration-200">
                                     <div className="flex items-center gap-3">
                                         <div className="w-8 h-8 bg-gray-50 rounded flex items-center justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-gray-500">

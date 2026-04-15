@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState } from 'react';
 import DashboardModal from '../../../components/ui/DashboardModal';
 
@@ -45,7 +45,7 @@ export default function PersonalModal({ isOpen, onClose }) {
     const footerAction = isEditing ? (
         <button
             onClick={handleSubmit}
-            className="px-6 cursor-pointer py-2 bg-gradient-blue text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
+            className="px-6 cursor-pointer py-2 bg-gradient-gold text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
         >
             Submit Request
         </button>
@@ -65,13 +65,13 @@ export default function PersonalModal({ isOpen, onClose }) {
         >
             <div className="space-y-4 py-2">
                 {isPending && (
-                    <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg flex items-center gap-3 mb-4 animate__animated animate__fadeIn">
-                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                    <div className="bg-amber-50 border border-amber-200 p-3 rounded-lg flex items-center gap-3 mb-4 animate__animated animate__fadeIn">
+                        <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center text-amber-600">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                                 <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clipRule="evenodd" />
                             </svg>
                         </div>
-                        <p className="text-[11px] font-bold text-blue-800">Edit Request Pending Approval</p>
+                        <p className="text-[11px] font-bold text-amber-800">Edit Request Pending Approval</p>
                     </div>
                 )}
 
@@ -86,7 +86,7 @@ export default function PersonalModal({ isOpen, onClose }) {
                                         type="text"
                                         value={value}
                                         onChange={(e) => handleInputChange(key, e.target.value)}
-                                        className="w-full sm:w-auto text-sm font-bold text-gray-900 border-b border-gray-200 focus:border-[#2E5F9E] outline-none bg-transparent py-1 px-2 text-right"
+                                        className="w-full sm:w-auto text-sm font-bold text-gray-900 border-b border-gray-200 focus:border-[#D4AF37] outline-none bg-transparent py-1 px-2 text-right"
                                     />
                                 ) : (
                                     <span className="text-sm font-bold text-gray-900 text-right">{value}</span>

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -89,7 +89,7 @@ export default function LoginForm() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="your.name@templeton.apac"
-                        className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-[#2E5F9E] focus:ring-1 focus:ring-[#2E5F9E] transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
+                        className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-[#c6a267] focus:ring-1 focus:ring-[#c6a267] transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
                     />
                 </div>
                 <label htmlFor="email" className="block mt-1 text-[13px] font-medium text-[#9a804a]">
@@ -107,7 +107,7 @@ export default function LoginForm() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-[#2E5F9E] focus:ring-1 focus:ring-[#2E5F9E] transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
+                        className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-[#c6a267] focus:ring-1 focus:ring-[#c6a267] transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
                     />
                     <button
                         type="button"
@@ -139,7 +139,7 @@ export default function LoginForm() {
                     disabled={isLoading}
                     className="w-full py-3.5 px-4 rounded-[10px] flex items-center justify-center gap-3 shadow-[inset_0_2px_2px_rgba(0,0,0,0.3),inset_0_2px_0_rgba(255,255,255,0.4)]"
                     style={{
-                        background: 'linear-gradient(to bottom, #1A3C61 0%, #B8C6DB 15%, #2E5F9E 85%, #4A90E2 100%)',
+                        background: 'linear-gradient(to bottom, #d5b573 0%, #f7e2af 15%, #a87e35 85%, #c19c50 100%)',
                     }}
                 >
                     <span className="text-[17px] font-black text-black tracking-[0.1em]">{isLoading ? 'AUTHENTICATING...' : 'LOGIN'}</span>

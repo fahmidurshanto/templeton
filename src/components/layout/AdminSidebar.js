@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React from 'react';
 import Link from 'next/link';
 import { useAppContext } from '../../context/AppContext';
@@ -45,7 +45,7 @@ export default function AdminSidebar() {
                     <button 
                         key={item.id} 
                         onClick={() => setAdminTab(item.id)}
-                        className={`cursor-pointer w-12 h-12 flex items-center justify-center rounded-lg transition-all group relative ${adminTab === item.id ? 'bg-gradient-blue text-gray-900 shadow-md' : 'text-gray-500 hover:text-white hover:bg-gray-800'}`}
+                        className={`cursor-pointer w-12 h-12 flex items-center justify-center rounded-lg transition-all group relative ${adminTab === item.id ? 'bg-gradient-gold text-gray-900 shadow-md' : 'text-gray-500 hover:text-white hover:bg-gray-800'}`}
                     >
                         {item.icon}
                         {/* Tooltip */}
@@ -57,7 +57,7 @@ export default function AdminSidebar() {
             </div>
 
             {/* Bottom: Link to Client Dashboard */}
-            <Link href="/" className="w-12 h-12 flex items-center justify-center rounded-lg text-gray-500 hover:text-gradient-blue hover:bg-gray-800 transition-all group relative" title="Switch to Client View">
+            <Link href="/" className="w-12 h-12 flex items-center justify-center rounded-lg text-gray-500 hover:text-gradient-gold hover:bg-gray-800 transition-all group relative" title="Switch to Client View">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                 </svg>

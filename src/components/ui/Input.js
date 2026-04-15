@@ -1,4 +1,4 @@
-﻿import { forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 const Input = forwardRef(({ label, id, icon, ...props }, ref) => {
     return (
@@ -7,7 +7,7 @@ const Input = forwardRef(({ label, id, icon, ...props }, ref) => {
                 <input
                     ref={ref}
                     id={id}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-[#2E5F9E] transition-colors text-gray-900 bg-white"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-[#D4AF37] transition-colors text-gray-900 bg-white"
                     {...props}
                 />
                 {icon && (

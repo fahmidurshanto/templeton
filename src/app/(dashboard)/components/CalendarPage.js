@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState, useRef, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -92,7 +92,7 @@ export default function CalendarPage({ isAdmin = false }) {
         e.preventDefault();
 
         if (!newEvent.userId) {
-            Swal.fire({ title: 'User Required', text: 'Please select a user to assign this schedule to.', icon: 'warning', confirmButtonColor: '#2E5F9E' });
+            Swal.fire({ title: 'User Required', text: 'Please select a user to assign this schedule to.', icon: 'warning', confirmButtonColor: '#D4AF37' });
             return;
         }
 
@@ -123,7 +123,7 @@ export default function CalendarPage({ isAdmin = false }) {
                     text: `Schedule has been saved for ${newEvent.userName}.`,
                     icon: 'success',
                     background: '#ffffff',
-                    confirmButtonColor: '#2E5F9E',
+                    confirmButtonColor: '#D4AF37',
                     customClass: {
                         title: 'text-black font-black uppercase tracking-widest text-lg',
                         content: 'text-gray-600 font-bold',
@@ -133,7 +133,7 @@ export default function CalendarPage({ isAdmin = false }) {
             }
         } catch (error) {
             console.error('Schedule save error:', error);
-            Swal.fire({ title: 'Error', text: 'Failed to save schedule. Please try again.', icon: 'error', confirmButtonColor: '#2E5F9E' });
+            Swal.fire({ title: 'Error', text: 'Failed to save schedule. Please try again.', icon: 'error', confirmButtonColor: '#D4AF37' });
         }
     };
 
@@ -147,7 +147,7 @@ export default function CalendarPage({ isAdmin = false }) {
             showCancelButton: true,
             background: '#ffffff',
             confirmButtonColor: '#d33',
-            cancelButtonColor: '#2E5F9E',
+            cancelButtonColor: '#D4AF37',
             confirmButtonText: 'Yes, Remove It',
             cancelButtonText: 'No, Keep It',
             reverseButtons: true,
@@ -189,7 +189,7 @@ export default function CalendarPage({ isAdmin = false }) {
                 {/* Header Section */}
                 <div className="w-full text-center py-6 md:py-10 relative flex flex-col items-center justify-center px-4">
                     <div className="relative z-10 w-full">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-3 tracking-tight text-gradient-blue bg-clip-text uppercase leading-none text-center">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-3 tracking-tight text-gradient-gold bg-clip-text uppercase leading-none text-center">
                             Calendar
                         </h1>
                         <p className="text-[10px] sm:text-xs md:text-base text-gray-400 font-bold uppercase tracking-[0.3em] opacity-70 text-center">
@@ -200,8 +200,8 @@ export default function CalendarPage({ isAdmin = false }) {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
                     {/* Left: Calendar Component */}
-                    <div className="lg:col-span-8 bg-white rounded-2xl shadow-2xl border-2 border-[#2E5F9E]/30 overflow-hidden">
-                        <div className="bg-gradient-blue px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#1E3F66]/30 gap-2">
+                    <div className="lg:col-span-8 bg-white rounded-2xl shadow-2xl border-2 border-[#D4AF37]/30 overflow-hidden">
+                        <div className="bg-gradient-gold px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#b38b22]/30 gap-2">
                             <h2 className="text-black font-black text-xs sm:text-sm tracking-widest uppercase">Monthly Schedule</h2>
                             <div className="flex items-center gap-3 sm:gap-4">
                                 <div className="flex items-center gap-1.5">
@@ -250,12 +250,12 @@ export default function CalendarPage({ isAdmin = false }) {
                                     </div>
                                 ) : (
                                     upcomingSchedules.map(item => (
-                                        <div key={item.id} className="p-3 border border-gray-50 rounded-xl hover:border-[#2E5F9E]/30 hover:bg-gray-50/50 transition-all group">
+                                        <div key={item.id} className="p-3 border border-gray-50 rounded-xl hover:border-[#D4AF37]/30 hover:bg-gray-50/50 transition-all group">
                                             <div className="flex items-center justify-between mb-1">
                                                 <span className="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-bold uppercase tracking-tighter">{item.type}</span>
-                                                <span className="text-[10px] text-[#2E5F9E] font-black">{item.time}</span>
+                                                <span className="text-[10px] text-[#D4AF37] font-black">{item.time}</span>
                                             </div>
-                                            <h4 className="text-sm font-bold text-black group-hover:text-[#2E5F9E] transition-colors line-clamp-1">{item.title}</h4>
+                                            <h4 className="text-sm font-bold text-black group-hover:text-[#D4AF37] transition-colors line-clamp-1">{item.title}</h4>
                                             <p className="text-[10px] text-gray-800 font-medium mt-0.5">{item.date}</p>
                                         </div>
                                     ))
@@ -272,8 +272,8 @@ export default function CalendarPage({ isAdmin = false }) {
             {/* Admin Management Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate__animated animate__fadeIn">
-                    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-2xl border-2 border-[#2E5F9E]/50 w-full max-w-md overflow-hidden animate__animated animate__zoomIn">
-                        <div className="bg-gradient-blue py-4 px-6 flex items-center justify-between border-b border-[#1E3F66]/30">
+                    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-2xl border-2 border-[#D4AF37]/50 w-full max-w-md overflow-hidden animate__animated animate__zoomIn">
+                        <div className="bg-gradient-gold py-4 px-6 flex items-center justify-between border-b border-[#b38b22]/30">
                             <h3 className="text-black font-black uppercase tracking-widest text-[10px] sm:text-xs text-center">Strategic Schedule Entry</h3>
                             <button onClick={() => setIsModalOpen(false)} className="bg-black/10 hover:bg-black/20 p-2 rounded-full transition-colors group">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-black group-hover:rotate-90 transition-transform">
@@ -283,11 +283,11 @@ export default function CalendarPage({ isAdmin = false }) {
                         </div>
                         <form onSubmit={handleAddEvent} className="p-6 sm:p-8 space-y-5 md:space-y-6">
                             <div className="space-y-1.5 md:space-y-2">
-                                <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#1A3C61] mb-2">Event Title</label>
+                                <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#A67C00] mb-2">Event Title</label>
                                 <input 
                                     required
                                     type="text" 
-                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black"
+                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black"
                                     placeholder="e.g. Executive Meeting"
                                     value={newEvent.title}
                                     onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
@@ -295,9 +295,9 @@ export default function CalendarPage({ isAdmin = false }) {
                             </div>
 
                             <div ref={userDropdownRef} className="relative space-y-1.5 md:space-y-2">
-                                <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#1A3C61] mb-2">Assign to User</label>
+                                <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#A67C00] mb-2">Assign to User</label>
                                 <div
-                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-black cursor-pointer flex items-center justify-between hover:border-[#2E5F9E]/50 transition-all shadow-sm"
+                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-black cursor-pointer flex items-center justify-between hover:border-[#D4AF37]/50 transition-all shadow-sm"
                                     onClick={() => setShowUserDropdown(v => !v)}
                                 >
                                     <span className={newEvent.userName ? 'text-black' : 'text-gray-400 opacity-60'}>
@@ -308,13 +308,13 @@ export default function CalendarPage({ isAdmin = false }) {
                                     </svg>
                                 </div>
                                 {showUserDropdown && (
-                                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-[#2E5F9E]/30 rounded-xl shadow-2xl z-50 overflow-hidden">
+                                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-[#D4AF37]/30 rounded-xl shadow-2xl z-50 overflow-hidden">
                                         <div className="p-2 border-b border-gray-100">
                                             <input
                                                 autoFocus
                                                 type="text"
                                                 placeholder="Search users..."
-                                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-[10px] font-bold text-black outline-none focus:border-[#2E5F9E] transition-all"
+                                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-[10px] font-bold text-black outline-none focus:border-[#D4AF37] transition-all"
                                                 value={userSearch}
                                                 onChange={e => setUserSearch(e.target.value)}
                                                 onClick={e => e.stopPropagation()}
@@ -330,14 +330,14 @@ export default function CalendarPage({ isAdmin = false }) {
                                                     return (
                                                         <div
                                                             key={uid}
-                                                            className="px-4 py-3 flex items-center gap-3 hover:bg-[#2E5F9E]/10 cursor-pointer transition-colors"
+                                                            className="px-4 py-3 flex items-center gap-3 hover:bg-[#D4AF37]/10 cursor-pointer transition-colors"
                                                             onClick={() => {
                                                                 setNewEvent({ ...newEvent, userId: uid, userName: name });
                                                                 setUserSearch('');
                                                                 setShowUserDropdown(false);
                                                             }}
                                                         >
-                                                            <div className="w-7 h-7 rounded-full bg-gradient-blue flex items-center justify-center text-black font-black text-[9px] flex-shrink-0">
+                                                            <div className="w-7 h-7 rounded-full bg-gradient-gold flex items-center justify-center text-black font-black text-[9px] flex-shrink-0">
                                                                 {name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                                                             </div>
                                                             <div>
@@ -355,19 +355,19 @@ export default function CalendarPage({ isAdmin = false }) {
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-1.5 md:space-y-2">
-                                    <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#1A3C61] mb-2">Time</label>
+                                    <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#A67C00] mb-2">Time</label>
                                     <input 
                                         type="time" 
-                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black"
+                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black"
                                         value={newEvent.time}
                                         onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
                                     />
                                 </div>
                                 <div className="space-y-1.5 md:space-y-2">
-                                    <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#1A3C61] mb-2">Type</label>
+                                    <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#A67C00] mb-2">Type</label>
                                     <div className="relative">
                                         <select 
-                                            className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black appearance-none"
+                                            className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black appearance-none"
                                             value={newEvent.type}
                                             onChange={(e) => setNewEvent({...newEvent, type: e.target.value})}
                                         >
@@ -384,10 +384,10 @@ export default function CalendarPage({ isAdmin = false }) {
                             </div>
 
                             <div className="space-y-1.5 md:space-y-2">
-                                <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#1A3C61] mb-2">Description</label>
+                                <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#A67C00] mb-2">Description</label>
                                 <textarea
                                     rows={2}
-                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black resize-none"
+                                    className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black resize-none"
                                     placeholder="Brief description..."
                                     value={newEvent.description}
                                     onChange={(e) => setNewEvent({...newEvent, description: e.target.value})}
@@ -396,7 +396,7 @@ export default function CalendarPage({ isAdmin = false }) {
 
                             <button 
                                 type="submit"
-                                className="w-full py-4 sm:py-4.5 bg-gradient-blue text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:brightness-110 active:scale-[0.98] transition-all text-xs sm:text-sm"
+                                className="w-full py-4 sm:py-4.5 bg-gradient-gold text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:brightness-110 active:scale-[0.98] transition-all text-xs sm:text-sm"
                             >
                                 Confirm Schedule
                             </button>
@@ -418,7 +418,7 @@ export default function CalendarPage({ isAdmin = false }) {
                     font-weight: 800 !important;
                     text-transform: uppercase;
                     letter-spacing: 0.05em;
-                    color: #1A3C61;
+                    color: #A67C00;
                 }
                 @media (min-width: 640px) {
                     .calendar-container .fc-toolbar-title {
@@ -427,8 +427,8 @@ export default function CalendarPage({ isAdmin = false }) {
                 }
                 .calendar-container .fc-button-primary {
                     background-color: #ffffff !important;
-                    border-color: #2E5F9E !important;
-                    color: #1A3C61 !important;
+                    border-color: #D4AF37 !important;
+                    color: #A67C00 !important;
                     text-transform: uppercase !important;
                     font-size: 0.7rem !important;
                     font-weight: 700 !important;
@@ -436,12 +436,12 @@ export default function CalendarPage({ isAdmin = false }) {
                     transition: all 0.2s;
                 }
                 .calendar-container .fc-button-primary:hover {
-                    background-color: #2E5F9E !important;
+                    background-color: #D4AF37 !important;
                     color: #fff !important;
                 }
                 .calendar-container .fc-button-active {
-                    background-color: #1A3C61 !important;
-                    border-color: #1A3C61 !important;
+                    background-color: #A67C00 !important;
+                    border-color: #A67C00 !important;
                     color: #fff !important;
                 }
                 .calendar-container .fc-col-header-cell {
@@ -451,13 +451,13 @@ export default function CalendarPage({ isAdmin = false }) {
                     font-size: 0.65rem;
                     font-weight: 800;
                     letter-spacing: 0.05em;
-                    color: #1A3C61;
-                    border-color: #B8C6DB !important;
+                    color: #A67C00;
+                    border-color: #f3e5ab !important;
                 }
                 .calendar-container .fc-daygrid-day-number {
                     font-size: 0.8rem;
                     font-weight: 600;
-                    color: #1E3F66;
+                    color: #b38b22;
                     padding: 10px !important;
                 }
                 .calendar-container .fc-event {

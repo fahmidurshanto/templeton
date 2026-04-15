@@ -14,7 +14,8 @@ export default function AdminTopNav() {
         { name: 'OVERVIEW', href: '/admin' },
         { name: 'USERS', href: '/admin/users' },
         { name: 'ACTIVITIES', href: '/admin/activities' },
-        { name: 'SCHEDULE', href: '/admin/schedule' }
+        { name: 'SCHEDULE', href: '/admin/schedule' },
+        { name: 'TRACKING', href: '/admin/tracking' },
     ];
 
     const commonProps = {

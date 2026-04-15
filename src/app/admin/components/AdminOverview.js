@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState, useEffect } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import api from '@/lib/api';
@@ -78,7 +78,7 @@ export default function AdminOverview() {
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                    <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-xl hover:border-[#2E5F9E]/30 transition-all group hover:scale-[1.02]">
+                    <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-xl hover:border-[#D4AF37]/30 transition-all group hover:scale-[1.02]">
                         <div className="flex items-center justify-between mb-4">
                             <span className="text-xl sm:text-2xl">👥</span>
                             <span className="text-[9px] sm:text-[10px] font-black uppercase px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-100">Live</span>
@@ -87,7 +87,7 @@ export default function AdminOverview() {
                         <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest">Total Users</p>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-xl hover:border-[#2E5F9E]/30 transition-all group hover:scale-[1.02]">
+                    <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-xl hover:border-[#D4AF37]/30 transition-all group hover:scale-[1.02]">
                         <div className="flex items-center justify-between mb-4">
                             <span className="text-xl sm:text-2xl">🟢</span>
                             <span className="text-[9px] sm:text-[10px] font-black uppercase px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-100">Live</span>
@@ -110,12 +110,12 @@ export default function AdminOverview() {
                         ) : (
                             recentActivity.map((item, idx) => (
                                 <div key={idx} className="px-6 py-5 flex items-center gap-4 hover:bg-gray-50/80 transition-colors">
-                                    <div className="w-11 h-11 rounded-full bg-gradient-blue flex items-center justify-center text-black font-black text-sm flex-shrink-0 shadow-md">
+                                    <div className="w-11 h-11 rounded-full bg-gradient-gold flex items-center justify-center text-black font-black text-sm flex-shrink-0 shadow-md">
                                         {item.user.split(' ').map(n => n[0]).join('').slice(0, 2)}
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <p className="text-sm text-gray-950 font-bold truncate">
-                                            <span className="text-[#1A3C61]">{item.user}</span>
+                                            <span className="text-[#A67C00]">{item.user}</span>
                                             <span className="text-gray-400 mx-1">—</span>
                                             {item.action}
                                         </p>

@@ -1,6 +1,6 @@
 # Schedule & Calendar API
 
-This document lists all schedule/appointment API endpoints integrated into the Templeton frontend.
+This document lists all schedule/appointment API endpoints integrated into the Hutchinson frontend.
 
 ## Base URL
 All API calls are prefixed with your backend's base URL, e.g., ``/api/v1``

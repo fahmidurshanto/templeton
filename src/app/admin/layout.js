@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -27,7 +27,7 @@ export default function AdminLayout({ children }) {
     if (!isAuthorized) {
         return (
             <div className="min-h-screen bg-[#f8f9fa] flex items-center justify-center">
-                <div className="w-10 h-10 border-4 border-gray-200 border-t-[#2E5F9E] rounded-full animate-spin"></div>
+                <div className="w-10 h-10 border-4 border-gray-200 border-t-[#D4AF37] rounded-full animate-spin"></div>
             </div>
         );
     }

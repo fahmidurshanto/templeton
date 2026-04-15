@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React from 'react';
 import Link from 'next/link';
 
@@ -10,7 +10,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
                 <div className="absolute left-4 top-0 w-[140px] h-[80px] bg-white rounded-br-[2rem] flex items-center justify-center shadow-md z-40">
                     <img
                         src="/templeton-logo.png"
-                        alt="Templeton Trust Fund Ltd."
+                        alt="Templeton APAC Ltd."
                         className="w-[100px] h-[70px] object-contain"
                     />
                 </div>
@@ -19,7 +19,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
                     {user && (
                         <div className="flex items-center gap-2">
                             <span className="font-semibold text-xs text-[#3a3a3a] hidden sm:inline">{user.name}</span>
-                            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-sm bg-gradient-blue">
+                            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-sm bg-gradient-gold">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                                     <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                                 </svg>
@@ -28,7 +28,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
                     )}
                     <button 
                         onClick={logout}
-                        className="px-4 py-1.5 rounded-full bg-gradient-blue text-gray-900 text-[10px] font-bold shadow-sm transition-all"
+                        className="px-4 py-1.5 rounded-full bg-gradient-gold text-gray-900 text-[10px] font-bold shadow-sm transition-all"
                     >
                         Logout
                     </button>
@@ -58,7 +58,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
                             >
                                 <span className={`flex items-center h-full px-4 font-bold text-[10px] tracking-wider whitespace-nowrap border-b-[2px] transition-colors
                                     ${isActive
-                                        ? 'bg-[#1e232d] text-white border-[#2E5F9E]'
+                                        ? 'bg-[#1e232d] text-white border-[#D4AF37]'
                                         : 'text-[#4a4a4a] border-transparent'
                                     }`}
                                 >

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useAppContext } from '@/context/AppContext';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
@@ -54,13 +54,13 @@ export default function PersonalPage() {
                 title: 'Request Transmitted',
                 text: 'Your profile update request has been successfully transmitted to the Strategic Administrator. You will be notified once the changes are verified and applied.',
                 icon: 'success',
-                confirmButtonColor: '#2E5F9E'
+                confirmButtonColor: '#D4AF37'
             });
             setIsRequestingUpdate(false);
         }, 2000);
     };
 
-    if (!user) return <div className="p-20 text-center font-bold text-gradient-blue">Loading Profile...</div>;
+    if (!user) return <div className="p-20 text-center font-bold text-gradient-gold">Loading Profile...</div>;
 
     return (
         <div className="w-full h-full flex flex-col items-center relative overflow-visible">
@@ -76,7 +76,7 @@ export default function PersonalPage() {
             {/* Header Section */}
             <div className="w-full text-center py-6 md:py-10 mb-2 animate__animated animate__fadeIn relative flex flex-col items-center justify-center">
                 <div className="relative z-10 w-full px-4">
-                    <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-2 tracking-tight text-gradient-blue bg-clip-text uppercase">
+                    <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-2 tracking-tight text-gradient-gold bg-clip-text uppercase">
                         Personal Profile
                     </h1>
                     <p className="text-[10px] md:text-base text-gray-500 font-bold uppercase tracking-widest opacity-70">
@@ -92,7 +92,7 @@ export default function PersonalPage() {
                     {/* Left Column - Summary & Overview */}
                     <div className="lg:col-span-1 space-y-6">
                         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-xl flex flex-col items-center text-center">
-                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-blue flex items-center justify-center text-black font-black text-2xl sm:text-4xl shadow-2xl mb-6 uppercase border-4 border-white">
+                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-gold flex items-center justify-center text-black font-black text-2xl sm:text-4xl shadow-2xl mb-6 uppercase border-4 border-white">
                                 {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
                             </div>
                             <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight">
@@ -134,7 +134,7 @@ export default function PersonalPage() {
                                 <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Personal Information</h3>
                                 <button
                                     onClick={() => setIsRequestingUpdate(true)}
-                                    className="text-[9px] sm:text-[10px] font-black text-[#2E5F9E] border-b border-[#2E5F9E]/30 uppercase tracking-widest hover:text-[#1A3C61] transition-colors"
+                                    className="text-[9px] sm:text-[10px] font-black text-[#D4AF37] border-b border-[#D4AF37]/30 uppercase tracking-widest hover:text-[#A67C00] transition-colors"
                                 >
                                     Request Update
                                 </button>
@@ -180,9 +180,9 @@ export default function PersonalPage() {
                                     {user.activities && user.activities.length > 0 ? (
                                         user.activities.map(activity => (
                                             <div key={activity.id} className="flex gap-4 group">
-                                                <div className="w-2 h-2 rounded-full bg-[#2E5F9E] mt-1.5 flex-shrink-0 group-hover:scale-125 transition-all shadow-[0_0_8px_rgba(212,175,55,0.5)]"></div>
+                                                <div className="w-2 h-2 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0 group-hover:scale-125 transition-all shadow-[0_0_8px_rgba(212,175,55,0.5)]"></div>
                                                 <div>
-                                                    <p className="text-sm text-gray-950 font-bold group-hover:text-[#2E5F9E] transition-colors uppercase tracking-tight">{activity.title}</p>
+                                                    <p className="text-sm text-gray-950 font-bold group-hover:text-[#D4AF37] transition-colors uppercase tracking-tight">{activity.title}</p>
                                                     <p className="text-[10px] text-gray-400 font-bold uppercase mt-0.5 tracking-widest">
                                                         {activity.date} • {activity.time}
                                                     </p>
@@ -216,8 +216,8 @@ export default function PersonalPage() {
             {/* Information Update Request Modal - Moved outside to prevent stacking context traps */}
             {isRequestingUpdate && (
                 <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[100] flex items-center justify-center p-4 animate__animated animate__fadeIn">
-                    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-2xl border-2 border-[#2E5F9E]/50 w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col animate__animated animate__zoomIn">
-                        <div className="bg-gradient-blue px-6 sm:px-8 py-4 sm:py-6 flex items-center justify-between border-b border-[#1E3F66]/30">
+                    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-2xl border-2 border-[#D4AF37]/50 w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col animate__animated animate__zoomIn">
+                        <div className="bg-gradient-gold px-6 sm:px-8 py-4 sm:py-6 flex items-center justify-between border-b border-[#b38b22]/30">
                             <div>
                                 <h2 className="text-black font-black text-sm sm:text-base md:text-lg tracking-widest uppercase">Request Update</h2>
                                 <p className="text-[8px] sm:text-[9px] md:text-[10px] text-black/60 font-black uppercase tracking-widest mt-0.5 md:mt-1">Strategic verification active</p>
@@ -232,28 +232,28 @@ export default function PersonalPage() {
                         <form onSubmit={handleRequestSubmit} className="flex-1 overflow-y-auto p-5 sm:p-8 md:p-10 space-y-6 sm:space-y-8 md:space-y-10 custom-scrollbar">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 sm:gap-x-12 gap-y-4 sm:gap-y-6 md:gap-y-8">
                                 <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
-                                    <label className="text-[9px] sm:text-[10px] font-black text-[#1A3C61] uppercase tracking-widest">First Name</label>
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#A67C00] uppercase tracking-widest">First Name</label>
                                     <input
                                         type="text"
-                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black"
+                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black"
                                         value={updateData.firstName}
                                         onChange={(e) => setUpdateData({ ...updateData, firstName: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
-                                    <label className="text-[9px] sm:text-[10px] font-black text-[#1A3C61] uppercase tracking-widest">Last Name</label>
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#A67C00] uppercase tracking-widest">Last Name</label>
                                     <input
                                         type="text"
-                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black"
+                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black"
                                         value={updateData.lastName}
                                         onChange={(e) => setUpdateData({ ...updateData, lastName: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
-                                    <label className="text-[9px] sm:text-[10px] font-black text-[#1A3C61] uppercase tracking-widest">Gender</label>
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#A67C00] uppercase tracking-widest">Gender</label>
                                     <div className="relative">
                                         <select
-                                            className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black appearance-none"
+                                            className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black appearance-none"
                                             value={updateData.gender}
                                             onChange={(e) => setUpdateData({ ...updateData, gender: e.target.value })}
                                         >
@@ -271,46 +271,46 @@ export default function PersonalPage() {
                                     </div>
                                 </div>
                                 <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
-                                    <label className="text-[9px] sm:text-[10px] font-black text-[#1A3C61] uppercase tracking-widest">Contact Number</label>
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#A67C00] uppercase tracking-widest">Contact Number</label>
                                     <input
                                         type="tel"
-                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black"
+                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black"
                                         value={updateData.phone}
                                         onChange={(e) => setUpdateData({ ...updateData, phone: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
-                                    <label className="text-[9px] sm:text-[10px] font-black text-[#1A3C61] uppercase tracking-widest">Email Address</label>
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#A67C00] uppercase tracking-widest">Email Address</label>
                                     <input
                                         type="email"
-                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black"
+                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black"
                                         value={updateData.email}
                                         onChange={(e) => setUpdateData({ ...updateData, email: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
-                                    <label className="text-[9px] sm:text-[10px] font-black text-[#1A3C61] uppercase tracking-widest">NRIC</label>
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#A67C00] uppercase tracking-widest">NRIC</label>
                                     <input
                                         type="text"
-                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black"
+                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black"
                                         value={updateData.nric}
                                         onChange={(e) => setUpdateData({ ...updateData, nric: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
-                                    <label className="text-[9px] sm:text-[10px] font-black text-[#1A3C61] uppercase tracking-widest">Nationality</label>
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#A67C00] uppercase tracking-widest">Nationality</label>
                                     <input
                                         type="text"
-                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black"
+                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black"
                                         value={updateData.nationality}
                                         onChange={(e) => setUpdateData({ ...updateData, nationality: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
-                                    <label className="text-[9px] sm:text-[10px] font-black text-[#1A3C61] uppercase tracking-widest">Registered Address</label>
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#A67C00] uppercase tracking-widest">Registered Address</label>
                                     <textarea
                                         rows={2}
-                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#2E5F9E] outline-none transition-all font-bold text-black resize-none"
+                                        className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black resize-none"
                                         value={updateData.address}
                                         onChange={(e) => setUpdateData({ ...updateData, address: e.target.value })}
                                     />
@@ -320,7 +320,7 @@ export default function PersonalPage() {
                             <div className="pt-4 sm:pt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
                                 <button
                                     type="submit"
-                                    className="flex-1 py-4 sm:py-5 bg-gradient-blue text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-blue-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer text-[10px] sm:text-xs md:text-sm"
+                                    className="flex-1 py-4 sm:py-5 bg-gradient-gold text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer text-[10px] sm:text-xs md:text-sm"
                                 >
                                     Submit Profile Update Request
                                 </button>

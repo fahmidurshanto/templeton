@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
 
@@ -17,7 +17,7 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
                 </Link>
 
                 <div className="flex items-center gap-3">
-                    <span className="px-2 py-0.5 rounded-full bg-black text-[#2E5F9E] text-[8px] font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-black text-[#D4AF37] text-[8px] font-bold">
                         ADMIN
                     </span>
                     <button 
@@ -40,12 +40,12 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
                 <div className="flex flex-col h-full">
                     <div className="p-6 bg-gradient-to-br from-[#1e232d] to-[#2a303c] text-white">
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-full bg-gradient-blue flex items-center justify-center text-white font-bold">
+                            <div className="w-10 h-10 rounded-full bg-gradient-gold flex items-center justify-center text-white font-bold">
                                 {user?.name?.charAt(0)}
                             </div>
                             <div>
                                 <p className="font-bold text-sm">{user?.name}</p>
-                                <p className="text-[10px] text-[#2E5F9E] font-bold tracking-widest">ADMINISTRATOR</p>
+                                <p className="text-[10px] text-[#D4AF37] font-bold tracking-widest">ADMINISTRATOR</p>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
                                     href={tab.href}
                                     className={`flex items-center px-6 py-4 font-bold text-sm border-l-4 transition-colors ${
                                         isActive 
-                                        ? 'bg-gray-100 text-[#2E5F9E] border-[#2E5F9E]' 
+                                        ? 'bg-gray-100 text-[#D4AF37] border-[#D4AF37]' 
                                         : 'text-gray-700 border-transparent hover:bg-gray-50'
                                     }`}
                                     onClick={() => setIsOpen(false)}
@@ -77,7 +77,7 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
                                 logout();
                                 setIsOpen(false);
                             }}
-                            className="w-full py-3 rounded-xl bg-gradient-blue text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
+                            className="w-full py-3 rounded-xl bg-gradient-gold text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
                         >
                             Logout
                         </button>
