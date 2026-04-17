@@ -4,7 +4,7 @@ export default function DashboardHero() {
 
             <div className="relative z-10 w-full">
 
-                <button className="cursor-pointer px-8 py-3 rounded-full text-gray-900 bg-gradient-gold font-bold shadow-[0_4px_15px_rgba(212,175,55,0.4)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] hover:scale-105 transition-all flex items-center justify-center mx-auto border border-transparent">
+                <button className="cursor-pointer px-8 py-3 rounded-full text-gray-900 bg-gradient-premium font-bold shadow-[0_4px_15px_rgba(212,175,55,0.4)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] hover:scale-105 transition-all flex items-center justify-center mx-auto border border-transparent">
                     EXPLORE NEW OPPORTUNITIES
                     {/* Cursor icon mockup as seen in design */}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 ml-2 -mb-1 animate-bounce text-gray-900 drop-shadow-sm">

@@ -45,7 +45,7 @@ export default function PersonalModal({ isOpen, onClose }) {
     const footerAction = isEditing ? (
         <button
             onClick={handleSubmit}
-            className="px-6 cursor-pointer py-2 bg-gradient-gold text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
+            className="px-6 cursor-pointer py-2 bg-gradient-premium text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
         >
             Submit Request
         </button>
@@ -86,7 +86,7 @@ export default function PersonalModal({ isOpen, onClose }) {
                                         type="text"
                                         value={value}
                                         onChange={(e) => handleInputChange(key, e.target.value)}
-                                        className="w-full sm:w-auto text-sm font-bold text-gray-900 border-b border-gray-200 focus:border-[#D4AF37] outline-none bg-transparent py-1 px-2 text-right"
+                                        className="w-full sm:w-auto text-sm font-bold text-gray-900 border-b border-gray-200 focus:border-[#4A4A4A] outline-none bg-transparent py-1 px-2 text-right"
                                     />
                                 ) : (
                                     <span className="text-sm font-bold text-gray-900 text-right">{value}</span>

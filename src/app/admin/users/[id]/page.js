@@ -84,7 +84,7 @@ export default function UserDetailPage({ params }) {
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
-            cancelButtonColor: '#D4AF37',
+            cancelButtonColor: '#4A4A4A',
             confirmButtonText: 'Yes, Remove User',
             reverseButtons: true
         }).then(async (result) => {
@@ -135,7 +135,7 @@ export default function UserDetailPage({ params }) {
                 title: 'Profile Updated',
                 text: 'User information has been successfully updated.',
                 icon: 'success',
-                confirmButtonColor: '#D4AF37'
+                confirmButtonColor: '#4A4A4A'
             });
             handleCloseModal();
         } catch (error) {
@@ -149,8 +149,8 @@ export default function UserDetailPage({ params }) {
             {/* Edit Modal */}
             {isEditModalOpen && (
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate__animated animate__fadeIn">
-                    <div className="bg-white rounded-[2rem] shadow-2xl border-2 border-[#D4AF37]/30 w-full max-w-2xl overflow-hidden animate__animated animate__zoomIn flex flex-col max-h-[90vh]">
-                        <div className="bg-gradient-gold py-5 px-8 flex items-center justify-between shrink-0">
+                    <div className="bg-white rounded-[2rem] shadow-2xl border-2 border-[#4A4A4A]/30 w-full max-w-2xl overflow-hidden animate__animated animate__zoomIn flex flex-col max-h-[90vh]">
+                        <div className="bg-gradient-premium py-5 px-8 flex items-center justify-between shrink-0">
                             <h3 className="text-black font-black uppercase tracking-widest text-sm">
                                 Edit User Profile
                             </h3>
@@ -167,76 +167,76 @@ export default function UserDetailPage({ params }) {
                                         <h4 className="text-[10px] sm:text-[12px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">Identity Details</h4>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                             <div>
-                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">First Name</label>
-                                                <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
+                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">First Name</label>
+                                                <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
                                             </div>
                                             <div>
-                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Last Name</label>
-                                                <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
+                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Last Name</label>
+                                                <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                             <div>
-                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Gender</label>
-                                                <select className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black cursor-pointer" value={formData.gender} onChange={(e) => setFormData({ ...formData, gender: e.target.value })}>
+                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Gender</label>
+                                                <select className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black cursor-pointer" value={formData.gender} onChange={(e) => setFormData({ ...formData, gender: e.target.value })}>
                                                     <option value="male">Male</option>
                                                     <option value="female">Female</option>
                                                     <option value="other">Other</option>
                                                 </select>
                                             </div>
                                             <div>
-                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Nationality</label>
-                                                <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" value={formData.nationality} onChange={(e) => setFormData({ ...formData, nationality: e.target.value })} />
+                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Nationality</label>
+                                                <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.nationality} onChange={(e) => setFormData({ ...formData, nationality: e.target.value })} />
                                             </div>
                                         </div>
                                         <div>
-                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">NRIC / Passport No.</label>
-                                            <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" value={formData.nric} onChange={(e) => setFormData({ ...formData, nric: e.target.value })} />
+                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">NRIC / Passport No.</label>
+                                            <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.nric} onChange={(e) => setFormData({ ...formData, nric: e.target.value })} />
                                         </div>
                                         <div>
-                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Full Address</label>
-                                            <textarea required rows="2" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black resize-none" value={formData.address} onChange={(e) => setFormData({ ...formData, address: e.target.value })} />
+                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Full Address</label>
+                                            <textarea required rows="2" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black resize-none" value={formData.address} onChange={(e) => setFormData({ ...formData, address: e.target.value })} />
                                         </div>
                                     </div>
 
                                     <div className="space-y-6 sm:space-y-8">
                                         <h4 className="text-[10px] sm:text-[12px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">Status & Contact</h4>
                                         <div>
-                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Account Status</label>
-                                            <select className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black cursor-pointer" value={formData.status} onChange={(e) => setFormData({ ...formData, status: e.target.value })}>
+                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Account Status</label>
+                                            <select className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black cursor-pointer" value={formData.status} onChange={(e) => setFormData({ ...formData, status: e.target.value })}>
                                                 <option value="active">Active</option>
                                                 <option value="pending">Pending</option>
                                                 <option value="suspended">Suspended</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Email Address</label>
-                                            <input required type="email" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Email Address</label>
+                                            <input required type="email" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                                         </div>
                                         <div>
-                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Phone Number</label>
-                                            <input required type="tel" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" value={formData.Phone} onChange={(e) => setFormData({ ...formData, Phone: e.target.value })} />
+                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Phone Number</label>
+                                            <input required type="tel" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.Phone} onChange={(e) => setFormData({ ...formData, Phone: e.target.value })} />
                                         </div>
                                         <div className="flex flex-col space-y-4 sm:space-y-6">
                                             <div>
-                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Secondary Email</label>
-                                                <input type="email" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" value={formData.secondaryEmail} onChange={(e) => setFormData({ ...formData, secondaryEmail: e.target.value })} />
+                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Secondary Email</label>
+                                                <input type="email" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.secondaryEmail} onChange={(e) => setFormData({ ...formData, secondaryEmail: e.target.value })} />
                                             </div>
                                             <div>
-                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-gold mb-1.5 sm:mb-2">Secondary Phone</label>
-                                                <input type="tel" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" value={formData.secondaryPhone} onChange={(e) => setFormData({ ...formData, secondaryPhone: e.target.value })} />
+                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Secondary Phone</label>
+                                                <input type="tel" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.secondaryPhone} onChange={(e) => setFormData({ ...formData, secondaryPhone: e.target.value })} />
                                             </div>
                                         </div>
                                         <div className="md:col-span-2">
-                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#D4AF37] mb-1.5 sm:mb-2">Vault Password</label>
-                                            <input type="password" underline="true" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#D4AF37] outline-none transition-all font-bold text-black" placeholder="Leave empty to keep current" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#4A4A4A] mb-1.5 sm:mb-2">Vault Password</label>
+                                            <input type="password" underline="true" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" placeholder="Leave empty to keep current" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
                                         </div>
                                     </div>
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className="w-full py-4 sm:py-5 bg-gradient-gold text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer mt-4 text-xs sm:text-sm"
+                                    className="w-full py-4 sm:py-5 bg-gradient-premium text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer mt-4 text-xs sm:text-sm"
                                 >
                                     Save Changes
                                 </button>
@@ -251,7 +251,7 @@ export default function UserDetailPage({ params }) {
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => router.push('/admin/users')}
-                            className="p-2.5 hover:bg-white rounded-2xl shadow-sm border border-gray-100 transition-all text-gray-400 hover:text-[#D4AF37]"
+                            className="p-2.5 hover:bg-white rounded-2xl shadow-sm border border-gray-100 transition-all text-gray-400 hover:text-[#4A4A4A]"
                         >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -267,7 +267,7 @@ export default function UserDetailPage({ params }) {
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         <button
                             onClick={() => router.push(`/admin/users/${userId}/reports`)}
-                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-gradient-gold text-black font-black text-[10px] uppercase tracking-widest hover:scale-105 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-gradient-premium text-black font-black text-[10px] uppercase tracking-widest hover:scale-105 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
@@ -292,9 +292,9 @@ export default function UserDetailPage({ params }) {
                         </button>
                         <button
                             onClick={handleEdit}
-                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-white border border-gray-200 text-black font-black text-[10px] uppercase tracking-widest hover:border-[#D4AF37] hover:bg-gray-50 shadow-sm transition-all flex items-center justify-center gap-2"
+                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-white border border-gray-200 text-black font-black text-[10px] uppercase tracking-widest hover:border-[#4A4A4A] hover:bg-gray-50 shadow-sm transition-all flex items-center justify-center gap-2"
                         >
-                            <svg className="w-4 h-4 text-[#A67C00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <svg className="w-4 h-4 text-[#153A6A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                             </svg>
                             Edit
@@ -316,7 +316,7 @@ export default function UserDetailPage({ params }) {
                     {/* Left Column - Basic Info */}
                     <div className="lg:col-span-1 space-y-6">
                         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-xl flex flex-col items-center text-center">
-                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-gold flex items-center justify-center text-black font-black text-3xl sm:text-4xl shadow-2xl mb-4 sm:mb-6 uppercase">
+                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-premium flex items-center justify-center text-black font-black text-3xl sm:text-4xl shadow-2xl mb-4 sm:mb-6 uppercase">
                                 {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
                             </div>
                             <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight">
@@ -331,7 +331,7 @@ export default function UserDetailPage({ params }) {
                                 </div>
                                 <div className="bg-gray-50 rounded-2xl p-3 sm:p-4 border border-gray-100 text-center">
                                     <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Role</p>
-                                    <span className="text-[10px] sm:text-xs font-black text-[#A67C00] uppercase tracking-widest">{user.role || 'Partner'}</span>
+                                    <span className="text-[10px] sm:text-xs font-black text-[#153A6A] uppercase tracking-widest">{user.role || 'Partner'}</span>
                                 </div>
                             </div>
                         </div>
@@ -356,7 +356,7 @@ export default function UserDetailPage({ params }) {
                         <div className="space-y-3">
                             <button
                                 onClick={() => router.push(`/admin/users/${userId}/memberships`)}
-                                className="w-full px-6 py-4 rounded-2xl bg-gradient-gold text-black font-black text-xs uppercase tracking-widest hover:scale-[1.02] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3"
+                                className="w-full px-6 py-4 rounded-2xl bg-gradient-premium text-black font-black text-xs uppercase tracking-widest hover:scale-[1.02] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3"
                             >
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
@@ -365,9 +365,9 @@ export default function UserDetailPage({ params }) {
                             </button>
                             <button
                                 onClick={() => router.push(`/admin/users/${userId}/services`)}
-                                className="w-full px-6 py-4 rounded-2xl bg-white border-2 border-[#D4AF37] text-black font-black text-xs uppercase tracking-widest hover:bg-gray-50 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3"
+                                className="w-full px-6 py-4 rounded-2xl bg-white border-2 border-[#4A4A4A] text-black font-black text-xs uppercase tracking-widest hover:bg-gray-50 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3"
                             >
-                                <svg className="w-5 h-5 text-[#A67C00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <svg className="w-5 h-5 text-[#153A6A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 .621-.504 1.125-1.125 1.125H4.875A1.125 1.125 0 013.75 18.4V14.15m16.5 0a2.25 2.25 0 00-2.25-2.25h-13.5A2.25 2.25 0 002.25 14.15m16.5 0V5.25A2.25 2.25 0 0016.5 3h-9A2.25 2.25 0 005.25 5.25v8.9m13.5 0a2.25 2.25 0 01-2.25 2.25h-13.5a2.25 2.25 0 01-2.25-2.25m16.5 0h.008v.008h-.008v-.008zm-16.5 0h.008v.008h-.008v-.008z" />
                                 </svg>
                                 Services
@@ -380,45 +380,45 @@ export default function UserDetailPage({ params }) {
                         <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
                             <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
                                 <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Personal Information</h3>
-                                <button className="text-[9px] sm:text-[10px] font-black text-[#D4AF37] uppercase tracking-widest hover:underline">Edit Section</button>
+                                <button className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest hover:underline">Edit Section</button>
                             </div>
                             <div className="p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                                 <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">First Name</label>
+                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">First Name</label>
                                     <p className="text-sm sm:text-base text-gray-950 font-black">{user.firstName || user.name?.split(' ')[0]}</p>
                                 </div>
                                 <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">Last Name</label>
+                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Last Name</label>
                                     <p className="text-sm sm:text-base text-gray-950 font-black">{user.lastName || user.name?.split(' ').slice(1).join(' ')}</p>
                                 </div>
                                 <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">Email Address</label>
+                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Email Address</label>
                                     <p className="text-sm sm:text-base text-gray-950 font-black truncate">{user.email}</p>
                                 </div>
                                 <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">Contact Number</label>
+                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Contact Number</label>
                                     <p className="text-sm sm:text-base text-gray-950 font-black">{user.Phone || 'N/A'}</p>
                                 </div>
                                 <div className="sm:col-span-2 flex flex-col sm:flex-row gap-6 sm:gap-12 border-t border-gray-50 pt-4">
                                     <div className="flex-1">
-                                        <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">Secondary Email</label>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Secondary Email</label>
                                         <p className="text-sm sm:text-base text-gray-950 font-black truncate">{user.secondaryEmail || 'N/A'}</p>
                                     </div>
                                     <div className="flex-1">
-                                        <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">Secondary Phone</label>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Secondary Phone</label>
                                         <p className="text-sm sm:text-base text-gray-950 font-black">{user.secondaryPhone || 'N/A'}</p>
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">NRIC / Passport</label>
+                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">NRIC / Passport</label>
                                     <p className="text-sm sm:text-base text-gray-950 font-black">{user.nric || 'N/A'}</p>
                                 </div>
                                 <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">Nationality</label>
+                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Nationality</label>
                                     <p className="text-sm sm:text-base text-gray-950 font-black">{user.nationality || 'N/A'}</p>
                                 </div>
                                 <div className="sm:col-span-2">
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-gold uppercase tracking-widest mb-1.5 sm:mb-2">Residential Address</label>
+                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Residential Address</label>
                                     <p className="text-xs sm:text-sm text-gray-600 font-bold leading-relaxed">{user.address || 'N/A'}</p>
                                 </div>
                                 <div className="sm:col-span-2 border-t border-gray-100 pt-6 mt-2">
@@ -429,12 +429,12 @@ export default function UserDetailPage({ params }) {
                                         Security Vault (Plain Password)
                                     </label>
                                     <div className="flex items-center gap-3">
-                                        <p className="text-base sm:text-lg text-[#D4AF37] font-black font-mono tracking-wider bg-amber-50 px-4 py-2 rounded-xl border border-amber-100/50 min-w-[150px]">
+                                        <p className="text-base sm:text-lg text-[#4A4A4A] font-black font-mono tracking-wider bg-amber-50 px-4 py-2 rounded-xl border border-amber-100/50 min-w-[150px]">
                                             {showPassword ? (user.password || 'N/A') : '••••••••'}
                                         </p>
                                         <button
                                             onClick={() => setShowPassword(!showPassword)}
-                                            className="p-2.5 rounded-xl bg-gray-50 text-gray-400 hover:text-[#D4AF37] hover:bg-white border border-gray-100 transition-all flex items-center justify-center shadow-sm"
+                                            className="p-2.5 rounded-xl bg-gray-50 text-gray-400 hover:text-[#4A4A4A] hover:bg-white border border-gray-100 transition-all flex items-center justify-center shadow-sm"
                                             title={showPassword ? "Hide Password" : "Show Password"}
                                         >
                                             {showPassword ? (
@@ -461,7 +461,7 @@ export default function UserDetailPage({ params }) {
                                                     position: 'top-end'
                                                 });
                                             }}
-                                            className="p-2.5 rounded-xl bg-gray-50 text-gray-400 hover:text-[#D4AF37] hover:bg-white border border-gray-100 transition-all flex items-center justify-center shadow-sm"
+                                            className="p-2.5 rounded-xl bg-gray-50 text-gray-400 hover:text-[#4A4A4A] hover:bg-white border border-gray-100 transition-all flex items-center justify-center shadow-sm"
                                             title="Copy Password"
                                         >
                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -482,9 +482,9 @@ export default function UserDetailPage({ params }) {
                                     {user.activities && user.activities.length > 0 ? (
                                         user.activities.map(activity => (
                                             <div key={activity.id} className="flex gap-3 sm:gap-4 group">
-                                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#4A4A4A] mt-1.5 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
                                                 <div>
-                                                    <p className="text-xs sm:text-sm text-gray-950 font-bold group-hover:text-[#D4AF37] transition-colors leading-tight">{activity.title}</p>
+                                                    <p className="text-xs sm:text-sm text-gray-950 font-bold group-hover:text-[#4A4A4A] transition-colors leading-tight">{activity.title}</p>
                                                     <p className="text-[8px] sm:text-[10px] text-gray-400 font-black uppercase mt-0.5 tracking-wider">
                                                         {activity.date} • {activity.time}
                                                     </p>
@@ -519,14 +519,14 @@ export default function UserDetailPage({ params }) {
                         <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
                             <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
                                 <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Schedules</h3>
-                                <span className="text-[9px] sm:text-[10px] font-black text-[#D4AF37] uppercase tracking-widest">
+                                <span className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest">
                                     {schedules.length} total
                                 </span>
                             </div>
                             <div className="p-6 sm:p-8">
                                 {schedulesLoading ? (
                                     <div className="flex items-center justify-center py-6">
-                                        <div className="w-6 h-6 border-2 border-gray-200 border-t-[#D4AF37] rounded-full animate-spin"></div>
+                                        <div className="w-6 h-6 border-2 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
                                     </div>
                                 ) : schedules.length === 0 ? (
                                     <div className="py-6 text-center">
@@ -535,7 +535,7 @@ export default function UserDetailPage({ params }) {
                                 ) : (
                                     <div className="space-y-3 sm:space-y-4">
                                         {schedules.map((s) => (
-                                            <div key={s._id} className="flex gap-3 sm:gap-4 group p-3 sm:p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-[#D4AF37]/30 transition-all">
+                                            <div key={s._id} className="flex gap-3 sm:gap-4 group p-3 sm:p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-[#4A4A4A]/30 transition-all">
                                                 <div className="flex-shrink-0">
                                                     <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 text-[8px] sm:text-[10px] font-black uppercase tracking-widest rounded-full border ${s.type === 'Meeting'
                                                         ? 'bg-green-50 text-green-600 border-green-100'
@@ -545,7 +545,7 @@ export default function UserDetailPage({ params }) {
                                                     </span>
                                                 </div>
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="text-xs sm:text-sm font-black text-gray-900 group-hover:text-[#A67C00] transition-colors leading-tight">{s.title}</p>
+                                                    <p className="text-xs sm:text-sm font-black text-gray-900 group-hover:text-[#153A6A] transition-colors leading-tight">{s.title}</p>
                                                     <p className="text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-0.5">
                                                         {new Date(s.time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
                                                         {' • '}
@@ -598,7 +598,7 @@ export default function UserDetailPage({ params }) {
                             onClick={downloadQRCode}
                             className="w-full px-6 py-3 bg-black text-white rounded-xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg hover:bg-gray-800 transition-all flex items-center justify-center gap-2 group"
                         >
-                            <svg className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <svg className="w-4 h-4 text-[#4A4A4A] group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M7.5 12L12 16.5m0 0L16.5 12M12 16.5V3" />
                             </svg>
                             Download QR Code

@@ -5,15 +5,15 @@
   --foreground: #171717;
   
   /* Centralized Theme Colors */
-  --color-brand-primary: #D4AF37;
-  --color-brand-secondary: #ffffff;
-  --color-brand-muted: #A67C00;
-  --color-brand-border: #F3E5AB;
+  --color-brand-primary: #1A1A1A; /* Gunmetal */
+  --color-brand-secondary: #E5E4E2; /* Platinum Silver */
+  --color-brand-muted: #4A4A4A; /* Charcoal Gray (replacing Blue) */
+  --color-brand-border: #D1D1D1;
 
-  /* Gradients based on logo */
-  --gradient-gold: linear-gradient(135deg, #e6c875 0%, #f2d272 50%, #b38b22 100%);
-  --gradient-silver: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%);
-  --gradient-silver-horizontal: linear-gradient(90deg, #f0f0f0 0%, #d9d9d9 50%, #f0f0f0 100%);
+  /* Gradients based on Templeton logo (Gunmetal & Platinum) */
+  --gradient-premium: linear-gradient(135deg, #1A1A1A 0%, #4A4A4A 50%, #1A1A1A 100%);
+  --gradient-silver: linear-gradient(180deg, #E5E4E2 0%, #B8B8B8 100%);
+  --gradient-silver-horizontal: linear-gradient(90deg, #E5E4E2 0%, #B8B8B8 50%, #E5E4E2 100%);
 }
 
 @theme inline {
@@ -27,17 +27,17 @@
   --font-mono: var(--font-geist-mono);
 }
 
-.bg-gradient-gold {
-  background: var(--gradient-gold);
+.bg-gradient-premium {
+  background: var(--gradient-premium);
 }
-.text-gradient-gold {
-  background: var(--gradient-gold);
+.text-gradient-premium {
+  background: var(--gradient-premium);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.border-gradient-gold {
-  border-image: var(--gradient-gold) 1;
+.border-gradient-premium {
+  border-image: var(--gradient-premium) 1;
 }
 
 .bg-gradient-silver {

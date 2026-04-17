@@ -54,8 +54,8 @@ function VerifyContent() {
         <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6 text-white overflow-hidden relative">
             {/* Background elements */}
             <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-                <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#D4AF37]/20 rounded-full blur-[120px]"></div>
-                <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#D4AF37]/10 rounded-full blur-[120px]"></div>
+                <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#4A4A4A]/20 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#4A4A4A]/10 rounded-full blur-[120px]"></div>
             </div>
 
             <div className="relative z-10 w-full max-w-md animate__animated animate__fadeIn">
@@ -66,7 +66,7 @@ function VerifyContent() {
 
                 {/* Verification Card */}
                 <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/5 rounded-bl-full"></div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#4A4A4A]/5 rounded-bl-full"></div>
                     
                     <div className="flex flex-col items-center text-center space-y-8">
                         {/* Inner status circle */}
@@ -75,7 +75,7 @@ function VerifyContent() {
                             status === 'success' ? 'border-green-500 scale-110 shadow-[0_0_30px_rgba(34,197,94,0.3)]' :
                             'border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.3)]'
                         }`}>
-                            {status === 'verifying' && <div className="w-12 h-12 border-2 border-white/10 border-t-[#D4AF37] rounded-full animate-spin"></div>}
+                            {status === 'verifying' && <div className="w-12 h-12 border-2 border-white/10 border-t-[#4A4A4A] rounded-full animate-spin"></div>}
                             {status === 'success' && <span className="text-4xl text-green-500">✓</span>}
                             {status === 'error' && <span className="text-4xl text-red-500">✕</span>}
                         </div>
@@ -95,16 +95,16 @@ function VerifyContent() {
                         {userData && (
                             <div className="w-full mt-4 p-6 bg-white/5 rounded-2xl border border-white/5 space-y-4">
                                 <div className="space-y-1">
-                                    <p className="text-[10px] font-black text-[#D4AF37] uppercase tracking-widest">Client Name</p>
+                                    <p className="text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest">Client Name</p>
                                     <p className="text-sm font-black uppercase text-white">{userData.firstName} {userData.lastName}</p>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-1">
-                                        <p className="text-[10px] font-black text-[#D4AF37] uppercase tracking-widest">Status</p>
+                                        <p className="text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest">Status</p>
                                         <p className="text-xs font-bold uppercase text-green-400">Authenticated</p>
                                     </div>
                                     <div className="space-y-1">
-                                        <p className="text-[10px] font-black text-[#D4AF37] uppercase tracking-widest">Visibility</p>
+                                        <p className="text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest">Visibility</p>
                                         <p className="text-xs font-bold uppercase text-white">Full Tracking</p>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@ function VerifyContent() {
 
                         <button 
                             onClick={() => router.push('/')}
-                            className="w-full py-4 bg-gradient-gold text-black font-black text-xs uppercase tracking-[0.2em] rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl mt-4"
+                            className="w-full py-4 bg-gradient-premium text-black font-black text-xs uppercase tracking-[0.2em] rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl mt-4"
                         >
                             {status === 'success' ? 'Access Dashboard' : 'Return Home'}
                         </button>
@@ -132,7 +132,7 @@ export default function VerifyPage() {
     return (
         <Suspense fallback={
             <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6 text-white overflow-hidden relative">
-                <div className="w-12 h-12 border-2 border-white/10 border-t-[#D4AF37] rounded-full animate-spin"></div>
+                <div className="w-12 h-12 border-2 border-white/10 border-t-[#4A4A4A] rounded-full animate-spin"></div>
             </div>
         }>
             <VerifyContent />

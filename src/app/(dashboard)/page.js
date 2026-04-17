@@ -123,7 +123,7 @@ export default function DashboardHomePage() {
                 {/* Welcome Header */}
                 <div className="mb-8 md:mb-12 text-center animate__animated animate__fadeIn">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-950 mb-3 tracking-tight leading-[1.1]">
-                        Welcome, <span className="text-gradient-gold">{user?.firstName || 'User'}</span>
+                        Welcome, <span className="text-gradient-premium">{user?.firstName || 'User'}</span>
                     </h1>
                     <p className="text-xs sm:text-sm md:text-lg text-gray-500 font-bold uppercase tracking-[0.3em] opacity-70">Strategic Partnership Overview</p>
                 </div>
@@ -131,7 +131,7 @@ export default function DashboardHomePage() {
                 {loading ? (
                     <div className="flex items-center justify-center py-20">
                         <div className="text-center">
-                            <div className="w-12 h-12 border-4 border-gray-100 border-t-[#D4AF37] rounded-full animate-spin mx-auto mb-4 scale-75 md:scale-100"></div>
+                            <div className="w-12 h-12 border-4 border-gray-100 border-t-[#4A4A4A] rounded-full animate-spin mx-auto mb-4 scale-75 md:scale-100"></div>
                             <p className="text-[10px] md:text-sm text-gray-400 font-black uppercase tracking-widest">Initializing Secure Dashboard...</p>
                         </div>
                     </div>

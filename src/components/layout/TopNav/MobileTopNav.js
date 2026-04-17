@@ -22,7 +22,7 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
                 {/* Hamburger and User Info */}
                 <div className="flex items-center gap-4">
                     {user && (
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white bg-gradient-gold shadow-sm">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white bg-gradient-premium shadow-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                                 <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                             </svg>
@@ -68,7 +68,7 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
                                 href={href}
                                 className={`px-6 py-4 font-bold text-sm border-l-4 transition-colors ${
                                     isActive 
-                                    ? 'bg-gray-100 text-[#D4AF37] border-[#D4AF37]' 
+                                    ? 'bg-gray-100 text-[#4A4A4A] border-[#4A4A4A]' 
                                     : 'text-gray-700 border-transparent hover:bg-gray-50'
                                 }`}
                                 onClick={() => {
@@ -87,14 +87,14 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
                                     logout();
                                     setIsOpen(false);
                                 }}
-                                className="w-full py-3 rounded-xl bg-gradient-gold text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
+                                className="w-full py-3 rounded-xl bg-gradient-premium text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
                             >
                                 Logout
                             </button>
                         ) : (
                             <Link 
                                 href="/login" 
-                                className="block w-full py-3 rounded-xl bg-gradient-gold text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
+                                className="block w-full py-3 rounded-xl bg-gradient-premium text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
                                 onClick={() => setIsOpen(false)}
                             >
                                 Login

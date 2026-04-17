@@ -37,7 +37,7 @@ export default function DashboardModal({ isOpen, onClose, title, icon, children,
                         <DialogPanel className="w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
 
                             {/* Header — Golden Gradient */}
-                            <div className="bg-gradient-gold px-6 py-4 flex items-center justify-between border-b border-[#b38b22]">
+                            <div className="bg-gradient-premium px-6 py-4 flex items-center justify-between border-b border-[#1A1A1A]">
                                 <div className="flex items-center gap-3">
                                     {icon && (
                                         <span className="text-black">{icon}</span>
@@ -68,7 +68,7 @@ export default function DashboardModal({ isOpen, onClose, title, icon, children,
                                 {footer ?? (
                                     <button
                                         onClick={onClose}
-                                        className="px-6 cursor-pointer py-2 bg-gradient-gold text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
+                                        className="px-6 cursor-pointer py-2 bg-gradient-premium text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
                                     >
                                         Close
                                     </button>

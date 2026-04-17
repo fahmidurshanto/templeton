@@ -47,7 +47,7 @@ export default function UserDocuments({ targetUserId, userName }) {
                         icon: 'success',
                         title: 'Document Uploaded',
                         text: `${file.name} has been added for ${userName}.`,
-                        confirmButtonColor: '#D4AF37'
+                        confirmButtonColor: '#4A4A4A'
                     });
                 }
             } catch (error) {
@@ -69,7 +69,7 @@ export default function UserDocuments({ targetUserId, userName }) {
                 title: 'View Failed',
                 text: error.message,
                 icon: 'error',
-                confirmButtonColor: '#D4AF37'
+                confirmButtonColor: '#4A4A4A'
             });
         }
     };
@@ -81,7 +81,7 @@ export default function UserDocuments({ targetUserId, userName }) {
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#D33',
-            cancelButtonColor: '#D4AF37',
+            cancelButtonColor: '#4A4A4A',
             confirmButtonText: 'Yes, delete it',
             reverseButtons: true
         }).then(async (result) => {
@@ -115,14 +115,14 @@ export default function UserDocuments({ targetUserId, userName }) {
 
             <div className="px-8 py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-5 h-5 text-[#4A4A4A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                     </svg>
                     <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest text-[11px]">Vault & Documents</h3>
                 </div>
                 <button
                     onClick={handleUploadClick}
-                    className="px-4 py-2 bg-gradient-gold text-black rounded-lg text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all flex items-center gap-2"
+                    className="px-4 py-2 bg-gradient-premium text-black rounded-lg text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all flex items-center gap-2"
                 >
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -143,12 +143,12 @@ export default function UserDocuments({ targetUserId, userName }) {
                     <div className="space-y-8">
                         {categories.map(category => (
                             <div key={category} className="space-y-4">
-                                <h4 className="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.2em] border-b border-gray-50 pb-2">{category}</h4>
+                                <h4 className="text-[10px] font-black text-[#4A4A4A] uppercase tracking-[0.2em] border-b border-gray-50 pb-2">{category}</h4>
                                 <div className="grid grid-cols-1 gap-3">
                                     {userSpecificDocs.filter(d => d.category === category).map(doc => (
                                         <div key={doc.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-md transition-all group">
                                             <div className="flex items-center gap-4">
-                                                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#D4AF37] shadow-sm group-hover:bg-gradient-gold group-hover:text-black transition-all">
+                                                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#4A4A4A] shadow-sm group-hover:bg-gradient-premium group-hover:text-black transition-all">
                                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                                                     </svg>
@@ -164,7 +164,7 @@ export default function UserDocuments({ targetUserId, userName }) {
                                                     disabled={!isAdmin && doc.hasUserSeen}
                                                     className={`px-3 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg border transition-all ${!isAdmin && doc.hasUserSeen
                                                             ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-                                                            : "bg-white text-black border-gray-100 hover:border-[#D4AF37]"
+                                                            : "bg-white text-black border-gray-100 hover:border-[#4A4A4A]"
                                                         }`}
                                                 >
                                                     {!isAdmin && doc.hasUserSeen ? 'Viewed' : 'View'}

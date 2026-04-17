@@ -19,12 +19,12 @@ export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, log
                     {user && (
                         <>
                             <div className="flex items-center gap-2">
-                                <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0 fill-[#D4AF37] drop-shadow-sm">
+                                <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0 fill-[#4A4A4A] drop-shadow-sm">
                                     <path d="M12 1L3 5v6.09c0 5.05 3.41 9.76 9 10.91 5.59-1.15 9-5.86 9-10.91V5l-9-4zm0 2.18l7 3.12V11c0 3.94-2.6 7.6-7 8.79-4.4-1.19-7-4.85-7-8.79V6.3l7-3.12z" />
                                 </svg>
                                 <span className="font-semibold text-sm text-[#3a3a3a]">{user.name}</span>
                             </div>
-                            <div className="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md shrink-0 bg-gradient-gold">
+                            <div className="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md shrink-0 bg-gradient-premium">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                                     <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                                 </svg>
@@ -34,12 +34,12 @@ export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, log
                     {user ? (
                         <button
                             onClick={logout}
-                            className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-gold text-gray-900 text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2"
+                            className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-premium text-gray-900 text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2"
                         >
                             Logout
                         </button>
                     ) : (
-                        <Link href="/login" className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-gold text-gray-900 text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2">
+                        <Link href="/login" className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-premium text-gray-900 text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2">
                             Login
                         </Link>
                     )}
@@ -70,7 +70,7 @@ export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, log
                             >
                                 <span className={`flex items-center h-full px-6 font-bold text-xs tracking-[0.08em] whitespace-nowrap border-b-[3px] transition-colors cursor-pointer select-none
                                     ${isActive
-                                        ? 'bg-[linear-gradient(180deg,#1e232d_100%,#2a303c_0%)] text-white border-[#D4AF37]'
+                                        ? 'bg-[linear-gradient(180deg,#1e232d_100%,#2a303c_0%)] text-white border-[#4A4A4A]'
                                         : 'text-[#4a4a4a] border-transparent hover:bg-black/5'
                                     }`}
                                 >

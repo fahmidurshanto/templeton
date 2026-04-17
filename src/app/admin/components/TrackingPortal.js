@@ -407,7 +407,7 @@ export default function TrackingPortal() {
                                         setSelectedUserName('');
                                     }
                                 }}
-                                className="appearance-none bg-white border-2 border-gray-100 px-6 py-3 pr-10 rounded-full text-xs font-bold text-gray-700 outline-none focus:border-[#D4AF37] transition-all shadow-sm cursor-pointer"
+                                className="appearance-none bg-white border-2 border-gray-100 px-6 py-3 pr-10 rounded-full text-xs font-bold text-gray-700 outline-none focus:border-[#4A4A4A] transition-all shadow-sm cursor-pointer"
                             >
                                 <option value="">-- Select Partner --</option>
                                 {allUsers.map((u) => (
@@ -416,7 +416,7 @@ export default function TrackingPortal() {
                                     </option>
                                 ))}
                             </select>
-                            <svg className="w-4 h-4 text-gray-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none group-focus-within:text-[#D4AF37] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg className="w-4 h-4 text-gray-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none group-focus-within:text-[#4A4A4A] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
                         </div>
@@ -431,10 +431,10 @@ export default function TrackingPortal() {
 
                 {/* Main Content Card */}
                 <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-gray-50 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#D4AF37]/5 to-transparent rounded-bl-full -z-0 opacity-50"></div>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#4A4A4A]/5 to-transparent rounded-bl-full -z-0 opacity-50"></div>
 
                     <h2 className="text-xs font-black text-gray-950 uppercase tracking-[0.3em] mb-8 relative z-10 flex items-center gap-3">
-                        <span className="w-8 h-[2px] bg-[#D4AF37]"></span>
+                        <span className="w-8 h-[2px] bg-[#4A4A4A]"></span>
                         Live Ascrow Trust Fund Tracking {viewMode === 'detailed' && '& Detailed Activity Log'}
                     </h2>
 
@@ -442,7 +442,7 @@ export default function TrackingPortal() {
                     {!selectedUserId ? (
                         <div className="flex flex-col items-center justify-center py-20 text-center relative z-10">
                             <div className="w-24 h-24 bg-gray-50 border-2 border-gray-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
-                                <svg className="w-10 h-10 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-10 h-10 text-[#4A4A4A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                                 </svg>
                             </div>
@@ -476,12 +476,12 @@ export default function TrackingPortal() {
                                                                     <div className={`rounded-2xl border p-4 transition-all duration-300 h-full relative ${stage.current
                                                                             ? 'bg-gradient-to-br from-green-50 to-white border-green-200 shadow-lg'
                                                                             : 'bg-gray-50 border-gray-100'
-                                                                        } ${snapshot.isDragging ? 'shadow-2xl scale-105 border-[#D4AF37] z-50 bg-white ring-4 ring-[#D4AF37]/10' : ''}`}>
+                                                                        } ${snapshot.isDragging ? 'shadow-2xl scale-105 border-[#4A4A4A] z-50 bg-white ring-4 ring-[#4A4A4A]/10' : ''}`}>
                                                                         <div className="flex flex-col items-center text-center h-full">
                                                                             {/* Drag Handle */}
                                                                             <div
                                                                                 {...provided.dragHandleProps}
-                                                                                className="absolute top-2 left-2 text-gray-300 hover:text-[#D4AF37] cursor-grab active:cursor-grabbing p-1"
+                                                                                className="absolute top-2 left-2 text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing p-1"
                                                                             >
                                                                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
@@ -490,7 +490,7 @@ export default function TrackingPortal() {
 
                                                                             {/* Icon */}
                                                                             <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-3 transition-all duration-500 shadow-md
-                                                                        ${stage.current ? 'bg-gradient-gold text-black animate-pulse ring-4 ring-[#D4AF37]/20' : 'bg-white text-gray-400'}
+                                                                        ${stage.current ? 'bg-gradient-premium text-black animate-pulse ring-4 ring-[#4A4A4A]/20' : 'bg-white text-gray-400'}
                                                                     `}>
                                                                                 {stage.icon}
                                                                             </div>
@@ -592,7 +592,7 @@ export default function TrackingPortal() {
                                                 key={idx}
                                                 onClick={() => goToSlide(idx)}
                                                 className={`w-3 h-3 rounded-full transition-all ${idx === currentIndex
-                                                        ? 'bg-[#D4AF37] w-8'
+                                                        ? 'bg-[#4A4A4A] w-8'
                                                         : 'bg-gray-300 hover:bg-gray-400'
                                                     }`}
                                             />
@@ -625,14 +625,14 @@ export default function TrackingPortal() {
 
                                     <button
                                         onClick={() => setViewMode(v => v === 'simple' ? 'detailed' : 'simple')}
-                                        className="text-[9px] font-black text-[#D4AF37] uppercase tracking-[0.2em] hover:opacity-80 transition-opacity"
+                                        className="text-[9px] font-black text-[#4A4A4A] uppercase tracking-[0.2em] hover:opacity-80 transition-opacity"
                                     >
                                         Toggle {viewMode === 'simple' ? 'Detailed' : 'Simple'} View
                                     </button>
                                 </div>
 
                                 <div className="flex items-center gap-3">
-                                    <div className="bg-gradient-gold text-black px-4 py-2 rounded-full">
+                                    <div className="bg-gradient-premium text-black px-4 py-2 rounded-full">
                                         <span className="text-xs font-black uppercase tracking-widest">
                                             {Math.min(currentIndex * slidesPerView + 1, stages.length)}-{Math.min((currentIndex + 1) * slidesPerView, stages.length)} / {stages.length}
                                         </span>
@@ -674,12 +674,12 @@ export default function TrackingPortal() {
                     <div className="grid grid-cols-1 gap-5">
                         <div className="space-y-2">
                             <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Stage Title</label>
-                            <input required value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
+                            <input required value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#4A4A4A]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
                         </div>
                         <div className="grid grid-cols-1 gap-4">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Status</label>
-                                <select value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black">
+                                <select value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#4A4A4A]/20 outline-none transition-all text-sm font-bold text-black">
                                     <option>PROCESSED</option>
                                     <option>ACTIVE</option>
                                     <option>UPCOMING</option>
@@ -689,15 +689,15 @@ export default function TrackingPortal() {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Date</label>
-                                <input placeholder="Past, 01, 2026" value={formData.date} onChange={e => setFormData({ ...formData, date: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
+                                <input placeholder="Past, 01, 2026" value={formData.date} onChange={e => setFormData({ ...formData, date: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#4A4A4A]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Time</label>
-                                <input placeholder="02:56 PM" value={formData.time} onChange={e => setFormData({ ...formData, time: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
+                                <input placeholder="02:56 PM" value={formData.time} onChange={e => setFormData({ ...formData, time: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#4A4A4A]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
                             </div>
                         </div>
                         <div className="flex items-center gap-4 py-2">
-                            <input type="checkbox" id="current" checked={formData.current} onChange={e => setFormData({ ...formData, current: e.target.checked })} className="w-5 h-5 rounded border-gray-100 text-[#D4AF37] focus:ring-[#D4AF37]/20" />
+                            <input type="checkbox" id="current" checked={formData.current} onChange={e => setFormData({ ...formData, current: e.target.checked })} className="w-5 h-5 rounded border-gray-100 text-[#4A4A4A] focus:ring-[#4A4A4A]/20" />
                             <label htmlFor="current" className="text-[11px] font-black text-gray-600 uppercase tracking-widest cursor-pointer">Set as Current Location</label>
                         </div>
                     </div>
@@ -718,14 +718,14 @@ export default function TrackingPortal() {
 
                     <div className="flex gap-2">
                         <input
-                            className="flex-1 px-4 py-2 rounded-xl border border-gray-100 bg-gray-50 text-sm font-bold text-black focus:border-[#D4AF37] outline-none"
+                            className="flex-1 px-4 py-2 rounded-xl border border-gray-100 bg-gray-50 text-sm font-bold text-black focus:border-[#4A4A4A] outline-none"
                             placeholder="New Stage Name..."
                             value={newGlobalName}
                             onChange={(e) => setNewGlobalName(e.target.value)}
                         />
                         <button
                             onClick={handleAddGlobal}
-                            className="px-4 py-2 bg-gradient-gold text-black rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 shadow-md"
+                            className="px-4 py-2 bg-gradient-premium text-black rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 shadow-md"
                         >
                             Add
                         </button>
@@ -752,14 +752,14 @@ export default function TrackingPortal() {
                                                             ref={provided.innerRef}
                                                             {...provided.draggableProps}
                                                             className={`flex items-center justify-between p-3 rounded-xl border transition-all group ${snapshot.isDragging
-                                                                    ? 'bg-white border-[#D4AF37] shadow-xl ring-2 ring-[#D4AF37]/10'
+                                                                    ? 'bg-white border-[#4A4A4A] shadow-xl ring-2 ring-[#4A4A4A]/10'
                                                                     : 'bg-gray-50 border-transparent hover:bg-white hover:border-gray-100'
                                                                 }`}
                                                         >
                                                             <div className="flex items-center gap-3">
                                                                 <div
                                                                     {...provided.dragHandleProps}
-                                                                    className="text-gray-300 hover:text-[#D4AF37] cursor-grab active:cursor-grabbing"
+                                                                    className="text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing"
                                                                 >
                                                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
@@ -768,7 +768,7 @@ export default function TrackingPortal() {
                                                                 <span className="text-xs font-black text-gray-800">{name}</span>
                                                             </div>
                                                             <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                                <button onClick={() => handleEditGlobal(name)} className="text-gray-400 hover:text-[#D4AF37]">
+                                                                <button onClick={() => handleEditGlobal(name)} className="text-gray-400 hover:text-[#4A4A4A]">
                                                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                                                                 </button>
                                                                 <button onClick={() => handleDeleteGlobal(name)} className="text-gray-400 hover:text-red-500">
@@ -801,7 +801,7 @@ export default function TrackingPortal() {
                             Close
                         </button>
                         {qrCodeData && (
-                            <button onClick={handleDownloadQR} className="px-6 py-2 bg-gradient-gold text-black rounded-lg text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center gap-2">
+                            <button onClick={handleDownloadQR} className="px-6 py-2 bg-gradient-premium text-black rounded-lg text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center gap-2">
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                 </svg>
@@ -820,7 +820,7 @@ export default function TrackingPortal() {
                         <div className="space-y-2">
                             <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Select User</label>
                             <select
-                                className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-bold text-black focus:ring-2 focus:ring-[#D4AF37]/20 outline-none"
+                                className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-bold text-black focus:ring-2 focus:ring-[#4A4A4A]/20 outline-none"
                                 value={selectedUserId}
                                 onChange={(e) => {
                                     const user = allUsers.find(u => u._id === e.target.value);
@@ -841,7 +841,7 @@ export default function TrackingPortal() {
                             <button
                                 onClick={handleGenerateQR}
                                 disabled={generatingQR || !selectedUserId}
-                                className="flex-1 py-3 bg-gradient-gold text-black rounded-xl text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="flex-1 py-3 bg-gradient-premium text-black rounded-xl text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {generatingQR ? (
                                     <>
@@ -863,7 +863,7 @@ export default function TrackingPortal() {
                     <div className="flex flex-col items-center">
                         <div className="text-center mb-6">
                             <p className="text-xs font-bold text-gray-600 uppercase tracking-wider">
-                                QR Code for: <span className="text-[#D4AF37]">{selectedUserName}</span>
+                                QR Code for: <span className="text-[#4A4A4A]">{selectedUserName}</span>
                             </p>
                             <p className="text-[10px] text-gray-400 mt-1">Scan with user's device to grant stage visibility</p>
                         </div>
@@ -879,7 +879,7 @@ export default function TrackingPortal() {
 
                         <button
                             onClick={() => setQrCodeData(null)}
-                            className="text-xs font-bold text-[#D4AF37] uppercase tracking-wider hover:underline"
+                            className="text-xs font-bold text-[#4A4A4A] uppercase tracking-wider hover:underline"
                         >
                             Generate for another user
                         </button>

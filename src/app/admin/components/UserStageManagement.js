@@ -189,7 +189,7 @@ export default function UserStageManagement({ userId, userName }) {
                     <button
                         onClick={handleGenerateQR}
                         disabled={generatingQR}
-                        className="px-4 py-2 bg-gradient-gold text-black rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
+                        className="px-4 py-2 bg-gradient-premium text-black rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
                     >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
@@ -208,12 +208,12 @@ export default function UserStageManagement({ userId, userName }) {
             <div className="p-6 sm:p-8">
                 {loading ? (
                     <div className="flex justify-center py-6">
-                        <div className="w-6 h-6 border-2 border-gray-200 border-t-[#D4AF37] rounded-full animate-spin"></div>
+                        <div className="w-6 h-6 border-2 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
                     </div>
                 ) : stages.length === 0 ? (
                     <div className="py-12 text-center border-2 border-dashed border-gray-100 rounded-2xl">
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">No stages assigned yet</p>
-                        <button onClick={() => handleOpenModal()} className="mt-4 text-[10px] font-black text-[#D4AF37] uppercase tracking-widest hover:underline">
+                        <button onClick={() => handleOpenModal()} className="mt-4 text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest hover:underline">
                             Assign your first stage
                         </button>
                     </div>
@@ -233,14 +233,14 @@ export default function UserStageManagement({ userId, userName }) {
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
                                                     className={`group relative flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-2xl border transition-all gap-4 ${
-                                                        snapshot.isDragging ? 'shadow-2xl border-[#D4AF37] bg-white ring-2 ring-[#D4AF37]/10' : 'border-gray-100 hover:border-[#D4AF37]/30'
+                                                        snapshot.isDragging ? 'shadow-2xl border-[#4A4A4A] bg-white ring-2 ring-[#4A4A4A]/10' : 'border-gray-100 hover:border-[#4A4A4A]/30'
                                                     }`}
                                                 >
                                                     <div className="flex items-center gap-4">
                                                         {/* Drag Handle */}
                                                         <div
                                                             {...provided.dragHandleProps}
-                                                            className="text-gray-300 hover:text-[#D4AF37] cursor-grab active:cursor-grabbing p-1"
+                                                            className="text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing p-1"
                                                         >
                                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
@@ -250,7 +250,7 @@ export default function UserStageManagement({ userId, userName }) {
                                                             {index + 1}
                                                         </div>
                                                         <div>
-                                                            <p className="text-xs sm:text-sm font-black text-gray-950 group-hover:text-[#A67C00] transition-colors">{s.name}</p>
+                                                            <p className="text-xs sm:text-sm font-black text-gray-950 group-hover:text-[#153A6A] transition-colors">{s.name}</p>
                                                             <div className="flex flex-wrap items-center gap-2 mt-1">
                                                                 <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full border ${
                                                                     s.status === 'active' ? 'bg-green-50 text-green-600 border-green-100' :
@@ -267,7 +267,7 @@ export default function UserStageManagement({ userId, userName }) {
                                                     </div>
 
                                                     <div className="flex items-center gap-2 self-end sm:self-center">
-                                                        <button onClick={() => handleOpenModal(s)} className="p-2 text-gray-400 hover:text-[#D4AF37] hover:bg-white rounded-lg border border-transparent hover:border-gray-200 transition-all">
+                                                        <button onClick={() => handleOpenModal(s)} className="p-2 text-gray-400 hover:text-[#4A4A4A] hover:bg-white rounded-lg border border-transparent hover:border-gray-200 transition-all">
                                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                                                         </button>
                                                         <button onClick={() => handleDelete(s._id)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-white rounded-lg border border-transparent hover:border-gray-200 transition-all">
@@ -372,7 +372,7 @@ export default function UserStageManagement({ userId, userName }) {
                 footer={
                     <div className="flex gap-3">
                         <button onClick={() => setIsQRModalOpen(false)} className="px-6 py-2 bg-gray-100 text-gray-500 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-gray-200">Close</button>
-                        <button onClick={handleDownloadQR} className="px-6 py-2 bg-gradient-gold text-black rounded-lg text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center gap-2">
+                        <button onClick={handleDownloadQR} className="px-6 py-2 bg-gradient-premium text-black rounded-lg text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center gap-2">
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
