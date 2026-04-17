@@ -9,7 +9,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
             <div className="relative w-full flex items-center h-12 bg-white shadow-lg overflow-visible">
                 <div className="absolute left-4 top-0 w-[140px] h-[80px] bg-white rounded-br-[2rem] flex items-center justify-center shadow-md z-40">
                     <img
-                        src="/templeton-logo.png"
+                        src="/Templeton-logo.png"
                         alt="Templeton APAC Ltd."
                         className="w-[100px] h-[70px] object-contain"
                     />
@@ -26,7 +26,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
                             </div>
                         </div>
                     )}
-                    <button 
+                    <button
                         onClick={logout}
                         className="px-4 py-1.5 rounded-full bg-gradient-gold text-gray-900 text-[10px] font-bold shadow-sm transition-all"
                     >
@@ -46,6 +46,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
                         if (tab === 'PERSONAL') href = '/personal';
                         if (tab === 'MEMBERSHIPS') href = '/memberships';
                         if (tab === 'DOCUMENTS') href = '/documents';
+                        if (tab === 'TRACKING') href = '/tracking';
 
                         const isActive = (href === '/' && pathname === '/') || (href !== '/' && pathname.startsWith(href));
 
@@ -72,3 +73,4 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
         </div>
     );
 }
+

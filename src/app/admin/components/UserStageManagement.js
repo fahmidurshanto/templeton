@@ -362,17 +362,6 @@ export default function UserStageManagement({ userId, userName }) {
                         <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Description</label>
                         <textarea rows={2} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-bold text-black resize-none" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} placeholder="Main details about this stage..." />
                     </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Remark Label</label>
-                            <input className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-bold text-black" value={formData.remarkLabel} onChange={e => setFormData({...formData, remarkLabel: e.target.value})} placeholder="e.g. KYC Status" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Remark</label>
-                            <input className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-bold text-black" value={formData.remark} onChange={e => setFormData({...formData, remark: e.target.value})} placeholder="Additional notes..." />
-                        </div>
-                    </div>
                 </form>
             </DashboardModal>
 

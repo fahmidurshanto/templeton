@@ -36,9 +36,17 @@ export function AppProvider({ children }) {
             (error) => {
                 if (error.response?.status === 401) {
                     setCurrentUser(null);
-                    router.push('/login');
-                    // Return a resolved promise to prevent technical errors bubbling up
-                    return Promise.resolve({ data: { success: false, silent: true } });
+                    
+                    const currentPath = window.location.pathname + window.location.search;
+                    if (currentPath !== '/login') {
+                        const loginUrl = (currentPath && currentPath !== '/') 
+                            ? `/login?redirect=${encodeURIComponent(currentPath)}` 
+                            : '/login';
+                        router.push(loginUrl);
+                    }
+                    
+                    // Return a rejected promise with a silent flag to stop caller execution
+                    return Promise.reject({ ...error, silent: true });
                 }
                 return Promise.reject(error);
             }

@@ -98,17 +98,43 @@ export default function TrackingPortal() {
     const [allUsers, setAllUsers] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const [transactionInfo, setTransactionInfo] = useState({
-        id: "HAF-49382",
-        total: "[Confidential]",
-        lastUpdate: new Date().toLocaleString()
-    });
-
     useEffect(() => {
         fetchGlobalStages();
         fetchAllUsers();
-        fetchLiveTracking();
     }, []);
+
+    useEffect(() => {
+        if (selectedUserId) {
+            fetchUserSpecificStages(selectedUserId);
+        } else {
+            fetchLiveTracking();
+        }
+    }, [selectedUserId]);
+
+    const fetchUserSpecificStages = async (id) => {
+        try {
+            const res = await api.get(`/stage/user/${id}`);
+            if (res.data.success) {
+                const fetchedStages = res.data.stage || [];
+                const mappedStages = fetchedStages.sort((a, b) => a.sequence - b.sequence).map((s, index) => ({
+                    id: s._id,
+                    title: s.name || '',
+                    status: s.status || 'PROCESSED',
+                    date: new Date(s.time || new Date()).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }),
+                    time: new Date(s.time || new Date()).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+                    icon: '📦',
+                    remark: s.description || s.remark || '',
+                    remarkLabel: s.remarkLabel || '',
+                    current: s.status === 'active'
+                }));
+                setStages(mappedStages);
+                setCurrentIndex(0);
+            }
+        } catch (err) {
+            console.error('Failed to fetch user stages:', err);
+        }
+    };
+
 
     const fetchLiveTracking = async () => {
         try {
@@ -148,7 +174,7 @@ export default function TrackingPortal() {
             Swal.fire('Error', 'Please select a user first', 'error');
             return;
         }
-        
+
         setGeneratingQR(true);
         try {
             const res = await api.post(`/stage/generateqrcode/${selectedUserId}`);
@@ -187,18 +213,23 @@ export default function TrackingPortal() {
         setStages(items);
 
         try {
-            await api.put('/stage/live', { stages: items });
+            if (selectedUserId) {
+                await api.put(`/stage/user/${selectedUserId}/reorder`, { stages: items.map(s => s.id) });
+            } else {
+                await api.put('/stage/live', { stages: items });
+            }
             Swal.fire({
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
                 timer: 2000,
                 icon: 'success',
-                title: 'Live tracking order saved'
+                title: selectedUserId ? 'User tracking order saved' : 'Live tracking order saved'
             });
         } catch (error) {
             Swal.fire('Error', 'Failed to save new order', 'error');
-            fetchLiveTracking(); // Revert to server state
+            if (selectedUserId) fetchUserSpecificStages(selectedUserId);
+            else fetchLiveTracking(); // Revert to server state
         }
     };
 
@@ -308,7 +339,7 @@ export default function TrackingPortal() {
 
     const handleSave = async (e) => {
         if (e && e.preventDefault) e.preventDefault();
-        
+
         let newStages;
         if (editingStage) {
             newStages = stages.map(s => s.id === editingStage.id ? { ...formData, id: s.id } : s);
@@ -364,262 +395,254 @@ export default function TrackingPortal() {
                         </p>
                     </div>
                     <div className="flex flex-wrap items-center gap-4">
-                        <button 
+                        <div className="relative group">
+                            <select
+                                value={selectedUserId}
+                                onChange={(e) => {
+                                    setSelectedUserId(e.target.value);
+                                    const user = allUsers.find(u => (u._id || u.id) === e.target.value);
+                                    if (user) {
+                                        setSelectedUserName(user.firstName ? `${user.firstName} ${user.lastName}` : user.name);
+                                    } else {
+                                        setSelectedUserName('');
+                                    }
+                                }}
+                                className="appearance-none bg-white border-2 border-gray-100 px-6 py-3 pr-10 rounded-full text-xs font-bold text-gray-700 outline-none focus:border-[#D4AF37] transition-all shadow-sm cursor-pointer"
+                            >
+                                <option value="">-- Select Partner --</option>
+                                {allUsers.map((u) => (
+                                    <option key={u._id || u.id} value={u._id || u.id}>
+                                        {u.firstName ? `${u.firstName} ${u.lastName}` : u.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <svg className="w-4 h-4 text-gray-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none group-focus-within:text-[#D4AF37] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <button
                             onClick={() => setIsGlobalModalOpen(true)}
                             className="bg-white text-black border-2 border-black px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-50 transition-all shadow-md hover:scale-105 active:scale-95 flex items-center gap-2"
                         >
-                            ⚙️ Master List
+                            ⚙️ Global Stages
                         </button>
-                        <button 
-                            onClick={() => handleOpenModal()}
-                            className="bg-black text-white px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2"
-                        >
-                            <span>+</span> Add Stage
-                        </button>
-                        <button 
-                            onClick={() => setIsQRModalOpen(true)}
-                            className="flex items-center gap-3 bg-gradient-gold text-black px-5 py-3 rounded-full shadow-lg transition-all hover:brightness-105 active:scale-95"
-                        >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
-                            </svg>
-                            <span className="text-sm font-black uppercase tracking-wider">QR Portal</span>
-                        </button>
-                        <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-full shadow-lg border border-gray-100 transition-all">
-                            <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse ring-4 ring-green-100"></span>
-                            <span className="text-sm font-black text-gray-700 uppercase tracking-wider">System Online</span>
-                        </div>
                     </div>
                 </div>
 
                 {/* Main Content Card */}
                 <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-gray-50 relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#D4AF37]/5 to-transparent rounded-bl-full -z-0 opacity-50"></div>
-                    
+
                     <h2 className="text-xs font-black text-gray-950 uppercase tracking-[0.3em] mb-8 relative z-10 flex items-center gap-3">
                         <span className="w-8 h-[2px] bg-[#D4AF37]"></span>
                         Live Ascrow Trust Fund Tracking {viewMode === 'detailed' && '& Detailed Activity Log'}
                     </h2>
 
-                    {/* Carousel Container */}
-                    <DragDropContext onDragEnd={handleCarouselDragEnd}>
-                        <div className="relative z-10">
-                            <div className="overflow-hidden">
-                                <Droppable droppableId="carousel-stages" direction="horizontal">
-                                    {(provided) => (
-                                        <div 
-                                            {...provided.droppableProps}
-                                            ref={provided.innerRef}
-                                            className="flex transition-transform duration-500 ease-out"
-                                            style={{ transform: `translateX(-${currentIndex * (100 / slidesPerView)}%)` }}
-                                        >
-                                            {stages.map((stage, idx) => (
-                                                <Draggable key={stage.id} draggableId={String(stage.id)} index={idx}>
-                                                    {(provided, snapshot) => (
-                                                        <div 
-                                                            ref={provided.innerRef}
-                                                            {...provided.draggableProps}
-                                                            className="w-1/5 flex-shrink-0 px-2"
-                                                        >
-                                                            <div className={`rounded-2xl border p-4 transition-all duration-300 h-full relative ${
-                                                                stage.current 
-                                                                    ? 'bg-gradient-to-br from-green-50 to-white border-green-200 shadow-lg' 
-                                                                    : 'bg-gray-50 border-gray-100'
-                                                            } ${snapshot.isDragging ? 'shadow-2xl scale-105 border-[#D4AF37] z-50 bg-white ring-4 ring-[#D4AF37]/10' : ''}`}>
-                                                                <div className="flex flex-col items-center text-center h-full">
-                                                                    {/* Drag Handle */}
-                                                                    <div 
-                                                                        {...provided.dragHandleProps}
-                                                                        className="absolute top-2 left-2 text-gray-300 hover:text-[#D4AF37] cursor-grab active:cursor-grabbing p-1"
-                                                                    >
-                                                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
-                                                                        </svg>
-                                                                    </div>
+                    {/* Content Section */}
+                    {!selectedUserId ? (
+                        <div className="flex flex-col items-center justify-center py-20 text-center relative z-10">
+                            <div className="w-24 h-24 bg-gray-50 border-2 border-gray-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                                <svg className="w-10 h-10 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                </svg>
+                            </div>
+                            <h3 className="text-xl font-black text-gray-950 uppercase tracking-[0.2em] mb-4">Partner Selection Required</h3>
+                            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest max-w-lg leading-relaxed">
+                                Please choose a partner from the dropdown menu above to load their real-time trust fund tracking stages and detailed activity log.
+                            </p>
+                        </div>
+                    ) : (
+                        <>
+                            {/* Carousel Container */}
+                            <DragDropContext onDragEnd={handleCarouselDragEnd}>
+                                <div className="relative z-10">
+                                    <div className="overflow-hidden">
+                                        <Droppable droppableId="carousel-stages" direction="horizontal">
+                                            {(provided) => (
+                                                <div
+                                                    {...provided.droppableProps}
+                                                    ref={provided.innerRef}
+                                                    className="flex transition-transform duration-500 ease-out"
+                                                    style={{ transform: `translateX(-${currentIndex * (100 / slidesPerView)}%)` }}
+                                                >
+                                                    {stages.map((stage, idx) => (
+                                                        <Draggable key={stage.id} draggableId={String(stage.id)} index={idx}>
+                                                            {(provided, snapshot) => (
+                                                                <div
+                                                                    ref={provided.innerRef}
+                                                                    {...provided.draggableProps}
+                                                                    className="w-1/5 flex-shrink-0 px-2"
+                                                                >
+                                                                    <div className={`rounded-2xl border p-4 transition-all duration-300 h-full relative ${stage.current
+                                                                            ? 'bg-gradient-to-br from-green-50 to-white border-green-200 shadow-lg'
+                                                                            : 'bg-gray-50 border-gray-100'
+                                                                        } ${snapshot.isDragging ? 'shadow-2xl scale-105 border-[#D4AF37] z-50 bg-white ring-4 ring-[#D4AF37]/10' : ''}`}>
+                                                                        <div className="flex flex-col items-center text-center h-full">
+                                                                            {/* Drag Handle */}
+                                                                            <div
+                                                                                {...provided.dragHandleProps}
+                                                                                className="absolute top-2 left-2 text-gray-300 hover:text-[#D4AF37] cursor-grab active:cursor-grabbing p-1"
+                                                                            >
+                                                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
+                                                                                </svg>
+                                                                            </div>
 
-                                                                    {/* Icon */}
-                                                                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-3 transition-all duration-500 shadow-md
+                                                                            {/* Icon */}
+                                                                            <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-3 transition-all duration-500 shadow-md
                                                                         ${stage.current ? 'bg-gradient-gold text-black animate-pulse ring-4 ring-[#D4AF37]/20' : 'bg-white text-gray-400'}
                                                                     `}>
-                                                                        {stage.icon}
-                                                                    </div>
+                                                                                {stage.icon}
+                                                                            </div>
 
-                                                                    {/* Title & Status */}
-                                                                    <p className={`text-xs font-black uppercase tracking-tight mb-2 leading-tight ${stage.current ? 'text-gray-950' : 'text-gray-600'}`}>
-                                                                        {stage.title}
-                                                                    </p>
-                                                                    
-                                                                    <span className={`inline-block text-[8px] font-black uppercase px-2 py-1 rounded-full tracking-widest mb-2
+                                                                            {/* Title & Status */}
+                                                                            <p className={`text-xs font-black uppercase tracking-tight mb-2 leading-tight ${stage.current ? 'text-gray-950' : 'text-gray-600'}`}>
+                                                                                {stage.title}
+                                                                            </p>
+
+                                                                            <span className={`inline-block text-[8px] font-black uppercase px-2 py-1 rounded-full tracking-widest mb-2
                                                                         ${stage.current ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-500'}
                                                                     `}>
-                                                                        {stage.status}
-                                                                    </span>
-                                                                    {stage.label && (
-                                                                        <span className="inline-block text-[8px] font-black uppercase px-2 py-0.5 rounded-full bg-green-100 text-green-700 tracking-widest mb-2">
-                                                                            {stage.label}
-                                                                        </span>
-                                                                    )}
+                                                                                {stage.status}
+                                                                            </span>
+                                                                            {stage.label && (
+                                                                                <span className="inline-block text-[8px] font-black uppercase px-2 py-0.5 rounded-full bg-green-100 text-green-700 tracking-widest mb-2">
+                                                                                    {stage.label}
+                                                                                </span>
+                                                                            )}
 
-                                                                    {/* Date/Time */}
-                                                                    <p className={`text-[9px] font-black uppercase tracking-wider ${stage.current ? 'text-gray-600' : 'text-gray-400'}`}>
-                                                                        {stage.date}
-                                                                    </p>
-                                                                    <p className={`text-[9px] font-black tracking-wider ${stage.current ? 'text-gray-600' : 'text-gray-400 opacity-60'}`}>
-                                                                        {stage.time}
-                                                                    </p>
+                                                                            {/* Date/Time */}
+                                                                            <p className={`text-[9px] font-black uppercase tracking-wider ${stage.current ? 'text-gray-600' : 'text-gray-400'}`}>
+                                                                                {stage.date}
+                                                                            </p>
+                                                                            <p className={`text-[9px] font-black tracking-wider ${stage.current ? 'text-gray-600' : 'text-gray-400 opacity-60'}`}>
+                                                                                {stage.time}
+                                                                            </p>
 
-                                                                    {/* Action Buttons */}
-                                                                    <div className="flex gap-2 mt-3">
+                                                                            {/* Action Buttons */}
+                                                                            {/* <div className="flex gap-2 mt-3">
                                                                         <button onClick={() => handleOpenModal(stage)} className="w-7 h-7 rounded-full bg-white shadow border border-gray-100 flex items-center justify-center text-[10px] hover:bg-gray-50 transition-all">✏️</button>
                                                                         <button onClick={() => handleDelete(stage.id)} className="w-7 h-7 rounded-full bg-white shadow border border-red-50 flex items-center justify-center text-[10px] hover:bg-red-50 text-red-500 transition-all">🗑️</button>
-                                                                    </div>
+                                                                    </div> */}
 
-                                                                    {/* Detailed Remark Card */}
-                                                                    {viewMode === 'detailed' && (
-                                                                        <div className={`w-full mt-3 p-2 rounded-lg text-left ${
-                                                                            stage.current 
-                                                                                ? 'bg-green-100/50' 
-                                                                                : 'bg-white/50'}
+                                                                            {/* Detailed Remark Card */}
+                                                                            {viewMode === 'detailed' && (
+                                                                                <div className={`w-full mt-3 p-2 rounded-lg text-left ${stage.current
+                                                                                        ? 'bg-green-100/50'
+                                                                                        : 'bg-white/50'}
                                                                         `}>
-                                                                            <p className={`text-[9px] leading-relaxed font-bold ${stage.current ? 'text-green-900' : 'text-gray-600'}`}>
-                                                                                {stage.remark}
-                                                                            </p>
+                                                                                    <p className={`text-[9px] leading-relaxed font-bold ${stage.current ? 'text-green-900' : 'text-gray-600'}`}>
+                                                                                        {stage.remark}
+                                                                                    </p>
+                                                                                </div>
+                                                                            )}
                                                                         </div>
-                                                                    )}
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                </Draggable>
-                                            ))}
-                                            {provided.placeholder}
-                                        </div>
-                                    )}
-                                </Droppable>
-                            </div>
+                                                            )}
+                                                        </Draggable>
+                                                    ))}
+                                                    {provided.placeholder}
+                                                </div>
+                                            )}
+                                        </Droppable>
+                                    </div>
 
-                            {/* Navigation Arrows */}
+                                    {/* Navigation Arrows */}
+                                    {stages.length > slidesPerView && (
+                                        <>
+                                            <button
+                                                onClick={prevSlide}
+                                                disabled={currentIndex === 0}
+                                                className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white border border-gray-100 rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-all z-20 disabled:opacity-50 disabled:cursor-not-allowed"
+                                            >
+                                                <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                </svg>
+                                            </button>
+                                            <button
+                                                onClick={nextSlide}
+                                                disabled={currentIndex >= maxIndex}
+                                                className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white border border-gray-100 rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-all z-20 disabled:opacity-50 disabled:cursor-not-allowed"
+                                            >
+                                                <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
+                            </DragDropContext>
+
+                            {/* Dot Indicators */}
                             {stages.length > slidesPerView && (
-                                <>
-                                    <button 
+                                <div className="flex justify-center items-center gap-3 mt-6">
+                                    <button
                                         onClick={prevSlide}
                                         disabled={currentIndex === 0}
-                                        className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white border border-gray-100 rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-all z-20 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-all disabled:opacity-50"
                                     >
-                                        <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                         </svg>
                                     </button>
-                                    <button 
+                                    <div className="flex gap-2">
+                                        {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() => goToSlide(idx)}
+                                                className={`w-3 h-3 rounded-full transition-all ${idx === currentIndex
+                                                        ? 'bg-[#D4AF37] w-8'
+                                                        : 'bg-gray-300 hover:bg-gray-400'
+                                                    }`}
+                                            />
+                                        ))}
+                                    </div>
+                                    <button
                                         onClick={nextSlide}
                                         disabled={currentIndex >= maxIndex}
-                                        className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white border border-gray-100 rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-all z-20 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-all disabled:opacity-50"
                                     >
-                                        <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
                                     </button>
-                                </>
+                                </div>
                             )}
-                        </div>
-                    </DragDropContext>
 
-                    {/* Dot Indicators */}
-                    {stages.length > slidesPerView && (
-                        <div className="flex justify-center items-center gap-3 mt-6">
-                            <button 
-                                onClick={prevSlide}
-                                disabled={currentIndex === 0}
-                                className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-all disabled:opacity-50"
-                            >
-                                <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </button>
-                            <div className="flex gap-2">
-                                {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+                            {/* Footer Section - Transaction Details */}
+                            <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 relative z-10">
+                                {/* Legend */}
+                                <div className="bg-gray-50/50 p-4 rounded-2xl border border-gray-100 flex flex-wrap items-center gap-4">
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                                        <span className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Active</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-gray-300"></span>
+                                        <span className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Processed</span>
+                                    </div>
+
                                     <button
-                                        key={idx}
-                                        onClick={() => goToSlide(idx)}
-                                        className={`w-3 h-3 rounded-full transition-all ${
-                                            idx === currentIndex 
-                                                ? 'bg-[#D4AF37] w-8' 
-                                                : 'bg-gray-300 hover:bg-gray-400'
-                                        }`}
-                                    />
-                                ))}
+                                        onClick={() => setViewMode(v => v === 'simple' ? 'detailed' : 'simple')}
+                                        className="text-[9px] font-black text-[#D4AF37] uppercase tracking-[0.2em] hover:opacity-80 transition-opacity"
+                                    >
+                                        Toggle {viewMode === 'simple' ? 'Detailed' : 'Simple'} View
+                                    </button>
+                                </div>
+
+                                <div className="flex items-center gap-3">
+                                    <div className="bg-gradient-gold text-black px-4 py-2 rounded-full">
+                                        <span className="text-xs font-black uppercase tracking-widest">
+                                            {Math.min(currentIndex * slidesPerView + 1, stages.length)}-{Math.min((currentIndex + 1) * slidesPerView, stages.length)} / {stages.length}
+                                        </span>
+                                    </div>
+                                </div>
+
+
                             </div>
-                            <button 
-                                onClick={nextSlide}
-                                disabled={currentIndex >= maxIndex}
-                                className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-all disabled:opacity-50"
-                            >
-                                <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
-                        </div>
+                        </>
                     )}
-
-                    {/* Footer Section - Transaction Details */}
-                    <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 relative z-10">
-                        {/* Legend */}
-                        <div className="bg-gray-50/50 p-4 rounded-2xl border border-gray-100 flex flex-wrap items-center gap-4">
-                            <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                                <span className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Active</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-                                <span className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Processed</span>
-                            </div>
-                            
-                            <button 
-                                onClick={() => setViewMode(v => v === 'simple' ? 'detailed' : 'simple')}
-                                className="text-[9px] font-black text-[#D4AF37] uppercase tracking-[0.2em] hover:opacity-80 transition-opacity"
-                            >
-                                Toggle {viewMode === 'simple' ? 'Detailed' : 'Simple'} View
-                            </button>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                            <div className="bg-gradient-gold text-black px-4 py-2 rounded-full">
-                                <span className="text-xs font-black uppercase tracking-widest">
-                                    {Math.min(currentIndex * slidesPerView + 1, stages.length)}-{Math.min((currentIndex + 1) * slidesPerView, stages.length)} / {stages.length}
-                                </span>
-                            </div>
-                        </div>
-
-                        {/* Transaction Info Box */}
-                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl min-w-full md:min-w-[300px] flex flex-col gap-2 relative overflow-hidden group/info">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 -z-0 rounded-bl-full"></div>
-                            <div className="relative z-10 space-y-4">
-                                <div className="flex justify-between items-center border-b border-gray-50 pb-2">
-                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Transaction ID:</span>
-                                    <input 
-                                        className="text-[11px] font-black text-gray-900 uppercase border-none focus:ring-0 p-0 text-right bg-transparent w-32 cursor-pointer"
-                                        value={transactionInfo.id}
-                                        onChange={(e) => setTransactionInfo({...transactionInfo, id: e.target.value})}
-                                    />
-                                </div>
-                                <div className="flex justify-between items-center border-b border-gray-50 pb-2">
-                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Ascrow Total Amount:</span>
-                                    <input 
-                                        className="text-[11px] font-black text-gray-900 uppercase border-none focus:ring-0 p-0 text-right bg-transparent w-32 cursor-pointer"
-                                        value={transactionInfo.total}
-                                        onChange={(e) => setTransactionInfo({...transactionInfo, total: e.target.value})}
-                                    />
-                                </div>
-                                <div className="space-y-1">
-                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Last Stage Update:</span>
-                                    <p className="text-[11px] font-black text-gray-900 uppercase leading-snug">
-                                        {stages.find(s => s.current)?.title || 'No Active Stage'} - 
-                                        <span className="text-[#D4AF37] ml-1">{transactionInfo.lastUpdate}</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -631,14 +654,14 @@ export default function TrackingPortal() {
                 icon={<span>📑</span>}
                 footer={
                     <div className="flex gap-3">
-                        <button 
-                            type="button" 
-                            onClick={() => setIsModalOpen(false)} 
+                        <button
+                            type="button"
+                            onClick={() => setIsModalOpen(false)}
                             className="px-6 py-2 bg-gray-100 text-gray-500 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-gray-200 transition-all"
                         >
                             Cancel
                         </button>
-                        <button 
+                        <button
                             onClick={handleSave}
                             className="px-6 py-2 bg-black text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-lg"
                         >
@@ -651,42 +674,30 @@ export default function TrackingPortal() {
                     <div className="grid grid-cols-1 gap-5">
                         <div className="space-y-2">
                             <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Stage Title</label>
-                            <input required value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
+                            <input required value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Status</label>
-                                <select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black">
+                                <select value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black">
                                     <option>PROCESSED</option>
                                     <option>ACTIVE</option>
                                     <option>UPCOMING</option>
                                 </select>
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Icon (Emoji)</label>
-                                <input value={formData.icon} onChange={e => setFormData({...formData, icon: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
-                            </div>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Date</label>
-                                <input placeholder="Past, 01, 2026" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
+                                <input placeholder="Past, 01, 2026" value={formData.date} onChange={e => setFormData({ ...formData, date: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Time</label>
-                                <input placeholder="02:56 PM" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
+                                <input placeholder="02:56 PM" value={formData.time} onChange={e => setFormData({ ...formData, time: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
                             </div>
                         </div>
-                        <div className="space-y-2">
-                            <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Main Remark</label>
-                            <textarea rows={3} value={formData.remark} onChange={e => setFormData({...formData, remark: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold resize-none text-black placeholder:text-gray-400" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Remark Label</label>
-                            <input value={formData.remarkLabel} onChange={e => setFormData({...formData, remarkLabel: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all text-sm font-bold text-black placeholder:text-gray-400" />
-                        </div>
                         <div className="flex items-center gap-4 py-2">
-                            <input type="checkbox" id="current" checked={formData.current} onChange={e => setFormData({...formData, current: e.target.checked})} className="w-5 h-5 rounded border-gray-100 text-[#D4AF37] focus:ring-[#D4AF37]/20" />
+                            <input type="checkbox" id="current" checked={formData.current} onChange={e => setFormData({ ...formData, current: e.target.checked })} className="w-5 h-5 rounded border-gray-100 text-[#D4AF37] focus:ring-[#D4AF37]/20" />
                             <label htmlFor="current" className="text-[11px] font-black text-gray-600 uppercase tracking-widest cursor-pointer">Set as Current Location</label>
                         </div>
                     </div>
@@ -704,15 +715,15 @@ export default function TrackingPortal() {
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
                         Define the master global stages that can be assigned to partners. These serve as templates for user journeys.
                     </p>
-                    
+
                     <div className="flex gap-2">
-                        <input 
+                        <input
                             className="flex-1 px-4 py-2 rounded-xl border border-gray-100 bg-gray-50 text-sm font-bold text-black focus:border-[#D4AF37] outline-none"
                             placeholder="New Stage Name..."
                             value={newGlobalName}
                             onChange={(e) => setNewGlobalName(e.target.value)}
                         />
-                        <button 
+                        <button
                             onClick={handleAddGlobal}
                             className="px-4 py-2 bg-gradient-gold text-black rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 shadow-md"
                         >
@@ -722,11 +733,11 @@ export default function TrackingPortal() {
 
                     <div className="space-y-4 mt-6">
                         <h4 className="text-[9px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-50 pb-2">All Global Stages (Drag to Reorder)</h4>
-                        
+
                         <DragDropContext onDragEnd={handleGlobalDragEnd}>
                             <Droppable droppableId="global-stages">
                                 {(provided) => (
-                                    <div 
+                                    <div
                                         {...provided.droppableProps}
                                         ref={provided.innerRef}
                                         className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar space-y-2"
@@ -737,17 +748,16 @@ export default function TrackingPortal() {
                                             globalStages.map((name, i) => (
                                                 <Draggable key={name} draggableId={name} index={i}>
                                                     {(provided, snapshot) => (
-                                                        <div 
+                                                        <div
                                                             ref={provided.innerRef}
                                                             {...provided.draggableProps}
-                                                            className={`flex items-center justify-between p-3 rounded-xl border transition-all group ${
-                                                                snapshot.isDragging 
-                                                                    ? 'bg-white border-[#D4AF37] shadow-xl ring-2 ring-[#D4AF37]/10' 
+                                                            className={`flex items-center justify-between p-3 rounded-xl border transition-all group ${snapshot.isDragging
+                                                                    ? 'bg-white border-[#D4AF37] shadow-xl ring-2 ring-[#D4AF37]/10'
                                                                     : 'bg-gray-50 border-transparent hover:bg-white hover:border-gray-100'
-                                                            }`}
+                                                                }`}
                                                         >
                                                             <div className="flex items-center gap-3">
-                                                                <div 
+                                                                <div
                                                                     {...provided.dragHandleProps}
                                                                     className="text-gray-300 hover:text-[#D4AF37] cursor-grab active:cursor-grabbing"
                                                                 >
@@ -806,10 +816,10 @@ export default function TrackingPortal() {
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
                             Generate a QR code for a user to scan and enable stage visibility access.
                         </p>
-                        
+
                         <div className="space-y-2">
                             <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest">Select User</label>
-                            <select 
+                            <select
                                 className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-bold text-black focus:ring-2 focus:ring-[#D4AF37]/20 outline-none"
                                 value={selectedUserId}
                                 onChange={(e) => {
@@ -828,7 +838,7 @@ export default function TrackingPortal() {
                         </div>
 
                         <div className="flex gap-3 pt-4">
-                            <button 
+                            <button
                                 onClick={handleGenerateQR}
                                 disabled={generatingQR || !selectedUserId}
                                 className="flex-1 py-3 bg-gradient-gold text-black rounded-xl text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -857,17 +867,17 @@ export default function TrackingPortal() {
                             </p>
                             <p className="text-[10px] text-gray-400 mt-1">Scan with user's device to grant stage visibility</p>
                         </div>
-                        
+
                         <div className="p-4 bg-white border-2 border-gray-100 rounded-2xl shadow-xl mb-4">
                             <img src={qrCodeData.qrCodeImage} alt="QR Code" className="w-64 h-64" />
                         </div>
-                        
+
                         <div className="w-full p-3 bg-gray-50 rounded-xl mb-4">
                             <p className="text-[9px] font-bold text-gray-400 uppercase mb-1">Encoded URL:</p>
                             <p className="text-xs text-gray-600 break-all font-mono">{qrCodeData.qrCodeUrl}</p>
                         </div>
-                        
-                        <button 
+
+                        <button
                             onClick={() => setQrCodeData(null)}
                             className="text-xs font-bold text-[#D4AF37] uppercase tracking-wider hover:underline"
                         >
@@ -881,3 +891,4 @@ export default function TrackingPortal() {
         </>
     );
 }
+

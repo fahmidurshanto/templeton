@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import api from '@/lib/api';
 import { useAppContext } from '@/context/AppContext';
 import Swal from 'sweetalert2';
@@ -12,6 +12,8 @@ export default function LoginForm() {
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const redirectParam = searchParams.get('redirect');
     const { setUser, fetchCurrentUser } = useAppContext();
 
     const handleSubmit = async (e) => {
@@ -19,7 +21,10 @@ export default function LoginForm() {
         setIsLoading(true);
 
         try {
-            const response = await api.post('/auth/login', { email, password });
+            const loginUrl = redirectParam 
+                ? `/auth/login?redirect=${encodeURIComponent(redirectParam)}` 
+                : '/auth/login';
+            const response = await api.post(loginUrl, { email, password });
             const data = response.data;
             console.log(data);
             if (data.success) {
@@ -40,7 +45,7 @@ export default function LoginForm() {
                     }).then(() => {
                         // Safe check for role
                         const role = freshUser?.role || freshUser?.Role || 'client';
-                        const target = role === 'admin' ? '/admin' : '/';
+                        const target = data.redirect || redirectParam || (role === 'admin' ? '/admin' : '/');
                         router.push(target);
                     });
                 } catch (fetchError) {
@@ -53,7 +58,8 @@ export default function LoginForm() {
                         timer: 1500,
                         showConfirmButton: false
                     }).then(() => {
-                        router.push('/');
+                        const target = redirectParam || '/';
+                        router.push(target);
                     });
                 }
             } else {
@@ -88,7 +94,7 @@ export default function LoginForm() {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="your.name@templeton.apac"
+                        placeholder="your.name@Templeton.apac"
                         className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-[#c6a267] focus:ring-1 focus:ring-[#c6a267] transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
                     />
                 </div>
@@ -153,3 +159,4 @@ export default function LoginForm() {
         </form>
     )
 }
+

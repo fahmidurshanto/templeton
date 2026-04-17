@@ -74,7 +74,7 @@ export default function UserDetailPage({ params }) {
     });
 
     if (!user) {
-        return <NotFound title="User Not Found" message="The individual profile you are seeking is not registered in the Templeton database." />;
+        return <NotFound title="User Not Found" message="The individual profile you are seeking is not registered in the Hutchinson database." />;
     }
 
     const handleDelete = () => {

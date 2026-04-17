@@ -17,7 +17,7 @@ export default function Footer() {
                     <div className="space-y-8 flex-1">
                         <div className="flex items-center gap-3">
                             <img 
-                                src="/templeton-logo.png" 
+                                src="/Templeton-logo.png" 
                                 alt="Templeton APAC Ltd." 
                                 className="h-40 w-auto object-contain"
                             />
@@ -28,7 +28,7 @@ export default function Footer() {
                             </p>
                             <div className="hidden md:block w-px h-8 bg-gray-100 flex-shrink-0"></div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] whitespace-nowrap">
-                                © {currentYear} TEMPLETON APAC LTD. ALL RIGHTS RESERVED.
+                                © {currentYear} Templeton APAC LTD. ALL RIGHTS RESERVED.
                             </p>
                         </div>
                     </div>
@@ -41,7 +41,7 @@ export default function Footer() {
                                 <svg className="w-4 h-4 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
-                                <span className="text-[10px] font-black tracking-widest">PORTAL@TEMPLETON.APAC</span>
+                                <span className="text-[10px] font-black tracking-widest">PORTAL@Templeton.APAC</span>
                             </div>
                             <div className="flex items-center gap-3 text-gray-400">
                                 <svg className="w-4 h-4 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -58,3 +58,4 @@ export default function Footer() {
         </footer>
     );
 }
+

@@ -73,7 +73,7 @@ export default function UserDashboardCards({ onCardClick }) {
                 >
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-black rounded-2xl flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                        <img src="/lion.png" alt="" className="w-16 h-16 object-contain" />
+                        <img src="/templeton-logo.png" alt="" className="w-16 h-16 object-contain" />
                         <span className="text-white text-sm font-semibold tracking-wide">{card.label}</span>
                     </div>
 

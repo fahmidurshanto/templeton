@@ -9,7 +9,7 @@ import MobileTopNav from './TopNav/MobileTopNav';
 export default function TopNav() {
     const pathname = usePathname();
     const { user, activeTab, setActiveTab, logout } = useAppContext();
-    const tabs = ['DASHBOARD', 'PERSONAL', 'MEMBERSHIPS', 'SERVICES', 'SCHEDULE', 'DOCUMENTS', 'REPORTS'];
+    const tabs = ['DASHBOARD', 'PERSONAL', 'MEMBERSHIPS', 'SERVICES', 'SCHEDULE', 'DOCUMENTS', 'REPORTS', 'TRACKING'];
 
     const commonProps = {
         user,

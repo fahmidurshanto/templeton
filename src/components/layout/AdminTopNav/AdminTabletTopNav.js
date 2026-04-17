@@ -9,7 +9,7 @@ export default function AdminTabletTopNav({ user, tabs, logout, pathname }) {
             <div className="relative w-full flex items-center h-12 bg-white shadow-lg overflow-visible">
                 <div className="absolute left-4 top-0 w-[140px] h-[80px] bg-white rounded-br-[2rem] flex items-center justify-center shadow-md z-40">
                     <img
-                        src="/templeton-logo.png"
+                        src="/Templeton-logo.png"
                         alt="Templeton"
                         className="w-[100px] h-[70px] object-contain"
                     />
@@ -57,3 +57,4 @@ export default function AdminTabletTopNav({ user, tabs, logout, pathname }) {
         </div>
     );
 }
+

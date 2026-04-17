@@ -14,34 +14,41 @@ function VerifyContent() {
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        if (!userId) {
-            setStatus('error');
-            setMessage('Invalid verification link. No client ID provided.');
-            return;
-        }
-
-        const verifyUser = async () => {
+        const verifyAuthAndClient = async () => {
             try {
+                // 1. First, verify if the current user session is valid
+                await api.get('/auth/verify');
+
+                // 2. If authenticated, proceed with client verification logic
+                if (!userId) {
+                    setStatus('error');
+                    setMessage('Invalid verification link. No client ID provided.');
+                    return;
+                }
+
                 const res = await api.get(`/stage/verify?id=${userId}`);
                 if (res.data.success) {
                     setStatus('success');
                     setMessage('Client Identity Verified Successfully.');
                     setUserData(res.data.user);
-                    
-                    // Optional: Redirect to dashboard after a delay if they are already logged in?
-                    // For now, just show the verification screen.
                 } else {
                     setStatus('error');
                     setMessage(res.data.message || 'Verification failed.');
                 }
             } catch (err) {
+                // 3. If unauthenticated (401), the global interceptor in AppContext handles redirection.
+                // We just need to stop execution here.
+                if (err.response?.status === 401 || err.silent) {
+                    return;
+                }
+
                 setStatus('error');
                 setMessage(getFriendlyErrorMessage(err));
             }
         };
 
-        verifyUser();
-    }, [userId]);
+        verifyAuthAndClient();
+    }, [userId, router]);
 
     return (
         <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6 text-white overflow-hidden relative">
@@ -132,3 +139,4 @@ export default function VerifyPage() {
         </Suspense>
     );
 }
+

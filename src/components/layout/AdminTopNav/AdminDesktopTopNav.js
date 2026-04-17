@@ -9,7 +9,7 @@ export default function AdminDesktopTopNav({ user, tabs, logout, pathname }) {
             <div className="relative w-full flex items-center h-12 bg-white shadow-lg overflow-visible">
                 <div className="absolute left-0 top-0 w-[180px] h-[102px] bg-white rounded-br-[2.5rem] flex items-center justify-center shadow-lg z-50">
                     <img
-                        src="/templeton-logo.png"
+                        src="/Templeton-logo.png"
                         alt="Templeton APAC Ltd."
                         className="w-[120px] h-[90px] object-contain"
                     />
@@ -70,3 +70,4 @@ export default function AdminDesktopTopNav({ user, tabs, logout, pathname }) {
         </div>
     );
 }
+

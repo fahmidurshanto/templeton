@@ -37,7 +37,7 @@ export default function AdminLayout({ children }) {
             {/* Global Lion Watermark - visible on all screens with responsive sizing */}
             <div className="absolute left-0 top-[300px] md:top-[400px] -translate-x-[30%] sm:-translate-x-[25%] md:-translate-x-[20%] -translate-y-1/2 w-[600px] h-[600px] sm:w-[900px] sm:h-[900px] md:w-[1100px] md:h-[1100px] xl:w-[1400px] xl:h-[1400px] opacity-[0.12] sm:opacity-[0.18] md:opacity-[0.22] xl:opacity-[0.25] pointer-events-none z-0">
                 <img
-                    src="/lion.png"
+                    src="/templeton-logo.png"
                     alt=""
                     className="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] saturate-[2] brightness-[1.1] sepia-[0.5]"
                 />

@@ -529,7 +529,7 @@ export default function MembershipsPage() {
             </div>
 
             <div className="w-full text-center py-20 mt-10">
-                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-[0.4em] opacity-60">Templeton APAC Limited • Privilege Redefined • Since 2025</p>
+                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-[0.4em] opacity-60">Hutchinson APAC Limited • Privilege Redefined • Since 2025</p>
             </div>
 
             {/* Edit Status Modal */}

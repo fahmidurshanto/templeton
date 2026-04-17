@@ -113,7 +113,7 @@ export default function DashboardHomePage() {
             {/* Global Watermark - hidden on mobile/tablet to avoid overflow and prioritize performance */}
             <div className="hidden xl:block absolute left-0 top-1/2 -translate-x-[35%] -translate-y-1/2 w-[1400px] h-[1400px] opacity-[0.25] pointer-events-none z-0">
                 <img
-                    src="/lion.png"
+                    src="/templeton-logo.png"
                     alt=""
                     className="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] saturate-[2] brightness-[1.1] sepia-[0.5]"
                 />
@@ -235,75 +235,7 @@ export default function DashboardHomePage() {
                     </div>
                 )}
 
-                {/* Journey Progress Section */}
-                {!loading && stageVisibility && stages.length > 0 && (
-                    <div className="mt-12 md:mt-16 animate__animated animate__fadeIn">
-                        <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl border border-gray-50 relative overflow-y-hidden">
-                            <h2 className="text-[10px] font-black text-gray-950 uppercase tracking-[0.3em] mb-12 flex items-center gap-3">
-                                <span className="w-8 h-[2px] bg-[#D4AF37]"></span>
-                                Your Partnership Journey
-                            </h2>
-
-                            <div className="overflow-x-auto pb-12">
-                                <div className="min-w-[1000px] flex items-start relative px-4 gap-8">
-                                    {/* Line */}
-                                    <div className="absolute top-[35px] left-0 w-full h-[2px] bg-gray-100 rounded-full"></div>
-                                    <div
-                                        className="absolute top-[35px] left-0 h-[3px] bg-gradient-to-r from-[#D4AF37]/40 to-[#D4AF37] rounded-full z-0 transition-all duration-1000"
-                                        style={{ width: `${Math.min(((stages.filter(s => s.status === 'processed').length + 1) / stages.length) * 100, 100)}%` }}
-                                    ></div>
-
-                                    {stages.sort((a, b) => {
-                                        const statusOrder = { 'processed': 0, 'active': 1, 'upcoming': 2 };
-                                        const weightA = statusOrder[a.status] ?? 3;
-                                        const weightB = statusOrder[b.status] ?? 3;
-                                        if (weightA !== weightB) return weightA - weightB;
-                                        return a.sequence - b.sequence;
-                                    }).map((stage, idx) => (
-                                        <div key={stage._id} className="flex flex-col items-center flex-1 relative z-10 max-w-[250px]">
-                                            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-4 transition-all duration-500 shadow-md border flex-shrink-0
-                                                ${stage.status === 'active' ? 'bg-gradient-gold text-black animate-pulse ring-4 ring-[#D4AF37]/20 scale-105 border-transparent' :
-                                                    stage.status === 'processed' ? 'bg-black text-white border-transparent' : 'bg-white text-gray-300 border-gray-100'}
-                                            `}>
-                                                {stage.status === 'processed' ? '✓' : (idx + 1)}
-                                            </div>
-                                            <div className="text-center w-full px-2">
-                                                <p className={`text-[11px] font-black uppercase tracking-tight leading-tight mb-1 ${stage.status === 'active' ? 'text-gray-950' : 'text-gray-400'}`}>
-                                                    {stage.name}
-                                                </p>
-                                                <div className="flex flex-col gap-1 items-center">
-                                                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-widest ${stage.status === 'active' ? 'bg-amber-100 text-amber-700' :
-                                                        stage.status === 'processed' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
-                                                        }`}>
-                                                        {stage.status}
-                                                    </span>
-                                                    {stage.time && (
-                                                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
-                                                            {new Date(stage.time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                                                        </span>
-                                                    )}
-                                                </div>
-
-                                                {stage.description && (
-                                                    <p className="mt-4 text-[10px] text-gray-500 font-medium leading-relaxed line-clamp-3">
-                                                        {stage.description}
-                                                    </p>
-                                                )}
-
-                                                {(stage.remark || stage.remarkLabel) && (
-                                                    <div className="mt-4 bg-gray-50 p-3 rounded-xl border border-gray-100 text-left w-full transition-all hover:shadow-sm">
-                                                        <p className="text-[9px] font-black text-[#D4AF37] uppercase mb-1">{stage.remarkLabel || 'Update'}:</p>
-                                                        <p className="text-[10px] font-bold text-gray-600 leading-relaxed italic">"{stage.remark || 'No remarks provided'}"</p>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
+             
 
                 {/* Quick Actions Section */}
                 {!loading && (

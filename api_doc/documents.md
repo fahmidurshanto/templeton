@@ -1,6 +1,6 @@
 # Documents API
 
-This document covers all document-related APIs integrated into the Hutchinson frontend.
+This document covers all document-related APIs integrated into the Templeton frontend.
 
 ## Base URL
 All API calls are prefixed with your backend's base URL, e.g., ``/api/v1``

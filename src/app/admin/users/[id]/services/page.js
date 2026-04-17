@@ -208,7 +208,7 @@ export default function ServicesPage() {
             {/* Global Watermark - Premium Shimmering Gold */}
             {/* <div className="absolute left-0 top-[240px] -translate-x-[35%] -translate-y-1/2 w-[1400px] h-[1400px] opacity-[0.25] pointer-events-none z-0 flex items-center justify-center">
                 <img
-                    src="/lion.png"
+                    src="/templeton-logo.png"
                     alt=""
                     className="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] saturate-[2] brightness-[1.1] sepia-[0.5]"
                 />
@@ -298,7 +298,7 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="bg-gray-50 px-8 py-4 text-center">
-                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Templeton APAC Limited • Precision & Trust</p>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Hutchinson APAC Limited • Precision & Trust</p>
                     </div>
                 </div>
             </div>

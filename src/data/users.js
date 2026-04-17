@@ -1,13 +1,13 @@
 export const initialUsers = [
     { 
-        id: '69b2fe0f9f780f4730036dc1', name: 'Alexander Reed', email: 'alexander@templeton.apac', role: 'admin', status: 'active', joined: '15 Jan 2025',
+        id: '69b2fe0f9f780f4730036dc1', name: 'Alexander Reed', email: 'alexander@Templeton.apac', role: 'admin', status: 'active', joined: '15 Jan 2025',
         activities: [
             { id: 101, title: 'Account Created', description: 'System initialized account for Alexander Reed', date: 'Jan 15, 2025', time: '09:00 AM' },
             { id: 102, title: 'Security Profile Set', description: 'Administrative privileges granted', date: 'Jan 16, 2025', time: '11:30 AM' }
         ]
     },
     { 
-        id: '69b2fe0f9f780f4730036dc2', name: 'Sarah Chen', email: 'sarah.chen@templeton.apac', role: 'client', status: 'active', joined: '22 Feb 2025',
+        id: '69b2fe0f9f780f4730036dc2', name: 'Sarah Chen', email: 'sarah.chen@Templeton.apac', role: 'client', status: 'active', joined: '22 Feb 2025',
         activities: [
             { id: 201, title: 'Account Created', description: 'User registered via corporate portal', date: 'Feb 22, 2025', time: '02:15 PM' },
             { id: 202, title: 'KYC Verified', description: 'Identity documents approved by compliance', date: 'Feb 23, 2025', time: '10:00 AM' }
@@ -39,3 +39,4 @@ export const initialUsers = [
         ]
     },
 ];
+

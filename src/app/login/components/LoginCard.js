@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import LoginForm from './LoginForm';
 
 export default function LoginCard() {
@@ -8,7 +8,7 @@ export default function LoginCard() {
                 <div className="px-6 sm:px-10 pb-6 relative z-10 bg-white">
                     <div className="flex flex-col items-center mb-6">
                         <div className="w-16 h-16 sm:w-20 sm:h-20 mb-4 flex items-center justify-center">
-                            <img src="/templeton-logo.png" alt="Templeton APAC Ltd." className="w-full h-full object-contain" />
+                            <img src="/Templeton-logo.png" alt="Templeton APAC Ltd." className="w-full h-full object-contain" />
                         </div>
                         <h1 className="text-[18px] sm:text-[20px] leading-tight font-bold text-center text-black mb-2 mt-1 uppercase tracking-tight">
                             WELCOME TO THE<br />PARTNERSHIP PORTAL
@@ -18,7 +18,14 @@ export default function LoginCard() {
                         </p>
                     </div>
                     
-                    <LoginForm />
+                    <Suspense fallback={
+                        <div className="flex flex-col items-center justify-center py-12">
+                            <div className="w-8 h-8 border-3 border-[#c6a267]/20 border-t-[#c6a267] rounded-full animate-spin"></div>
+                            <p className="mt-4 text-[13px] text-gray-500 font-medium animate-pulse">Initializing Secure Portal...</p>
+                        </div>
+                    }>
+                        <LoginForm />
+                    </Suspense>
                     
                     <div className="mt-7 flex justify-center items-center text-[12px]">
                         <span className="text-white w-4 h-4 mr-1.5 rounded-full bg-[#957e46] text-[10px] flex justify-center items-center font-bold">?</span>
@@ -34,3 +41,4 @@ export default function LoginCard() {
         </div>
     )
 }
+
