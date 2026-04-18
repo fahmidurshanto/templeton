@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }) {
             </div>
 
             <TopNav />
-            <main className="pt-24 md:pt-32 lg:pt-[100px] transition-all duration-300 flex-1 relative z-10">
+            <main className="pt-20 md:pt-28 lg:pt-32 transition-all duration-300 flex-1 relative z-10">
                 <div className="p-4 sm:p-6 md:p-8 lg:p-12 w-full max-w-7xl mx-auto">
                     {children}
                 </div>

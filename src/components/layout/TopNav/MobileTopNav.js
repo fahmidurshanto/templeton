@@ -49,8 +49,13 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
             )}
 
             {/* Mobile Menu Drawer */}
-            <div className={`fixed top-20 right-0 h-screen w-64 bg-white z-50 shadow-2xl transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                <nav className="flex flex-col py-4">
+            <div className={`fixed top-20 right-0 h-screen w-72 bg-white/95 backdrop-blur-2xl z-50 shadow-[-20px_0_50px_rgba(0,0,0,0.1)] transition-transform duration-500 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <div className="p-8 border-b border-gray-100/50">
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-2">Secure Portal</p>
+                    <h2 className="text-xl font-black text-gray-900 leading-none">Management</h2>
+                </div>
+
+                <nav className="flex flex-col py-6 px-4">
                     {tabs.map((tab) => {
                         let href = '/';
                         if (tab === 'REPORTS') href = '/reports';
@@ -66,10 +71,10 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
                             <Link
                                 key={tab}
                                 href={href}
-                                className={`px-6 py-4 font-bold text-sm border-l-4 transition-colors ${
+                                className={`px-6 py-4 my-1 font-black text-[11px] uppercase tracking-[0.2em] rounded-xl transition-all ${
                                     isActive 
-                                    ? 'bg-gray-100 text-[#4A4A4A] border-[#4A4A4A]' 
-                                    : 'text-gray-700 border-transparent hover:bg-gray-50'
+                                    ? 'bg-gray-950 text-white shadow-lg translate-x-1' 
+                                    : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
                                 }`}
                                 onClick={() => {
                                     setActiveTab(tab);
@@ -80,24 +85,24 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
                             </Link>
                         );
                     })}
-                    <div className="mt-auto p-6 border-t border-gray-100">
+                    <div className="mt-12 pt-8 border-t border-gray-100">
                         {user ? (
                             <button 
                                 onClick={() => {
                                     logout();
                                     setIsOpen(false);
                                 }}
-                                className="w-full py-3 rounded-xl bg-gradient-premium text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
+                                className="w-full py-4 rounded-2xl bg-gray-950 text-white text-xs font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all text-center"
                             >
-                                Logout
+                                Secure Logout
                             </button>
                         ) : (
                             <Link 
                                 href="/login" 
-                                className="block w-full py-3 rounded-xl bg-gradient-premium text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
+                                className="block w-full py-4 rounded-2xl bg-gray-950 text-white text-xs font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all text-center"
                                 onClick={() => setIsOpen(false)}
                             >
-                                Login
+                                Identity Login
                             </Link>
                         )}
                     </div>

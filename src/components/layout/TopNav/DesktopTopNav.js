@@ -4,82 +4,86 @@ import Link from 'next/link';
 
 export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, logout, pathname }) {
     return (
-        <div className="hidden lg:flex flex-col w-full bg-gradient-silver-horizontal shadow-xl">
+        <div className="hidden lg:flex flex-col w-full bg-white shadow-sm border-b border-gray-100 z-50 overflow-hidden">
             {/* CONTAINER 1 — Branding + User Info */}
-            <div className="relative w-full flex items-center h-12 bg-white shadow-lg overflow-visible">
-                <div className="absolute left-0 top-0 w-[180px] h-[102px] bg-white rounded-br-[2.5rem] flex items-center justify-center shadow-lg z-50">
+            <div className="relative w-full flex items-center h-16 bg-white">
+                <div className="absolute left-0 top-0 w-[200px] h-[102px] bg-white rounded-br-[3rem] flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] z-[60] border-r border-b border-gray-100 transition-all duration-300">
                     <img
                         src="/Templeton-logo.png"
                         alt="Templeton APAC Ltd."
-                        className="w-[120px] h-[90px] object-contain"
+                        className="w-[130px] h-[90px] object-contain"
                     />
                 </div>
 
-                <div className="ml-[180px] flex-1 flex items-center justify-end pr-6 gap-3 h-full">
+                <div className="ml-20 flex-1 flex items-center justify-end pr-8 gap-6 h-full max-w-7xl mx-auto w-full">
                     {user && (
-                        <>
-                            <div className="flex items-center gap-2">
-                                <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0 fill-[#4A4A4A] drop-shadow-sm">
-                                    <path d="M12 1L3 5v6.09c0 5.05 3.41 9.76 9 10.91 5.59-1.15 9-5.86 9-10.91V5l-9-4zm0 2.18l7 3.12V11c0 3.94-2.6 7.6-7 8.79-4.4-1.19-7-4.85-7-8.79V6.3l7-3.12z" />
-                                </svg>
-                                <span className="font-semibold text-sm text-[#3a3a3a]">{user.name}</span>
+                        <div className="flex items-center gap-4 group cursor-pointer">
+                            <div className="text-right">
+                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Portfolio Holder</p>
+                                <p className="font-bold text-sm text-gray-900 group-hover:text-black transition-colors">{user.name}</p>
                             </div>
-                            <div className="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md shrink-0 bg-gradient-premium">
+                            <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-white shadow-lg bg-gray-950 group-hover:scale-105 transition-transform">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                                     <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                                 </svg>
                             </div>
-                        </>
+                        </div>
                     )}
+                    
+                    <div className="h-6 w-[1px] bg-gray-100"></div>
+
                     {user ? (
                         <button
                             onClick={logout}
-                            className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-premium text-gray-900 text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2"
+                            className="px-6 py-2 rounded-xl bg-gray-950 text-white text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md active:scale-95"
                         >
-                            Logout
+                            Secure Logout
                         </button>
                     ) : (
-                        <Link href="/login" className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-premium text-gray-900 text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2">
-                            Login
+                        <Link href="/login" className="px-6 py-2 rounded-xl bg-gray-950 text-white text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md">
+                            Identity Login
                         </Link>
                     )}
                 </div>
             </div>
 
-            {/* CONTAINER 2 — Navigation Links */}
-            <div className="w-full bg-gradient-to-r from-[#939391] via-[#b7b8b2] to-[#a4a39f]">
-                <nav className="flex items-stretch h-11 ml-[180px]">
-                    {tabs.map((tab) => {
-                        let href = '/';
-                        if (tab === 'REPORTS') href = '/reports';
-                        if (tab === 'SERVICES') href = '/services';
-                        if (tab === 'SCHEDULE') href = '/schedule';
-                        if (tab === 'PERSONAL') href = '/personal';
-                        if (tab === 'MEMBERSHIPS') href = '/memberships';
-                        if (tab === 'DOCUMENTS') href = '/documents';
-                        if (tab === 'TRACKING') href = '/tracking';
+            {/* CONTAINER 2 — Navigation Links — Centered Containment */}
+            <div className="w-full bg-[#f4f4f4] border-t border-gray-100">
+                <div className="max-w-7xl mx-auto w-full flex">
+                    <div className="w-20 shrink-0"></div> {/* Sidebar Offset Match */}
+                    <nav className="flex-1 flex items-stretch h-12 overflow-x-auto no-scrollbar">
+                        {tabs.map((tab) => {
+                            let href = '/';
+                            if (tab === 'REPORTS') href = '/reports';
+                            if (tab === 'SERVICES') href = '/services';
+                            if (tab === 'SCHEDULE') href = '/schedule';
+                            if (tab === 'PERSONAL') href = '/personal';
+                            if (tab === 'MEMBERSHIPS') href = '/memberships';
+                            if (tab === 'DOCUMENTS') href = '/documents';
+                            if (tab === 'TRACKING') href = '/tracking';
 
-                        const isActive = (href === '/' && pathname === '/') || (href !== '/' && pathname.startsWith(href));
+                            const isActive = (href === '/' && pathname === '/') || (href !== '/' && pathname.startsWith(href));
 
-                        return (
-                            <Link
-                                key={tab}
-                                href={href}
-                                className="flex items-stretch focus:outline-none"
-                                onClick={() => setActiveTab(tab)}
-                            >
-                                <span className={`flex items-center h-full px-6 font-bold text-xs tracking-[0.08em] whitespace-nowrap border-b-[3px] transition-colors cursor-pointer select-none
-                                    ${isActive
-                                        ? 'bg-[linear-gradient(180deg,#1e232d_100%,#2a303c_0%)] text-white border-[#4A4A4A]'
-                                        : 'text-[#4a4a4a] border-transparent hover:bg-black/5'
-                                    }`}
+                            return (
+                                <Link
+                                    key={tab}
+                                    href={href}
+                                    className="flex items-stretch focus:outline-none"
+                                    onClick={() => setActiveTab(tab)}
                                 >
-                                    {tab}
-                                </span>
-                            </Link>
-                        );
-                    })}
-                </nav>
+                                    <span className={`flex items-center h-full px-6 font-black text-[10px] uppercase tracking-[0.2em] whitespace-nowrap border-b-2 transition-all cursor-pointer select-none
+                                        ${isActive
+                                            ? 'bg-white text-gray-900 border-gray-950 shadow-[inset_0_-2px_0_0_#000]'
+                                            : 'text-gray-400 border-transparent hover:text-gray-900 hover:bg-black/5'
+                                        }`}
+                                    >
+                                        {tab}
+                                    </span>
+                                </Link>
+                            );
+                        })}
+                    </nav>
+                </div>
             </div>
         </div>
     );

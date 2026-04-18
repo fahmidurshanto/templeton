@@ -109,184 +109,193 @@ export default function DashboardHomePage() {
     const totalActive = activePrimary + activeThirdParty;
 
     return (
-        <div className="w-full h-full flex flex-col items-center relative overflow-visible">
-            {/* Global Watermark - hidden on mobile/tablet to avoid overflow and prioritize performance */}
-            <div className="hidden xl:block absolute left-0 top-1/2 -translate-x-[35%] -translate-y-1/2 w-[1400px] h-[1400px] opacity-[0.25] pointer-events-none z-0">
+        <div className="w-full h-full min-h-screen flex flex-col items-center relative overflow-hidden bg-[#F9FAFB]">
+            {/* Ambient Background Accents */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-gray-200/20 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-[-5%] left-[-5%] w-[30%] h-[30%] bg-gray-300/10 rounded-full blur-[100px]"></div>
+            </div>
+
+            {/* Global Watermark - Refined for premium integration */}
+            <div className="hidden xl:block absolute left-0 top-1/2 -translate-x-[40%] -translate-y-1/2 w-[1600px] h-[1600px] opacity-[0.08] pointer-events-none z-0">
                 <img
                     src="/templeton-logo.png"
                     alt=""
-                    className="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] saturate-[2] brightness-[1.1] sepia-[0.5]"
+                    className="w-full h-full object-contain filter grayscale invert brightness-0"
                 />
             </div>
 
-            <div className="w-full max-w-7xl mx-auto px-6 py-8 relative z-10">
-                {/* Welcome Header */}
-                <div className="mb-8 md:mb-12 text-center animate__animated animate__fadeIn">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-950 mb-3 tracking-tight leading-[1.1]">
-                        Welcome, <span className="text-gradient-premium">{user?.firstName || 'User'}</span>
+            <div className="w-full max-w-7xl mx-auto px-6 py-12 relative z-10">
+                {/* Welcome Header — Statement Design */}
+                <div className="mb-16 md:mb-24 text-center animate__animated animate__fadeInDown">
+                    <div className="inline-block px-4 py-1.5 rounded-full bg-white/50 border border-white/20 backdrop-blur-sm shadow-sm mb-6">
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em]">Official Partnership Portal</p>
+                    </div>
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-950 mb-4 tracking-tighter leading-[1] italic">
+                        Welcome, <span className="text-gradient-premium tracking-tight not-italic">{user?.firstName || 'User'}</span>
                     </h1>
-                    <p className="text-xs sm:text-sm md:text-lg text-gray-500 font-bold uppercase tracking-[0.3em] opacity-70">Strategic Partnership Overview</p>
+                    <div className="flex items-center justify-center gap-4">
+                        <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-gray-300"></div>
+                        <p className="text-xs sm:text-sm font-bold text-gray-500 uppercase tracking-[0.5em] opacity-80">Strategic Journey Overview</p>
+                        <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-gray-300"></div>
+                    </div>
                 </div>
 
                 {loading ? (
                     <div className="flex items-center justify-center py-20">
                         <div className="text-center">
                             <div className="w-12 h-12 border-4 border-gray-100 border-t-[#4A4A4A] rounded-full animate-spin mx-auto mb-4 scale-75 md:scale-100"></div>
-                            <p className="text-[10px] md:text-sm text-gray-400 font-black uppercase tracking-widest">Initializing Secure Dashboard...</p>
+                            <p className="text-[10px] md:text-sm text-gray-400 font-black uppercase tracking-widest">Securing Connection...</p>
                         </div>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 px-2 sm:px-0">
-                        {/* Personal Information Card */}
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-2 sm:px-0">
+                        {/* Personal Information Card — Glassmorphic */}
+                        <div className="group bg-white/40 backdrop-blur-xl rounded-3xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-white/60 hover:border-white hover:shadow-[0_20px_48px_rgba(0,0,0,0.06)] transition-all duration-500 animate__animated animate__fadeInUp animate__delay-1s">
+                            <div className="flex items-center justify-between mb-8">
+                                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500 rotate-3 group-hover:rotate-0">
                                     {UserIcon}
                                 </div>
-                                <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">Profile</span>
+                                <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
                             </div>
-                            <h3 className="text-lg font-black text-gray-900 mb-1">
-                                {user?.firstName ? `${user.firstName} ${user.lastName || ''}` : 'N/A'}
-                            </h3>
-                            <p className="text-sm text-gray-600 mb-3">{user?.email || 'N/A'}</p>
                             <div className="space-y-1">
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-gray-400">Phone:</span>
-                                    <span className="text-gray-700 font-medium">{user?.Phone || 'N/A'}</span>
+                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Portfolio Holder</p>
+                                <h3 className="text-xl font-black text-gray-950 truncate">
+                                    {user?.firstName ? `${user.firstName} ${user.lastName || ''}` : 'N/A'}
+                                </h3>
+                                <p className="text-sm font-medium text-gray-500 truncate pb-4 border-b border-gray-100/50">{user?.email || 'N/A'}</p>
+                            </div>
+                            <div className="pt-4 space-y-3">
+                                <div className="flex justify-between items-center text-[10px]">
+                                    <span className="text-gray-400 font-bold uppercase tracking-tighter">Phone</span>
+                                    <span className="text-gray-900 font-black">{user?.Phone || 'N/A'}</span>
                                 </div>
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-gray-400">Nationality:</span>
-                                    <span className="text-gray-700 font-medium">{user?.nationality || 'N/A'}</span>
+                                <div className="flex justify-between items-center text-[10px]">
+                                    <span className="text-gray-400 font-bold uppercase tracking-tighter">Origin</span>
+                                    <span className="text-gray-900 font-black">{user?.nationality || 'N/A'}</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Financial Summary Card */}
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                        {/* Financial Summary Card — Glassmorphic */}
+                        <div className="group bg-white/40 backdrop-blur-xl rounded-3xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-white/60 hover:border-white hover:shadow-[0_20px_48px_rgba(0,0,0,0.06)] transition-all duration-500 animate__animated animate__fadeInUp animate__delay-2s">
+                            <div className="flex items-center justify-between mb-8">
+                                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500 -rotate-3 group-hover:rotate-0">
                                     {FinancialIcon}
                                 </div>
-                                <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">Financial</span>
+                                <span className="px-3 py-1 bg-gray-950 text-white text-[9px] font-black uppercase tracking-widest rounded-full">Secure</span>
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 mb-1">{totalDisbursement}</h3>
-                            <p className="text-sm text-gray-600 mb-3">Total Investment</p>
                             <div className="space-y-1">
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-gray-400">Investments:</span>
-                                    <span className="text-gray-700 font-medium">{financialData.length} records</span>
+                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Valuation</p>
+                                <h3 className="text-2xl font-black text-gray-950 tracking-tight">{totalDisbursement}</h3>
+                                <p className="text-sm font-medium text-gray-500 truncate pb-4 border-b border-gray-100/50">Cumulative Holdings</p>
+                            </div>
+                            <div className="pt-4 space-y-3">
+                                <div className="flex justify-between items-center text-[10px]">
+                                    <span className="text-gray-400 font-bold uppercase tracking-tighter">Registry</span>
+                                    <span className="text-gray-900 font-black">{financialData.length} Entries</span>
                                 </div>
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-gray-400">Status:</span>
-                                    <span className={`font-medium capitalize ${user?.status === 'active' ? 'text-green-600' : 'text-amber-600'}`}>
+                                <div className="flex justify-between items-center text-[10px]">
+                                    <span className="text-gray-400 font-bold uppercase tracking-tighter">Standing</span>
+                                    <span className={`font-black uppercase tracking-widest ${user?.status === 'active' ? 'text-green-600' : 'text-amber-600'}`}>
                                         {user?.status || 'Active'}
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Memberships Card */}
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                        {/* Memberships Card — Glassmorphic */}
+                        <div className="group bg-white/40 backdrop-blur-xl rounded-3xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-white/60 hover:border-white hover:shadow-[0_20px_48px_rgba(0,0,0,0.06)] transition-all duration-500 animate__animated animate__fadeInUp animate__delay-3s">
+                            <div className="flex items-center justify-between mb-8">
+                                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500 rotate-6 group-hover:rotate-0">
                                     {MembershipIcon}
                                 </div>
-                                <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">Memberships</span>
+                                <div className="w-2.5 h-2.5 rounded-full bg-[#1A1A1A] animate-ping"></div>
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 mb-1">
-                                {totalMemberships}
-                            </h3>
-                            <p className="text-sm text-gray-600 mb-3">Total Memberships</p>
                             <div className="space-y-1">
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-gray-400">Primary:</span>
-                                    <span className="text-gray-700 font-medium">{activePrimary} active</span>
+                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Corporate Access</p>
+                                <h3 className="text-3xl font-black text-gray-950">{totalMemberships}</h3>
+                                <p className="text-sm font-medium text-gray-500 truncate pb-4 border-b border-gray-100/50">Active Registrations</p>
+                            </div>
+                            <div className="pt-4 space-y-3">
+                                <div className="flex justify-between items-center text-[10px]">
+                                    <span className="text-gray-400 font-bold uppercase tracking-tighter">Primary</span>
+                                    <span className="text-gray-900 font-black">{activePrimary} Active</span>
                                 </div>
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-gray-400">3rd Party:</span>
-                                    <span className="text-gray-700 font-medium">{activeThirdParty} active</span>
+                                <div className="flex justify-between items-center text-[10px]">
+                                    <span className="text-gray-400 font-bold uppercase tracking-tighter">External</span>
+                                    <span className="text-gray-900 font-black">{activeThirdParty} Active</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Documents Card */}
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                        {/* Documents Card — Glassmorphic */}
+                        <div className="group bg-white/40 backdrop-blur-xl rounded-3xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-white/60 hover:border-white hover:shadow-[0_20px_48px_rgba(0,0,0,0.06)] transition-all duration-500 animate__animated animate__fadeInUp animate__delay-4s">
+                            <div className="flex items-center justify-between mb-8">
+                                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500 -rotate-3 group-hover:rotate-0">
                                     {DocumentIcon}
                                 </div>
-                                <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">Documents</span>
+                                <span className="w-8 h-[1px] bg-gray-200"></span>
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 mb-1">{userDocs.length}</h3>
-                            <p className="text-sm text-gray-600 mb-3">Total Documents</p>
                             <div className="space-y-1">
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-gray-400">Recent:</span>
-                                    <span className="text-gray-700 font-medium">{recentDocs.length} this week</span>
+                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Vault Status</p>
+                                <h3 className="text-3xl font-black text-gray-950">{userDocs.length}</h3>
+                                <p className="text-sm font-medium text-gray-500 truncate pb-4 border-b border-gray-100/50">Compliance Files</p>
+                            </div>
+                            <div className="pt-4 space-y-3">
+                                <div className="flex justify-between items-center text-[10px]">
+                                    <span className="text-gray-400 font-bold uppercase tracking-tighter">Weekly Update</span>
+                                    <span className="text-gray-900 font-black">+{recentDocs.length} New</span>
                                 </div>
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-gray-400">Vault:</span>
-                                    <span className={`font-medium capitalize ${user?.status === 'active' ? 'text-green-600' : 'text-amber-600'}`}>
-                                        {user?.status || 'Active'}
-                                    </span>
+                                <div className="flex justify-between items-center text-[10px]">
+                                    <span className="text-gray-400 font-bold uppercase tracking-tighter">Integrity</span>
+                                    <span className="text-gray-900 font-black">Verified</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 )}
 
-             
-
-                {/* Quick Actions Section */}
+                {/* Service Hub — Redesigned Quick Actions */}
                 {!loading && (
-                    <div className="mt-12 md:mt-20 px-2 sm:px-0">
-                        <h2 className="text-[10px] md:text-xs font-black text-gray-400 mb-6 text-center md:text-left uppercase tracking-[0.3em]">Quick Strategic Actions</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-6">
-                            <button
-                                onClick={() => router.push('/personal')}
-                                className="p-4 sm:p-6 bg-white border border-gray-100 rounded-2xl hover:bg-gray-50 transition-all duration-300 text-center group cursor-pointer shadow-sm hover:shadow-md"
-                            >
-                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                                    {UserIcon}
-                                </div>
-                                <span className="text-[10px] sm:text-xs font-black text-gray-700 uppercase tracking-widest">Personal</span>
-                            </button>
-                            <button
-                                onClick={() => router.push('/reports')}
-                                className="p-4 sm:p-6 bg-white border border-gray-100 rounded-2xl hover:bg-gray-50 transition-all duration-300 text-center group cursor-pointer shadow-sm hover:shadow-md"
-                            >
-                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                                    {FinancialIcon}
-                                </div>
-                                <span className="text-[10px] sm:text-xs font-black text-gray-700 uppercase tracking-widest">Reports</span>
-                            </button>
-                            <button
-                                onClick={() => router.push('/memberships')}
-                                className="p-4 sm:p-6 bg-white border border-gray-100 rounded-2xl hover:bg-gray-50 transition-all duration-300 text-center group cursor-pointer shadow-sm hover:shadow-md"
-                            >
-                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                                    {MembershipIcon}
-                                </div>
-                                <span className="text-[10px] sm:text-xs font-black text-gray-700 uppercase tracking-widest">Memberships</span>
-                            </button>
-                            <button
-                                onClick={() => router.push('/documents')}
-                                className="p-4 sm:p-6 bg-white border border-gray-100 rounded-2xl hover:bg-gray-50 transition-all duration-300 text-center group cursor-pointer shadow-sm hover:shadow-md"
-                            >
-                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                                    {DocumentIcon}
-                                </div>
-                                <span className="text-[10px] sm:text-xs font-black text-gray-700 uppercase tracking-widest">Documents</span>
-                            </button>
-                            <button
-                                onClick={() => router.push('/tracking')}
-                                className="p-4 sm:p-6 bg-white border border-gray-100 rounded-2xl hover:bg-gray-50 transition-all duration-300 text-center group cursor-pointer shadow-sm hover:shadow-md"
-                            >
-                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                                    {TrackingIcon}
-                                </div>
-                                <span className="text-[10px] sm:text-xs font-black text-gray-700 uppercase tracking-widest">Journey</span>
-                            </button>
+                    <div className="mt-24 md:mt-32 px-4 sm:px-0 animate__animated animate__fadeInUp animate__delay-5s">
+                        <div className="flex items-center justify-between mb-10">
+                            <h2 className="text-[11px] md:text-xs font-black text-gray-950 uppercase tracking-[0.4em]">Strategic Resource Hub</h2>
+                            <div className="h-[1px] flex-1 bg-gray-100 mx-8"></div>
+                            <div className="flex gap-1">
+                                <div className="w-1.5 h-1.5 rounded-full bg-gray-200"></div>
+                                <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                                <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
+                            {[
+                                { link: '/personal', label: 'Identity', icon: UserIcon },
+                                { link: '/reports', label: 'Financials', icon: FinancialIcon },
+                                { link: '/memberships', label: 'Access', icon: MembershipIcon },
+                                { link: '/documents', label: 'The Vault', icon: DocumentIcon },
+                                { link: '/tracking', label: 'The Journey', icon: TrackingIcon }
+                            ].map((action, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => router.push(action.link)}
+                                    className="relative overflow-hidden p-8 bg-white rounded-[2rem] border border-gray-100 hover:border-gray-900 transition-all duration-500 text-center group cursor-pointer shadow-sm hover:shadow-2xl hover:-translate-y-2"
+                                >
+                                    {/* Subtle Gradient Background on Hover */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                                    <div className="relative z-10">
+                                        <div className="w-16 h-16 bg-blue-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-gray-950 group-hover:text-white transition-all duration-500 group-hover:shadow-xl">
+                                            {React.cloneElement(action.icon, { className: "w-8 h-8 group-hover:text-white transition-colors duration-500" })}
+                                        </div>
+                                        <span className="text-[11px] font-black text-gray-900 group-hover:text-gray-950 uppercase tracking-[0.2em] transition-all duration-500">{action.label}</span>
+                                        <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-y-2 group-hover:translate-y-0">
+                                            <div className="w-8 h-1 bg-gray-950 mx-auto rounded-full"></div>
+                                        </div>
+                                    </div>
+                                </button>
+                            ))}
                         </div>
                     </div>
                 )}
@@ -294,3 +303,4 @@ export default function DashboardHomePage() {
         </div>
     );
 }
+
