@@ -37,7 +37,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
 
             {/* CONTAINER 2 — Navigation Links (Scrollable for tablet) */}
             <div className="w-full bg-[#f4f4f4] border-t border-gray-100 overflow-x-auto no-scrollbar">
-                <nav className="flex items-stretch h-11 ml-20">
+                <nav className="flex items-stretch h-11 ml-[140px]">
                     {tabs.map((tab) => {
                         let href = '/';
                         if (tab === 'REPORTS') href = '/reports';

@@ -15,7 +15,7 @@ export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, log
                     />
                 </div>
 
-                <div className="ml-20 flex-1 flex items-center justify-end pr-8 gap-6 h-full max-w-7xl mx-auto w-full">
+                <div className="ml-[200px] flex-1 flex items-center justify-end pr-8 gap-6 h-full max-w-7xl mx-auto w-full">
                     {user && (
                         <div className="flex items-center gap-4 group cursor-pointer">
                             <div className="text-right">
@@ -50,7 +50,7 @@ export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, log
             {/* CONTAINER 2 — Navigation Links — Centered Containment */}
             <div className="w-full bg-[#f4f4f4] border-t border-gray-100">
                 <div className="max-w-7xl mx-auto w-full flex">
-                    <div className="w-20 shrink-0"></div> {/* Sidebar Offset Match */}
+                    <div className="w-[200px] shrink-0"></div> {/* Sidebar Offset Match */}
                     <nav className="flex-1 flex items-stretch h-12 overflow-x-auto no-scrollbar">
                         {tabs.map((tab) => {
                             let href = '/';
