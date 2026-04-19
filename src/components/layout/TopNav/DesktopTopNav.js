@@ -37,7 +37,7 @@ export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, log
                             onClick={logout}
                             className="px-6 py-2 rounded-xl bg-gray-950 text-white text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md active:scale-95"
                         >
-                            Secure Logout
+                            Logout
                         </button>
                     ) : (
                         <Link href="/login" className="px-6 py-2 rounded-xl bg-gray-950 text-white text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md">

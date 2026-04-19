@@ -81,13 +81,20 @@ export default function TrackingPage() {
                         Your Partnership Journey
                     </h2>
 
-                    <div className="overflow-x-auto pb-12 pt-5">
-                        <div className="min-w-[1000px] flex items-start relative px-4 gap-8">
-                            {/* Line */}
-                            <div className="absolute top-[35px] left-0 w-full h-[2px] bg-gray-100 rounded-full"></div>
+                    <div className="pb-12 pt-5">
+                        <div className="flex flex-col md:flex-row items-start relative px-4 gap-8 md:gap-4 lg:gap-8 overflow-hidden md:overflow-visible">
+                            {/* Horizontal Line for Desktop */}
+                            <div className="hidden md:block absolute top-[28px] left-4 right-4 h-[2px] bg-gray-100 rounded-full"></div>
                             <div
-                                className="absolute top-[35px] left-0 h-[3px] bg-gradient-to-r from-[#4A4A4A]/40 to-[#4A4A4A] rounded-full z-0 transition-all duration-1000"
-                                style={{ width: `${Math.min(((stages.filter(s => s.status === 'processed').length + 1) / stages.length) * 100, 100)}%` }}
+                                className="hidden md:block absolute top-[28px] left-4 h-[3px] bg-gradient-to-r from-[#4A4A4A]/40 to-[#4A4A4A] rounded-full z-0 transition-all duration-1000"
+                                style={{ width: `calc(${Math.min(((stages.filter(s => s.status === 'processed').length + 1) / stages.length) * 100, 100)}% - 2rem)` }}
+                            ></div>
+
+                            {/* Vertical Line for Mobile */}
+                            <div className="block md:hidden absolute left-[44px] top-4 bottom-4 w-[2px] bg-gray-100 rounded-full"></div>
+                            <div
+                                className="block md:hidden absolute left-[44px] top-4 w-[3px] bg-gradient-to-b from-[#4A4A4A]/40 to-[#4A4A4A] rounded-full z-0 transition-all duration-1000"
+                                style={{ height: `calc(${Math.min(((stages.filter(s => s.status === 'processed').length + 1) / stages.length) * 100, 100)}% - 2rem)` }}
                             ></div>
 
                             {stages.sort((a, b) => {
@@ -97,18 +104,18 @@ export default function TrackingPage() {
                                 if (weightA !== weightB) return weightA - weightB;
                                 return a.sequence - b.sequence;
                             }).map((stage, idx) => (
-                                <div key={stage._id} className="flex flex-col items-center flex-1 relative z-10 max-w-[250px]">
-                                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-4 transition-all duration-500 shadow-md border flex-shrink-0
-                                        ${stage.status === 'active' ? 'bg-gradient-premium text-black animate-pulse ring-4 ring-[#4A4A4A]/20 scale-105 border-transparent' :
+                                <div key={stage._id} className="flex flex-row md:flex-col items-center flex-1 relative z-10 w-full md:w-auto">
+                                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-0 md:mb-4 mr-6 md:mr-0 transition-all duration-500 shadow-md border flex-shrink-0
+                                        ${stage.status === 'active' ? 'bg-gradient-premium text-white animate-pulse ring-4 ring-[#4A4A4A]/20 scale-105 border-transparent' :
                                             stage.status === 'processed' ? 'bg-black text-white border-transparent' : 'bg-white text-gray-300 border-gray-100'}
                                     `}>
                                         {stage.status === 'processed' ? '✓' : (idx + 1)}
                                     </div>
-                                    <div className="text-center w-full px-2">
-                                        <p className={`text-[11px] font-black uppercase tracking-tight leading-tight mb-1 ${stage.status === 'active' ? 'text-gray-950' : 'text-gray-400'}`}>
+                                    <div className="text-left md:text-center flex-1 md:w-full md:px-2 flex flex-col justify-center">
+                                        <p className={`text-[11px] font-black uppercase tracking-tight leading-tight mb-1 md:mb-2 ${stage.status === 'active' ? 'text-gray-950' : 'text-gray-400'}`}>
                                             {stage.name}
                                         </p>
-                                        <div className="flex flex-col gap-1 items-center">
+                                        <div className="flex flex-row md:flex-col gap-2 md:gap-1 items-center md:items-center justify-start md:justify-center">
                                             <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-widest ${stage.status === 'active' ? 'bg-amber-100 text-amber-700' :
                                                 stage.status === 'processed' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
                                                 }`}>
@@ -120,19 +127,6 @@ export default function TrackingPage() {
                                                 </span>
                                             )}
                                         </div>
-
-                                        {/* {stage.description && (
-                                            <p className="mt-4 text-[10px] text-gray-500 font-medium leading-relaxed line-clamp-3">
-                                                {stage.description}
-                                            </p>
-                                        )}
-
-                                        {(stage.remark || stage.remarkLabel) && (
-                                            <div className="mt-4 bg-gray-50 p-3 rounded-xl border border-gray-100 text-left w-full transition-all hover:shadow-sm">
-                                                <p className="text-[9px] font-black text-[#4A4A4A] uppercase mb-1">{stage.remarkLabel || 'Update'}:</p>
-                                                <p className="text-[10px] font-bold text-gray-600 leading-relaxed italic">"{stage.remark || 'No remarks provided'}"</p>
-                                            </div>
-                                        )} */}
                                     </div>
                                 </div>
                             ))}

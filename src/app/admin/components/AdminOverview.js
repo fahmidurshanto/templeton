@@ -110,7 +110,7 @@ export default function AdminOverview() {
                         ) : (
                             recentActivity.map((item, idx) => (
                                 <div key={idx} className="px-6 py-5 flex items-center gap-4 hover:bg-gray-50/80 transition-colors">
-                                    <div className="w-11 h-11 rounded-full bg-gradient-premium flex items-center justify-center text-black font-black text-sm flex-shrink-0 shadow-md">
+                                    <div className="w-11 h-11 rounded-full bg-gradient-premium flex items-center justify-center text-white font-black text-sm shrink-0 shadow-md">
                                         {item.user.split(' ').map(n => n[0]).join('').slice(0, 2)}
                                     </div>
                                     <div className="flex-1 min-w-0">

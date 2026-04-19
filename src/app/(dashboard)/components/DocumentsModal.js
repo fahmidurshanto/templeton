@@ -39,7 +39,7 @@ export default function DocumentsModal({ isOpen, onClose }) {
                 {/* Floating Add Button */}
                 <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="cursor-pointer absolute -top-2 -right-2 w-10 h-10 bg-gradient-premium text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-200 z-20 group"
+                    className="cursor-pointer absolute -top-2 -right-2 w-10 h-10 bg-gradient-premium text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-200 z-20 group"
                     title="Upload Document"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">

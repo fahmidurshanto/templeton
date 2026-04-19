@@ -109,7 +109,7 @@ export default function AdminDocumentsPage() {
                     {isAdmin && (
                         <button
                             onClick={handleUploadClick}
-                            className="px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-premium rounded-full text-black font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-xl hover:scale-105 transition-all flex items-center gap-2 mx-auto"
+                            className="px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-premium rounded-full text-white font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-xl hover:scale-105 transition-all flex items-center gap-2 mx-auto"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

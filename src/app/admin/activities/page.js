@@ -151,7 +151,7 @@ export default function ActivitiesPage() {
                         ))}
 
                         {activitiesData[activeTab].length === 0 && (
-                            <div className="text-center py-24 bg-white/50 backdrop-blur-sm rounded-[3rem] border-2 border-dashed border-gray-100 uppercase">
+                            <div className="text-center py-24 bg-white/90 rounded-[3rem] border-2 border-dashed border-gray-100 uppercase">
                                 <p className="text-gray-400 font-black tracking-[0.3em] text-xs">No schedules found for this period</p>
                             </div>
                         )}

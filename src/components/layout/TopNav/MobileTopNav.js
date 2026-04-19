@@ -94,7 +94,7 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
                                 }}
                                 className="w-full py-4 rounded-2xl bg-gray-950 text-white text-xs font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all text-center"
                             >
-                                Secure Logout
+                                Logout
                             </button>
                         ) : (
                             <Link 
@@ -102,7 +102,7 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
                                 className="block w-full py-4 rounded-2xl bg-gray-950 text-white text-xs font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all text-center"
                                 onClick={() => setIsOpen(false)}
                             >
-                                Identity Login
+                                Login
                             </Link>
                         )}
                     </div>

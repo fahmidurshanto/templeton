@@ -725,7 +725,7 @@ export default function TrackingPortal() {
                         />
                         <button
                             onClick={handleAddGlobal}
-                            className="px-4 py-2 bg-gradient-premium text-black rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 shadow-md"
+                            className="px-4 py-2 bg-gradient-premium text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 shadow-md"
                         >
                             Add
                         </button>

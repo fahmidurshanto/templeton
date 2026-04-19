@@ -68,7 +68,7 @@ export default function DashboardModal({ isOpen, onClose, title, icon, children,
                                 {footer ?? (
                                     <button
                                         onClick={onClose}
-                                        className="px-6 cursor-pointer py-2 bg-gradient-premium text-black text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
+                                        className="px-6 cursor-pointer py-2 bg-gradient-premium text-white text-sm font-bold rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
                                     >
                                         Close
                                     </button>

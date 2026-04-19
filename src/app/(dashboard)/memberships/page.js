@@ -83,7 +83,7 @@ export default function MembershipsPage() {
                         </h2>
                         <div className="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
                     </div>
-                    <div className="flex flex-col space-y-3 sm:space-y-4">
+                    <div className="flex flex-col space-y-3 sm:space-y-4 bg-white">
                         {primaryTiers.map((tier, idx) => renderTierCard(tier, idx))}
                         {primaryTiers.length === 0 && (
                             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center py-10 bg-gray-50/50 rounded-2xl border-2 border-dashed border-gray-100">No primary entities recorded</p>
@@ -100,7 +100,7 @@ export default function MembershipsPage() {
                         </h2>
                         <div className="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
                     </div>
-                    <div className="flex flex-col space-y-3 sm:space-y-4">
+                    <div className="flex flex-col space-y-3 sm:space-y-4 bg-white">
                         {thirdPartyTiers.map((tier, idx) => renderTierCard(tier, idx))}
                         {thirdPartyTiers.length === 0 && (
                             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center py-10 bg-gray-50/50 rounded-2xl border-2 border-dashed border-gray-100">No third-party alliances recorded</p>
