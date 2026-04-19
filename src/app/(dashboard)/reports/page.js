@@ -117,7 +117,7 @@ export default function ReportsPage() {
                         onClick={() => setViewMode('monthly')}
                         className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2
                             ${viewMode === 'monthly'
-                                ? 'bg-gradient-premium text-black shadow-md scale-[1.03]'
+                                ? 'bg-gradient-premium text-white shadow-md scale-[1.03]'
                                 : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
@@ -130,7 +130,7 @@ export default function ReportsPage() {
                         onClick={() => setViewMode('yearly')}
                         className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2
                             ${viewMode === 'yearly'
-                                ? 'bg-gradient-premium text-black shadow-md scale-[1.03]'
+                                ? 'bg-gradient-premium text-white shadow-md scale-[1.03]'
                                 : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
@@ -156,7 +156,7 @@ export default function ReportsPage() {
                                 onClick={() => setSelectedYear(year)}
                                 className={`px-5 sm:px-6 py-2.5 sm:py-3.5 lg:py-4 rounded-xl font-black text-[10px] sm:text-xs tracking-widest transition-all duration-300 shadow-sm whitespace-nowrap border
                                     ${selectedYear === year
-                                        ? 'bg-gradient-premium text-black border-[#4A4A4A] scale-105 z-10'
+                                        ? 'bg-gradient-premium text-white border-[#4A4A4A] scale-105 z-10'
                                         : 'bg-white text-gray-400 hover:bg-gray-50 border-gray-100'
                                     }`}
                             >

@@ -36,7 +36,7 @@ export default function CalendarPage({ isAdmin = false }) {
             const res = await api.get(endpoint);
             if (res.data.success) {
                 const fetchedSchedules = res.data.data;
-                
+
                 // Format for FullCalendar
                 const formattedEvents = fetchedSchedules.map(sch => {
                     const color = sch.type === 'Meeting' ? '#10b981' : '#3b82f6';
@@ -139,7 +139,7 @@ export default function CalendarPage({ isAdmin = false }) {
 
     const handleEventClick = (clickInfo) => {
         if (!isAdmin) return;
-        
+
         Swal.fire({
             title: 'Cancel Schedule?',
             text: `Are you sure you want to remove '${clickInfo.event.title}' from the agenda?`,
@@ -202,15 +202,15 @@ export default function CalendarPage({ isAdmin = false }) {
                     {/* Left: Calendar Component */}
                     <div className="lg:col-span-8 bg-white rounded-2xl shadow-2xl border-2 border-[#4A4A4A]/30 overflow-hidden">
                         <div className="bg-gradient-premium px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#1A1A1A]/30 gap-2">
-                            <h2 className="text-black font-black text-xs sm:text-sm tracking-widest uppercase">Monthly Schedule</h2>
+                            <h2 className="text-white font-black text-xs sm:text-sm tracking-widest uppercase">Monthly Schedule</h2>
                             <div className="flex items-center gap-3 sm:gap-4">
                                 <div className="flex items-center gap-1.5">
                                     <span className="w-2 rounded-full bg-[#10b981] aspect-square"></span>
-                                    <span className="text-[9px] sm:text-[10px] text-black font-bold uppercase">Meetings</span>
+                                    <span className="text-[9px] sm:text-[10px] text-white font-bold uppercase">Meetings</span>
                                 </div>
                                 <div className="flex items-center gap-1.5">
                                     <span className="w-2 rounded-full bg-[#3b82f6] aspect-square"></span>
-                                    <span className="text-[9px] sm:text-[10px] text-black font-bold uppercase">Tasks</span>
+                                    <span className="text-[9px] sm:text-[10px] text-white font-bold uppercase">Tasks</span>
                                 </div>
                             </div>
                         </div>
@@ -284,13 +284,13 @@ export default function CalendarPage({ isAdmin = false }) {
                         <form onSubmit={handleAddEvent} className="p-6 sm:p-8 space-y-5 md:space-y-6">
                             <div className="space-y-1.5 md:space-y-2">
                                 <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#153A6A] mb-2">Event Title</label>
-                                <input 
+                                <input
                                     required
-                                    type="text" 
+                                    type="text"
                                     className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black"
                                     placeholder="e.g. Executive Meeting"
                                     value={newEvent.title}
-                                    onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+                                    onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                                 />
                             </div>
 
@@ -356,20 +356,20 @@ export default function CalendarPage({ isAdmin = false }) {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-1.5 md:space-y-2">
                                     <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#153A6A] mb-2">Time</label>
-                                    <input 
-                                        type="time" 
+                                    <input
+                                        type="time"
                                         className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black"
                                         value={newEvent.time}
-                                        onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
+                                        onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1.5 md:space-y-2">
                                     <label className="block text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#153A6A] mb-2">Type</label>
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black appearance-none"
                                             value={newEvent.type}
-                                            onChange={(e) => setNewEvent({...newEvent, type: e.target.value})}
+                                            onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
                                         >
                                             <option value="Meeting">Meeting</option>
                                             <option value="Task">Task</option>
@@ -390,11 +390,11 @@ export default function CalendarPage({ isAdmin = false }) {
                                     className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black resize-none"
                                     placeholder="Brief description..."
                                     value={newEvent.description}
-                                    onChange={(e) => setNewEvent({...newEvent, description: e.target.value})}
+                                    onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
                                 />
                             </div>
 
-                            <button 
+                            <button
                                 type="submit"
                                 className="w-full py-4 sm:py-4.5 bg-gradient-premium text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:brightness-110 active:scale-[0.98] transition-all text-xs sm:text-sm"
                             >
