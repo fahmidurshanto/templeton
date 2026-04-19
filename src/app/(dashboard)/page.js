@@ -116,14 +116,7 @@ export default function DashboardHomePage() {
                 <div className="absolute bottom-[-5%] left-[-5%] w-[30%] h-[30%] bg-gray-300/10 rounded-full blur-[100px]"></div>
             </div>
 
-            {/* Global Watermark - Refined for premium integration */}
-            <div className="hidden xl:block absolute left-0 top-1/2 -translate-x-[40%] -translate-y-1/2 w-[1600px] h-[1600px] opacity-[0.08] pointer-events-none z-0">
-                <img
-                    src="/templeton-logo.png"
-                    alt=""
-                    className="w-full h-full object-contain filter grayscale invert brightness-0"
-                />
-            </div>
+
 
             <div className="w-full max-w-7xl mx-auto px-6 py-12 relative z-10">
                 {/* Welcome Header — Statement Design */}
