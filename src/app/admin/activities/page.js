@@ -100,7 +100,7 @@ export default function ActivitiesPage() {
                             onClick={() => setActiveTab(tab.id)}
                             className={`flex-1 sm:flex-none px-4 sm:px-10 py-3 sm:py-4 rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all duration-500 relative z-10 whitespace-nowrap
                                 ${activeTab === tab.id
-                                    ? 'bg-gradient-premium text-black shadow-lg scale-[1.02] sm:scale-[1.05]'
+                                    ? 'bg-gradient-premium text-white shadow-lg scale-[1.02] sm:scale-[1.05]'
                                     : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'}`}
                         >
                             {tab.label}

@@ -10,7 +10,7 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
             <div className="flex items-center justify-between h-20 px-4 bg-white z-50">
                 <Link href="/admin" className="h-full py-3">
                     <img
-                        src="/Templeton-logo.png"
+                        src="/templeton-logo.png"
                         alt="Templeton"
                         className="h-full w-auto object-contain"
                     />

@@ -17,7 +17,7 @@ export default function Footer() {
                     <div className="space-y-8 flex-1">
                         <div className="flex items-center gap-3">
                             <img 
-                                src="/Templeton-logo.png" 
+                                src="/templeton-logo.png" 
                                 alt="Templeton APAC Ltd." 
                                 className="h-40 w-auto object-contain"
                             />

@@ -9,7 +9,7 @@ export default function TabletTopNav({ user, tabs, activeTab, setActiveTab, logo
             <div className="relative w-full flex items-center h-14 bg-white">
                 <div className="absolute left-0 top-0 w-[140px] h-[80px] bg-white rounded-br-[2rem] flex items-center justify-center shadow-md z-[60] border-r border-b border-gray-100">
                     <img
-                        src="/Templeton-logo.png"
+                        src="/templeton-logo.png"
                         alt="Templeton APAC Ltd."
                         className="w-[100px] h-[70px] object-contain"
                     />

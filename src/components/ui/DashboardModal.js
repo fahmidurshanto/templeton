@@ -42,13 +42,13 @@ export default function DashboardModal({ isOpen, onClose, title, icon, children,
                                     {icon && (
                                         <span className="text-black">{icon}</span>
                                     )}
-                                    <DialogTitle className="text-black font-bold text-base tracking-wide uppercase">
+                                    <DialogTitle className="text-white font-bold text-base tracking-wide uppercase">
                                         {title}
                                     </DialogTitle>
                                 </div>
                                 <button
                                     onClick={onClose}
-                                    className="cursor-pointer text-black/70 hover:text-black transition-colors duration-150"
+                                    className="cursor-pointer text-white hover:text-black transition-colors duration-150"
                                     aria-label="Close modal"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">

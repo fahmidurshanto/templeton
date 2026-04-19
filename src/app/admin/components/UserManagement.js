@@ -125,10 +125,10 @@ export default function UserManagement() {
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate__animated animate__fadeIn">
                     <div className="bg-white rounded-[2rem] shadow-2xl border-2 border-[#4A4A4A]/30 w-full max-w-2xl overflow-hidden animate__animated animate__zoomIn flex flex-col max-h-[90vh]">
                         <div className="bg-gradient-premium py-4 sm:py-5 px-6 sm:px-8 flex items-center justify-between shrink-0">
-                            <h3 className="text-black font-black uppercase tracking-widest text-[10px] sm:text-xs">
+                            <h3 className="text-white font-black uppercase tracking-widest text-[10px] sm:text-xs">
                                 Partner Registration
                             </h3>
-                            <button onClick={handleCloseModal} className="text-black hover:scale-110 transition-transform cursor-pointer">
+                            <button onClick={handleCloseModal} className="text-white hover:scale-110 transition-transform cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
@@ -218,7 +218,7 @@ export default function UserManagement() {
 
                                 <button
                                     type="submit"
-                                    className="w-full py-4 sm:py-5 bg-gradient-premium text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer mt-2 sm:mt-4 text-xs sm:text-sm"
+                                    className="w-full py-4 sm:py-5 bg-gradient-premium text-white font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer mt-2 sm:mt-4 text-xs sm:text-sm"
                                 >
                                     Finalize Registration
                                 </button>
@@ -238,7 +238,7 @@ export default function UserManagement() {
                         </div>
                         <button
                             onClick={() => handleOpenModal()}
-                            className="cursor-pointer w-full sm:w-auto px-6 py-3.5 sm:py-3 rounded-xl bg-gradient-premium text-black font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-lg hover:shadow-gold-500/30 hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                            className="cursor-pointer w-full sm:w-auto px-6 py-3.5 sm:py-3 rounded-xl bg-gradient-premium text-white font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-lg hover:shadow-gold-500/30 hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

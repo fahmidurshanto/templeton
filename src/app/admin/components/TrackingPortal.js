@@ -632,8 +632,8 @@ export default function TrackingPortal() {
                                 </div>
 
                                 <div className="flex items-center gap-3">
-                                    <div className="bg-gradient-premium text-black px-4 py-2 rounded-full">
-                                        <span className="text-xs font-black uppercase tracking-widest">
+                                    <div className="bg-gradient-premium  px-4 py-2 rounded-full">
+                                        <span className="text-xs font-black text-white uppercase tracking-widest">
                                             {Math.min(currentIndex * slidesPerView + 1, stages.length)}-{Math.min((currentIndex + 1) * slidesPerView, stages.length)} / {stages.length}
                                         </span>
                                     </div>

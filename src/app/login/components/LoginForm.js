@@ -95,10 +95,10 @@ export default function LoginForm() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="your.name@Templeton.apac"
-                        className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-[#c6a267] focus:ring-1 focus:ring-[#c6a267] transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
+                        className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
                     />
                 </div>
-                <label htmlFor="email" className="block mt-1 text-[13px] font-medium text-[#9a804a]">
+                <label htmlFor="email" className="block mt-1 text-[13px] font-medium text-brand-muted">
                     Username or Email Address
                 </label>
             </div>
@@ -113,7 +113,7 @@ export default function LoginForm() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-[#c6a267] focus:ring-1 focus:ring-[#c6a267] transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
+                        className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
                     />
                     <button
                         type="button"
@@ -133,7 +133,7 @@ export default function LoginForm() {
                         </svg>
                     </button>
                 </div>
-                <label htmlFor="password" className="block mt-1 text-[13px] font-medium text-[#9a804a]">
+                <label htmlFor="password" className="block mt-1 text-[13px] font-medium text-brand-muted">
                     Password
                 </label>
             </div>
@@ -143,14 +143,11 @@ export default function LoginForm() {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-3.5 px-4 rounded-[10px] flex items-center justify-center gap-3 shadow-[inset_0_2px_2px_rgba(0,0,0,0.3),inset_0_2px_0_rgba(255,255,255,0.4)]"
-                    style={{
-                        background: 'linear-gradient(to bottom, #d5b573 0%, #f7e2af 15%, #a87e35 85%, #c19c50 100%)',
-                    }}
+                    className="w-full py-3.5 px-4 rounded-[10px] flex items-center justify-center gap-3 shadow-[inset_0_2px_2px_rgba(0,0,0,0.3),inset_0_2px_0_rgba(255,255,255,0.4)] bg-gradient-premium"
                 >
-                    <span className="text-[17px] font-black text-black tracking-[0.1em]">{isLoading ? 'AUTHENTICATING...' : 'LOGIN'}</span>
+                    <span className="text-[17px] font-black text-white tracking-[0.1em]">{isLoading ? 'AUTHENTICATING...' : 'LOGIN'}</span>
                     {!isLoading && (
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] text-black drop-shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] text-white drop-shadow-sm">
                             <path fillRule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z" clipRule="evenodd" />
                         </svg>
                     )}

@@ -9,7 +9,7 @@ export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, log
             <div className="relative w-full flex items-center h-16 bg-white">
                 <div className="absolute left-0 top-0 w-[200px] h-[102px] bg-white rounded-br-[3rem] flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] z-[60] border-r border-b border-gray-100 transition-all duration-300">
                     <img
-                        src="/Templeton-logo.png"
+                        src="/templeton-logo.png"
                         alt="Templeton APAC Ltd."
                         className="w-[130px] h-[90px] object-contain"
                     />

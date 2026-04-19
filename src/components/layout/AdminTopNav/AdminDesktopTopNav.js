@@ -9,14 +9,14 @@ export default function AdminDesktopTopNav({ user, tabs, logout, pathname }) {
             <div className="relative w-full flex items-center h-12 bg-white shadow-lg overflow-visible">
                 <div className="absolute left-0 top-0 w-[180px] h-[102px] bg-white rounded-br-[2.5rem] flex items-center justify-center shadow-lg z-50">
                     <img
-                        src="/Templeton-logo.png"
+                        src="/templeton-logo.png"
                         alt="Templeton APAC Ltd."
                         className="w-[120px] h-[90px] object-contain"
                     />
                 </div>
 
                 <div className="ml-[180px] flex-1 flex items-center justify-end pr-6 gap-3 h-full">
-                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-premium text-gray-900 text-[10px] font-black tracking-widest shadow-sm">
+                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-premium text-white text-[10px] font-black tracking-widest shadow-sm">
                         <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2L22 6v6.5C22 17.74 17.65 22.53 12 24 6.35 22.53 2 17.74 2 12.5V6l10-4z" />
                         </svg>
@@ -35,7 +35,7 @@ export default function AdminDesktopTopNav({ user, tabs, logout, pathname }) {
 
                     <button
                         onClick={logout}
-                        className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-premium text-gray-900 text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2"
+                        className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-premium text-white text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2"
                     >
                         Logout
                     </button>

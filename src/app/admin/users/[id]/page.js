@@ -151,10 +151,10 @@ export default function UserDetailPage({ params }) {
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate__animated animate__fadeIn">
                     <div className="bg-white rounded-[2rem] shadow-2xl border-2 border-[#4A4A4A]/30 w-full max-w-2xl overflow-hidden animate__animated animate__zoomIn flex flex-col max-h-[90vh]">
                         <div className="bg-gradient-premium py-5 px-8 flex items-center justify-between shrink-0">
-                            <h3 className="text-black font-black uppercase tracking-widest text-sm">
+                            <h3 className="text-white font-black uppercase tracking-widest text-sm">
                                 Edit User Profile
                             </h3>
-                            <button onClick={handleCloseModal} className="text-black hover:scale-110 transition-transform cursor-pointer">
+                            <button onClick={handleCloseModal} className="text-white hover:scale-110 transition-transform cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
@@ -236,7 +236,7 @@ export default function UserDetailPage({ params }) {
 
                                 <button
                                     type="submit"
-                                    className="w-full py-4 sm:py-5 bg-gradient-premium text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer mt-4 text-xs sm:text-sm"
+                                    className="w-full py-4 sm:py-5 bg-gradient-premium text-white font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer mt-4 text-xs sm:text-sm"
                                 >
                                     Save Changes
                                 </button>
@@ -267,7 +267,7 @@ export default function UserDetailPage({ params }) {
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         <button
                             onClick={() => router.push(`/admin/users/${userId}/reports`)}
-                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-gradient-premium text-black font-black text-[10px] uppercase tracking-widest hover:scale-105 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-gradient-premium text-white font-black text-[10px] uppercase tracking-widest hover:scale-105 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
@@ -316,7 +316,7 @@ export default function UserDetailPage({ params }) {
                     {/* Left Column - Basic Info */}
                     <div className="lg:col-span-1 space-y-6">
                         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-xl flex flex-col items-center text-center">
-                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-premium flex items-center justify-center text-black font-black text-3xl sm:text-4xl shadow-2xl mb-4 sm:mb-6 uppercase">
+                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-premium flex items-center justify-center text-white font-black text-3xl sm:text-4xl shadow-2xl mb-4 sm:mb-6 uppercase">
                                 {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
                             </div>
                             <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight">
@@ -356,7 +356,7 @@ export default function UserDetailPage({ params }) {
                         <div className="space-y-3">
                             <button
                                 onClick={() => router.push(`/admin/users/${userId}/memberships`)}
-                                className="w-full px-6 py-4 rounded-2xl bg-gradient-premium text-black font-black text-xs uppercase tracking-widest hover:scale-[1.02] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3"
+                                className="w-full px-6 py-4 rounded-2xl bg-gradient-premium text-white font-black text-xs uppercase tracking-widest hover:scale-[1.02] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3"
                             >
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
@@ -429,7 +429,7 @@ export default function UserDetailPage({ params }) {
                                         Security Vault (Plain Password)
                                     </label>
                                     <div className="flex items-center gap-3">
-                                        <p className="text-base sm:text-lg text-[#4A4A4A] font-black font-mono tracking-wider bg-amber-50 px-4 py-2 rounded-xl border border-amber-100/50 min-w-[150px]">
+                                        <p className="text-base sm:text-lg text-[#4A4A4A] font-black font-mono tracking-wider bg-gray-150 px-4 py-2 rounded-xl border border-gray-100/50 min-w-[150px]">
                                             {showPassword ? (user.password || 'N/A') : '••••••••'}
                                         </p>
                                         <button

@@ -13,7 +13,7 @@ export default function MobileTopNav({ user, tabs, activeTab, setActiveTab, logo
                 {/* Logo */}
                 <Link href="/" className="h-full py-3">
                     <img
-                        src="/Templeton-logo.png"
+                        src="/templeton-logo.png"
                         alt="Templeton"
                         className="h-full w-auto object-contain"
                     />
