@@ -199,8 +199,30 @@ export default function TrackingPortal() {
         document.body.removeChild(link);
     };
 
-    const slidesPerView = 5;
+    const [slidesPerView, setSlidesPerView] = useState(5);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const updateSlidesPerView = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+            if (mobile) setSlidesPerView(1);
+            else if (window.innerWidth < 1024) setSlidesPerView(3);
+            else if (window.innerWidth < 1280) setSlidesPerView(4);
+            else setSlidesPerView(5);
+        };
+        updateSlidesPerView();
+        window.addEventListener('resize', updateSlidesPerView);
+        return () => window.removeEventListener('resize', updateSlidesPerView);
+    }, []);
+
     const maxIndex = Math.max(0, stages.length - slidesPerView);
+
+    useEffect(() => {
+        if (currentIndex > maxIndex && maxIndex >= 0) {
+            setCurrentIndex(maxIndex);
+        }
+    }, [maxIndex, currentIndex]);
 
     const handleCarouselDragEnd = async (result) => {
         if (!result.destination) return;
@@ -457,13 +479,13 @@ export default function TrackingPortal() {
                             <DragDropContext onDragEnd={handleCarouselDragEnd}>
                                 <div className="relative z-10">
                                     <div className="overflow-hidden">
-                                        <Droppable droppableId="carousel-stages" direction="horizontal">
+                                        <Droppable droppableId="carousel-stages" direction={isMobile ? "vertical" : "horizontal"}>
                                             {(provided) => (
                                                 <div
                                                     {...provided.droppableProps}
                                                     ref={provided.innerRef}
-                                                    className="flex transition-transform duration-500 ease-out"
-                                                    style={{ transform: `translateX(-${currentIndex * (100 / slidesPerView)}%)` }}
+                                                    className={`w-full transition-all duration-500 ease-out ${isMobile ? 'flex flex-col gap-4' : 'flex'}`}
+                                                    style={isMobile ? undefined : { marginLeft: `-${currentIndex * (100 / slidesPerView)}%` }}
                                                 >
                                                     {stages.map((stage, idx) => (
                                                         <Draggable key={stage.id} draggableId={String(stage.id)} index={idx}>
@@ -471,7 +493,11 @@ export default function TrackingPortal() {
                                                                 <div
                                                                     ref={provided.innerRef}
                                                                     {...provided.draggableProps}
-                                                                    className="w-1/5 flex-shrink-0 px-2"
+                                                                    className={`flex-shrink-0 px-2 ${isMobile ? 'w-full' : ''}`}
+                                                                    style={{
+                                                                        ...provided.draggableProps.style,
+                                                                        ...(isMobile ? { width: '100%' } : { width: `${100 / slidesPerView}%` })
+                                                                    }}
                                                                 >
                                                                     <div className={`rounded-2xl border p-4 transition-all duration-300 h-full relative ${stage.current
                                                                             ? 'bg-gradient-to-br from-green-50 to-white border-green-200 shadow-lg'
@@ -481,7 +507,7 @@ export default function TrackingPortal() {
                                                                             {/* Drag Handle */}
                                                                             <div
                                                                                 {...provided.dragHandleProps}
-                                                                                className="absolute top-2 left-2 text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing p-1"
+                                                                                className="absolute top-2 left-2 text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing p-1 touch-none"
                                                                             >
                                                                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
@@ -549,7 +575,7 @@ export default function TrackingPortal() {
                                     </div>
 
                                     {/* Navigation Arrows */}
-                                    {stages.length > slidesPerView && (
+                                    {!isMobile && stages.length > slidesPerView && (
                                         <>
                                             <button
                                                 onClick={prevSlide}
@@ -575,7 +601,7 @@ export default function TrackingPortal() {
                             </DragDropContext>
 
                             {/* Dot Indicators */}
-                            {stages.length > slidesPerView && (
+                            {!isMobile && stages.length > slidesPerView && (
                                 <div className="flex justify-center items-center gap-3 mt-6">
                                     <button
                                         onClick={prevSlide}
@@ -759,7 +785,7 @@ export default function TrackingPortal() {
                                                             <div className="flex items-center gap-3">
                                                                 <div
                                                                     {...provided.dragHandleProps}
-                                                                    className="text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing"
+                                                                    className="text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing touch-none"
                                                                 >
                                                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />

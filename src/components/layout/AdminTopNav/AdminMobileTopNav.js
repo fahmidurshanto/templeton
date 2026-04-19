@@ -17,10 +17,10 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
                 </Link>
 
                 <div className="flex items-center gap-3">
-                    <span className="px-2 py-0.5 rounded-full bg-black text-[#4A4A4A] text-[8px] font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-black text-white text-[8px] font-bold">
                         ADMIN
                     </span>
-                    <button 
+                    <button
                         onClick={() => setIsOpen(!isOpen)}
                         className="p-2 text-gray-600"
                     >
@@ -45,7 +45,7 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
                             </div>
                             <div>
                                 <p className="font-bold text-sm">{user?.name}</p>
-                                <p className="text-[10px] text-[#4A4A4A] font-bold tracking-widest">ADMINISTRATOR</p>
+                                <p className="text-[10px] text-slate-400 font-bold tracking-widest">ADMINISTRATOR</p>
                             </div>
                         </div>
                     </div>
@@ -58,11 +58,10 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
                                 <Link
                                     key={tab.name}
                                     href={tab.href}
-                                    className={`flex items-center px-6 py-4 font-bold text-sm border-l-4 transition-colors ${
-                                        isActive 
-                                        ? 'bg-gray-100 text-[#4A4A4A] border-[#4A4A4A]' 
+                                    className={`flex items-center px-6 py-4 font-bold text-sm border-l-4 transition-colors ${isActive
+                                        ? 'bg-gray-100 text-[#4A4A4A] border-[#4A4A4A]'
                                         : 'text-gray-700 border-transparent hover:bg-gray-50'
-                                    }`}
+                                        }`}
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {tab.name}
@@ -72,12 +71,12 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
                     </nav>
 
                     <div className="p-6 border-t border-gray-100">
-                        <button 
+                        <button
                             onClick={() => {
                                 logout();
                                 setIsOpen(false);
                             }}
-                            className="w-full py-3 rounded-xl bg-gradient-premium text-gray-900 font-bold shadow-md active:scale-95 transition-all text-center"
+                            className="w-full py-3 rounded-xl bg-gradient-premium text-white font-bold shadow-md active:scale-95 transition-all text-center"
                         >
                             Logout
                         </button>
@@ -86,8 +85,8 @@ export default function AdminMobileTopNav({ user, tabs, logout, pathname }) {
             </div>
 
             {isOpen && (
-                <div 
-                    className="fixed inset-0 bg-black/40 z-[55] backdrop-blur-sm transition-opacity" 
+                <div
+                    className="fixed inset-0 bg-black/40 z-[55] backdrop-blur-sm transition-opacity"
                     onClick={() => setIsOpen(false)}
                 />
             )}
