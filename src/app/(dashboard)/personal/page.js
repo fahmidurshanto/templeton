@@ -1,6 +1,7 @@
 "use client";
 import { useAppContext } from '@/context/AppContext';
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Swal from 'sweetalert2';
 import UserDocuments from '../../admin/components/UserDocuments';
 import { useRouter } from 'next/navigation';
@@ -85,7 +86,7 @@ export default function PersonalPage() {
                     {/* Left Column - Summary & Overview */}
                     <div className="lg:col-span-1 space-y-6">
                         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-xl flex flex-col items-center text-center">
-                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-premium flex items-center justify-center text-black font-black text-2xl sm:text-4xl shadow-2xl mb-6 uppercase border-4 border-white">
+                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-premium flex items-center justify-center text-white font-black text-2xl sm:text-4xl shadow-2xl mb-6 uppercase border-4 border-white">
                                 {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
                             </div>
                             <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight">
@@ -173,7 +174,7 @@ export default function PersonalPage() {
                                     {user.activities && user.activities.length > 0 ? (
                                         user.activities.map(activity => (
                                             <div key={activity.id} className="flex gap-4 group">
-                                                <div className="w-2 h-2 rounded-full bg-[#4A4A4A] mt-1.5 flex-shrink-0 group-hover:scale-125 transition-all shadow-[0_0_8px_rgba(212,175,55,0.5)]"></div>
+                                                <div className="w-2 h-2 rounded-full bg-[#4A4A4A] mt-1.5 shrink-0 group-hover:scale-125 transition-all shadow-[0_0_8px_rgba(212,175,55,0.5)]"></div>
                                                 <div>
                                                     <p className="text-sm text-gray-950 font-bold group-hover:text-[#4A4A4A] transition-colors uppercase tracking-tight">{activity.title}</p>
                                                     <p className="text-[10px] text-gray-400 font-bold uppercase mt-0.5 tracking-widest">
@@ -206,17 +207,17 @@ export default function PersonalPage() {
 
 
 
-            {/* Information Update Request Modal - Moved outside to prevent stacking context traps */}
-            {isRequestingUpdate && (
-                <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[100] flex items-center justify-center p-4 animate__animated animate__fadeIn">
+            {/* Information Update Request Modal - Moved to Portal to prevent stacking context traps */}
+            {isRequestingUpdate && typeof window !== 'undefined' && createPortal(
+                <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[9999] flex items-center justify-center p-4 animate__animated animate__fadeIn">
                     <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-2xl border-2 border-[#4A4A4A]/50 w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col animate__animated animate__zoomIn">
                         <div className="bg-gradient-premium px-6 sm:px-8 py-4 sm:py-6 flex items-center justify-between border-b border-[#1A1A1A]/30">
                             <div>
-                                <h2 className="text-black font-black text-sm sm:text-base md:text-lg tracking-widest uppercase">Request Update</h2>
-                                <p className="text-[8px] sm:text-[9px] md:text-[10px] text-black/60 font-black uppercase tracking-widest mt-0.5 md:mt-1">Strategic verification active</p>
+                                <h2 className="text-white font-black text-sm sm:text-base md:text-lg tracking-widest uppercase">Request Update</h2>
+                                <p className="text-[8px] sm:text-[9px] md:text-[10px] text-white/60 font-black uppercase tracking-widest mt-0.5 md:mt-1">Strategic verification active</p>
                             </div>
                             <button onClick={() => setIsRequestingUpdate(false)} className="bg-black/10 hover:bg-black/20 p-2 rounded-full transition-colors group">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5 text-black group-hover:rotate-90 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:rotate-90 transition-transform">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
@@ -313,7 +314,7 @@ export default function PersonalPage() {
                             <div className="pt-4 sm:pt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
                                 <button
                                     type="submit"
-                                    className="flex-1 py-4 sm:py-5 bg-gradient-premium text-black font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer text-[10px] sm:text-xs md:text-sm"
+                                    className="flex-1 py-4 sm:py-5 bg-gradient-premium text-white font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-gold-500/40 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer text-[10px] sm:text-xs md:text-sm"
                                 >
                                     Submit Profile Update Request
                                 </button>
@@ -328,7 +329,7 @@ export default function PersonalPage() {
                         </form>
                     </div>
                 </div>
-            )}
+            , document.body)}
         </div>
     );
 }

@@ -262,7 +262,7 @@ export default function DashboardHomePage() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
+                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 text-white">
                             {[
                                 { link: '/personal', label: 'Identity', icon: UserIcon },
                                 { link: '/reports', label: 'Financials', icon: FinancialIcon },
@@ -279,7 +279,7 @@ export default function DashboardHomePage() {
                                     <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                                     <div className="relative z-10">
-                                        <div className="w-16 h-16 bg-blue-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-gray-950 group-hover:text-white transition-all duration-500 group-hover:shadow-xl">
+                                        <div className="w-16 h-16 bg-gradient-premium rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-gray-950 group-hover:text-white transition-all duration-500 group-hover:shadow-xl">
                                             {React.cloneElement(action.icon, { className: "w-8 h-8 group-hover:text-white transition-colors duration-500" })}
                                         </div>
                                         <span className="text-[11px] font-black text-gray-900 group-hover:text-gray-950 uppercase tracking-[0.2em] transition-all duration-500">{action.label}</span>
