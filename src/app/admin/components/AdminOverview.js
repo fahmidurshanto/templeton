@@ -78,23 +78,42 @@ export default function AdminOverview() {
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                    <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-xl hover:border-[#4A4A4A]/30 transition-all group hover:scale-[1.02]">
-                        <div className="flex items-center justify-between mb-4">
-                            <span className="text-xl sm:text-2xl">👥</span>
-                            <span className="text-[9px] sm:text-[10px] font-black uppercase px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-100">Live</span>
+                    <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform group">
+                        <div className="bg-white rounded-[13px] p-5 sm:p-6 h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-between relative overflow-hidden">
+                            {/* Subtle inner highlight to enhance metallic feel */}
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+                            
+                            <div className="flex items-center justify-between mb-4 relative z-10">
+                                <span className="text-xl sm:text-2xl text-gray-700">👥</span>
+                                <span className="text-[9px] sm:text-[10px] font-black uppercase px-4 py-1.5 rounded-full bg-[#153A6A] text-white shadow-sm tracking-wider">Live</span>
+                            </div>
+                            <div className="relative z-10">
+                                <p className="text-2xl sm:text-3xl font-black text-gray-900 mb-1">{totalUsers}</p>
+                                <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest">Total Users</p>
+                            </div>
                         </div>
-                        <p className="text-2xl sm:text-3xl font-black text-gray-900 mb-1">{totalUsers}</p>
-                        <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest">Total Users</p>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-xl hover:border-[#4A4A4A]/30 transition-all group hover:scale-[1.02]">
-                        <div className="flex items-center justify-between mb-4">
-                            <span className="text-xl sm:text-2xl">🟢</span>
-                            <span className="text-[9px] sm:text-[10px] font-black uppercase px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-100">Live</span>
+                    <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform group">
+                        <div className="bg-white rounded-[13px] p-5 sm:p-6 h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-between relative overflow-hidden">
+                            {/* Subtle inner highlight to enhance metallic feel */}
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+
+                            <div className="flex items-center justify-between mb-4 relative z-10">
+                                <span className="text-xl sm:text-2xl text-gray-700">🌐</span>
+                                <span className="text-[9px] sm:text-[10px] font-black uppercase px-4 py-1.5 rounded-full bg-[#153A6A] text-white shadow-sm tracking-wider">Live</span>
+                            </div>
+                            <div className="relative z-10">
+                                <p className="text-2xl sm:text-3xl font-black text-gray-900 mb-1">{activeSessions}</p>
+                                <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest">Active Users</p>
+                            </div>
                         </div>
-                        <p className="text-2xl sm:text-3xl font-black text-gray-900 mb-1">{activeSessions}</p>
-                        <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest">Active Users</p>
                     </div>
+                </div>
+
+                {/* Metallic Divider */}
+                <div className="w-full h-[2px] bg-metallic-divider shadow-sm my-8 rounded-full relative">
+                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
                 </div>
 
                 {/* Recent Activity */}
@@ -110,7 +129,7 @@ export default function AdminOverview() {
                         ) : (
                             recentActivity.map((item, idx) => (
                                 <div key={idx} className="px-6 py-5 flex items-center gap-4 hover:bg-gray-50/80 transition-colors">
-                                    <div className="w-11 h-11 rounded-full bg-gradient-premium flex items-center justify-center text-white font-black text-sm shrink-0 shadow-md">
+                                    <div className="w-11 h-11 rounded-full bg-metallic-circle metallic-text-dark flex items-center justify-center font-black text-sm shrink-0">
                                         {item.user.split(' ').map(n => n[0]).join('').slice(0, 2)}
                                     </div>
                                     <div className="flex-1 min-w-0">

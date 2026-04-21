@@ -110,28 +110,30 @@ export default function UserDocuments({ targetUserId, userName }) {
     const categories = [...new Set(userSpecificDocs.map(d => d.category))];
 
     return (
-        <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden animate__animated animate__fadeIn">
-            <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
+        <div className="bg-metallic-silver p-[4px] rounded-3xl shadow-xl overflow-hidden animate__animated animate__fadeIn">
+            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] overflow-hidden relative">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
 
-            <div className="px-8 py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-[#4A4A4A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                    </svg>
-                    <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest text-[11px]">Vault & Documents</h3>
+                <div className="px-8 py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between relative z-10">
+                    <div className="flex items-center gap-3">
+                        <svg className="w-5 h-5 text-[#4A4A4A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest text-[11px]">Vault & Documents</h3>
+                    </div>
+                    <button
+                        onClick={handleUploadClick}
+                        className="px-4 py-2 bg-metallic-pill text-white border border-[#888888] rounded-lg text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all flex items-center gap-2"
+                    >
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        Upload
+                    </button>
                 </div>
-                <button
-                    onClick={handleUploadClick}
-                    className="px-4 py-2 bg-gradient-premium text-white rounded-lg text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all flex items-center gap-2"
-                >
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    Upload
-                </button>
-            </div>
 
-            <div className="p-8">
+                <div className="p-8 relative z-10">
                 {userSpecificDocs.length === 0 ? (
                     <div className="py-12 flex flex-col items-center justify-center text-center space-y-3 opacity-40">
                         <svg className="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
@@ -187,6 +189,7 @@ export default function UserDocuments({ targetUserId, userName }) {
                         ))}
                     </div>
                 )}
+            </div>
             </div>
         </div>
     );

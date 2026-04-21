@@ -32,11 +32,14 @@ export default function MembershipsPage() {
     }, [user]);
 
     const renderTierCard = (tier, idx) => (
-        <div key={idx} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 w-full mb-4 hover:shadow-md hover:border-gray-200 transition-all duration-300 group gap-3">
-            <h3 className="text-xs sm:text-sm font-black text-gray-900 tracking-tight uppercase leading-tight truncate">{tier.name}</h3>
-            <span className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest border shrink-0 ${tier.status === 'active' ? 'bg-green-50 text-green-600 border-green-100' : 'bg-gray-50 text-gray-400 border-gray-100'}`}>
-                {tier.status}
-            </span>
+        <div key={idx} className="bg-metallic-silver p-[4px] rounded-2xl hover:scale-[1.02] transition-transform duration-300 group shadow-md w-full">
+            <div className="bg-white rounded-xl shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] overflow-hidden flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 h-full relative">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                <h3 className="text-xs sm:text-sm font-black text-gray-900 tracking-tight uppercase leading-tight truncate relative z-10">{tier.name}</h3>
+                <span className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest shrink-0 relative z-10 shadow-sm ${tier.status === 'active' ? 'bg-[#153A6A] text-white border border-[#888888]' : 'bg-gray-100 text-gray-500 border border-gray-200'}`}>
+                    {tier.status}
+                </span>
+            </div>
         </div>
     );
 
@@ -83,10 +86,10 @@ export default function MembershipsPage() {
                         </h2>
                         <div className="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
                     </div>
-                    <div className="flex flex-col space-y-3 sm:space-y-4 bg-white">
+                    <div className="flex flex-col space-y-3 sm:space-y-4">
                         {primaryTiers.map((tier, idx) => renderTierCard(tier, idx))}
                         {primaryTiers.length === 0 && (
-                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center py-10 bg-gray-50/50 rounded-2xl border-2 border-dashed border-gray-100">No primary entities recorded</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center py-10 bg-gray-50 rounded-2xl border border-gray-200 shadow-sm">No primary entities recorded</p>
                         )}
                     </div>
                 </div>
@@ -100,10 +103,10 @@ export default function MembershipsPage() {
                         </h2>
                         <div className="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
                     </div>
-                    <div className="flex flex-col space-y-3 sm:space-y-4 bg-white">
+                    <div className="flex flex-col space-y-3 sm:space-y-4">
                         {thirdPartyTiers.map((tier, idx) => renderTierCard(tier, idx))}
                         {thirdPartyTiers.length === 0 && (
-                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center py-10 bg-gray-50/50 rounded-2xl border-2 border-dashed border-gray-100">No third-party alliances recorded</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center py-10 bg-gray-50 rounded-2xl border border-gray-200 shadow-sm">No third-party alliances recorded</p>
                         )}
                     </div>
                 </div>

@@ -17,30 +17,37 @@ export default function DesktopTopNav({ user, tabs, activeTab, setActiveTab, log
 
                 <div className="ml-[200px] flex-1 flex items-center justify-end pr-8 gap-6 h-full max-w-7xl mx-auto w-full">
                     {user && (
-                        <div className="flex items-center gap-4 group cursor-pointer">
+                        <>
+                            {(user.role === 'admin' || user.role === 'superadmin') && (
+                                <span className="bg-metallic-pill metallic-text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.15em] flex items-center gap-2">
+                                    <svg className="w-3.5 h-3.5 text-black/30 drop-shadow-[0_1px_0_rgba(255,255,255,0.6)]" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.649.166 1.319.166 1.998 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-1.998zM10 8a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                                    </svg>
+                                    ADMIN
+                                </span>
+                            )}
                             <div className="text-right">
-                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Portfolio Holder</p>
-                                <p className="font-bold text-sm text-gray-900 group-hover:text-black transition-colors">{user.name}</p>
+                                <p className="font-bold text-[13px] text-gray-800 tracking-wide group-hover:text-black transition-colors">{user.name}</p>
                             </div>
-                            <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-white shadow-lg bg-gray-950 group-hover:scale-105 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                            <div className="w-11 h-11 rounded-full flex items-center justify-center bg-metallic-circle metallic-text-white group-hover:scale-105 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 drop-shadow-sm">
                                     <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                                 </svg>
                             </div>
-                        </div>
+                        </>
                     )}
                     
-                    <div className="h-6 w-[1px] bg-gray-100"></div>
+                    <div className="h-8 w-[1px] bg-transparent"></div>
 
                     {user ? (
                         <button
                             onClick={logout}
-                            className="px-6 py-2 rounded-xl bg-gray-950 text-white text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md active:scale-95"
+                            className="px-6 py-2 rounded-full bg-metallic-pill metallic-text-white text-[11px] font-bold tracking-wide hover:brightness-105 transition-all active:scale-95"
                         >
                             Logout
                         </button>
                     ) : (
-                        <Link href="/login" className="px-6 py-2 rounded-xl bg-gray-950 text-white text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md">
+                        <Link href="/login" className="px-6 py-2 rounded-full bg-metallic-pill metallic-text-white text-[11px] font-bold tracking-wide hover:brightness-105 transition-all">
                             Identity Login
                         </Link>
                     )}

@@ -196,11 +196,11 @@ export default function AdminUserReportsPage({ params }) {
                         onClick={() => setViewMode('monthly')}
                         className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2
                             ${viewMode === 'monthly'
-                                ? 'bg-gradient-premium text-black shadow-md scale-[1.03]'
+                                ? 'bg-metallic-pill metallic-text-white border border-[#888888] shadow-md scale-[1.03]'
                                 : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
-                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <svg className={`w-3.5 h-3.5 ${viewMode === 'monthly' ? 'text-white' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                         </svg>
                         Monthly View
@@ -209,11 +209,11 @@ export default function AdminUserReportsPage({ params }) {
                         onClick={() => setViewMode('yearly')}
                         className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2
                             ${viewMode === 'yearly'
-                                ? 'bg-gradient-premium text-black shadow-md scale-[1.03]'
+                                ? 'bg-metallic-pill metallic-text-white border border-[#888888] shadow-md scale-[1.03]'
                                 : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
-                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <svg className={`w-3.5 h-3.5 ${viewMode === 'yearly' ? 'text-white' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                         </svg>
                         Yearly View
@@ -274,12 +274,9 @@ export default function AdminUserReportsPage({ params }) {
                                 onClick={() => setSelectedYear(year)}
                                 className={`px-6 py-4 rounded-xl font-bold text-sm tracking-widest transition-all duration-300 shadow-sm
                                     ${selectedYear === year 
-                                        ? 'bg-gradient-premium text-white scale-105' 
+                                        ? 'bg-metallic-pill metallic-text-white border border-[#888888] scale-105' 
                                         : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-100 hover:border-[#4A4A4A]/30'
                                     }`}
-                                    style={{
-                                        background: selectedYear === year ? 'linear-gradient(135deg, #E5E4E2 0%, #4A4A4A 50%, #1A1A1A 100%)' : ''
-                                    }}
                             >
                                 {year}
                             </button>
@@ -288,10 +285,12 @@ export default function AdminUserReportsPage({ params }) {
                 )}
 
                 {/* Right Column: Chart */}
-                <div className="flex-1 bg-white rounded-3xl p-6 md:p-10 shadow-xl border border-gray-100 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A4A4A]/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-                    
-                    <div className="relative z-10 flex flex-col">
+                <div className="flex-1 bg-metallic-silver p-[6px] rounded-3xl shadow-xl hover:scale-[1.01] transition-transform duration-500 group">
+                    <div className="bg-white rounded-[22px] p-6 md:p-10 h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A4A4A]/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+                        
+                        <div className="relative z-10 flex flex-col">
                         <div className="flex justify-between items-center mb-10">
                             <div>
                                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
@@ -371,10 +370,14 @@ export default function AdminUserReportsPage({ params }) {
                     </div>
                 </div>
             </div>
+            </div>{/* end flex-row container (L224) */}
 
             {/* Monthly Editor Grid - only visible in Monthly mode */}
             {viewMode === 'monthly' && (
-                <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
+                    <div className="bg-white rounded-[22px] p-8 shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] relative overflow-hidden">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                        <div className="relative z-10">
                     <div className="mb-6">
                         <h2 className="text-xl font-bold text-gray-900 uppercase tracking-widest">Edit Monthly Data — {selectedYear}</h2>
                         <p className="text-gray-500 text-sm mt-1">Set the specific investment values for each month. The chart will update automatically.</p>
@@ -449,12 +452,17 @@ export default function AdminUserReportsPage({ params }) {
                             ))}
                         </div>
                     )}
-                </div>
+                        </div>{/* end relative z-10 */}
+                    </div>{/* end bg-white */}
+                </div>{/* end bg-metallic-silver */}
             )}
 
             {/* Yearly Summary Table - visible in Yearly mode */}
             {viewMode === 'yearly' && (
-                <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
+                    <div className="bg-white rounded-[22px] p-8 shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] relative overflow-hidden">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                        <div className="relative z-10">
                     <div className="mb-6">
                         <h2 className="text-xl font-bold text-gray-900 uppercase tracking-widest">Annual Summary</h2>
                         <p className="text-gray-500 text-sm mt-1">
@@ -501,7 +509,7 @@ export default function AdminUserReportsPage({ params }) {
                                                             setSelectedYear(d.label);
                                                             setViewMode('monthly');
                                                         }}
-                                                        className="px-4 py-1.5 text-[9px] font-black uppercase tracking-widest rounded-lg border border-[#4A4A4A]/40 text-[#153A6A] hover:bg-gradient-premium hover:text-black transition-all"
+                                                        className="px-4 py-1.5 text-[9px] font-black uppercase tracking-widest rounded-lg border border-[#4A4A4A]/40 text-[#153A6A] hover:bg-[#153A6A] hover:text-white transition-all"
                                                     >
                                                         Edit Months
                                                     </button>
@@ -513,7 +521,9 @@ export default function AdminUserReportsPage({ params }) {
                             </table>
                         </div>
                     )}
-                </div>
+                        </div>{/* end relative z-10 */}
+                    </div>{/* end bg-white */}
+                </div>{/* end bg-metallic-silver */}
             )}
         </div>
     );

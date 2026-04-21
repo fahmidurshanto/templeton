@@ -421,36 +421,39 @@ export default function MembershipsPage() {
     };
 
     const renderTierCard = (tier, globalIdx) => (
-        <div key={globalIdx} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex items-center justify-between px-6 py-5 w-full mb-4 hover:shadow-md hover:border-gray-200 transition-all duration-300 group">
-            <h3 className="text-sm font-black text-gray-900 tracking-tight uppercase leading-tight">{tier.name}</h3>
+        <div key={globalIdx} className="bg-metallic-silver p-[4px] rounded-2xl hover:scale-[1.02] transition-transform duration-300 group shadow-md w-full mb-4">
+            <div className="bg-white rounded-xl shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] overflow-hidden flex items-center justify-between px-6 py-5 h-full relative">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                <h3 className="text-sm font-black text-gray-900 tracking-tight uppercase leading-tight relative z-10">{tier.name}</h3>
 
-            {/* Status badge + edit icon */}
-            <div className="flex items-center gap-2 shrink-0">
-                <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border ${tier.status === 'active' ? 'bg-green-50 text-green-600 border-green-100' : 'bg-gray-50 text-gray-400 border-gray-100'}`}>
-                    {tier.status}
-                </span>
+                {/* Status badge + edit icon */}
+                <div className="flex items-center gap-2 shrink-0 relative z-10">
+                    <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ${tier.status === 'active' ? 'bg-[#153A6A] text-white border border-[#888888]' : 'bg-gray-100 text-gray-500 border border-gray-200'}`}>
+                        {tier.status}
+                    </span>
 
-                {/* Edit pencil icon */}
-                <button
-                    onClick={() => setEditTarget({ tier, globalIdx })}
-                    title="Change status"
-                    className="w-7 h-7 rounded-full flex items-center justify-center text-gray-300 hover:text-[#4A4A4A] hover:bg-amber-50 border border-transparent hover:border-amber-100 transition-all duration-200"
-                >
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536M9 13l-4 1 1-4 9.293-9.293a1 1 0 011.414 0l2.586 2.586a1 1 0 010 1.414L9 13z" />
-                    </svg>
-                </button>
+                    {/* Edit pencil icon */}
+                    <button
+                        onClick={() => setEditTarget({ tier, globalIdx })}
+                        title="Change status"
+                        className="w-7 h-7 rounded-full flex items-center justify-center text-gray-300 hover:text-[#4A4A4A] hover:bg-amber-50 border border-transparent hover:border-amber-100 transition-all duration-200"
+                    >
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536M9 13l-4 1 1-4 9.293-9.293a1 1 0 011.414 0l2.586 2.586a1 1 0 010 1.414L9 13z" />
+                        </svg>
+                    </button>
 
-                {/* Delete trash icon */}
-                <button
-                    onClick={() => handleRemoveMembership(tier.name)}
-                    title="Remove membership"
-                    className="w-7 h-7 ml-1 rounded-full flex items-center justify-center text-gray-300 hover:text-red-500 hover:bg-red-50 border border-transparent hover:border-red-100 transition-all duration-200"
-                >
-                    <svg className="w-3.5 h-3.5 cursor-pointer text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                </button>
+                    {/* Delete trash icon */}
+                    <button
+                        onClick={() => handleRemoveMembership(tier.name)}
+                        title="Remove membership"
+                        className="w-7 h-7 ml-1 rounded-full flex items-center justify-center text-gray-300 hover:text-red-500 hover:bg-red-50 border border-transparent hover:border-red-100 transition-all duration-200"
+                    >
+                        <svg className="w-3.5 h-3.5 cursor-pointer text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -485,9 +488,9 @@ export default function MembershipsPage() {
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
                         <button
                             onClick={() => setIsAddModalOpen(true)}
-                            className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-premium text-black font-black text-xs uppercase tracking-widest shadow-lg hover:shadow-gold-500/30 hover:scale-[1.02] transition-all"
+                            className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-metallic-pill metallic-text-white border border-[#888888] text-white font-black text-xs uppercase tracking-widest shadow-lg hover:scale-[1.02] transition-all"
                         >
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                             Add Membership

@@ -81,9 +81,9 @@ export default function DocumentsPage() {
 
                     <button
                         onClick={handleUploadClick}
-                        className="px-8 py-3.5 bg-gradient-premium rounded-full text-white font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 mx-auto cursor-pointer"
+                        className="px-8 py-3.5 bg-metallic-pill metallic-text-white border border-[#888888] rounded-full text-white font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 mx-auto cursor-pointer"
                     >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                         Upload Document
@@ -93,14 +93,16 @@ export default function DocumentsPage() {
 
             {/* Content Section */}
             <div className="w-full max-w-4xl px-4 animate__animated animate__fadeInUp relative z-10">
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                    <div className="bg-gray-50 px-8 py-5 border-b border-gray-100 flex items-center gap-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-[#4A4A4A]">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h2.25m9 0h2.25A2.25 2.25 0 0121 6v3.776m-12 0h6m-9-3h9m-9-3h9" />
-                        </svg>
-                        <h3 className="font-black text-xs uppercase tracking-[0.2em] text-gray-500">All Files & Documents</h3>
-                    </div>
-                    <div className="divide-y divide-gray-50">
+                <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.01] transition-transform duration-500 group">
+                    <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+                        <div className="px-8 py-5 border-b border-gray-100 flex items-center gap-4 relative z-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-[#4A4A4A]">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h2.25m9 0h2.25A2.25 2.25 0 0121 6v3.776m-12 0h6m-9-3h9m-9-3h9" />
+                            </svg>
+                            <h3 className="font-black text-xs uppercase tracking-[0.2em] text-gray-500">All Files & Documents</h3>
+                        </div>
+                        <div className="divide-y divide-gray-50 relative z-10">
                         {documents.map((doc, dIdx) => {
                             const isViewed = !isAdmin && doc.hasUserSeen;
 
@@ -143,6 +145,7 @@ export default function DocumentsPage() {
                                 <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">No documents available in the vault</p>
                             </div>
                         )}
+                        </div>
                     </div>
                 </div>
             </div>

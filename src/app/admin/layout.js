@@ -26,20 +26,27 @@ export default function AdminLayout({ children }) {
     // Show spinner while checking authorization
     if (!isAuthorized) {
         return (
-            <div className="min-h-screen bg-[#f8f9fa] flex items-center justify-center">
+            <div className="min-h-screen bg-[#f4f6f8] flex items-center justify-center">
                 <div className="w-10 h-10 border-4 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-[#f8f9fa] flex flex-col overflow-x-hidden relative">
-            {/* Global Lion Watermark - visible on all screens with responsive sizing */}
-            <div className="absolute left-0 top-[300px] md:top-[400px] -translate-x-[30%] sm:-translate-x-[25%] md:-translate-x-[20%] -translate-y-1/2 w-[600px] h-[600px] sm:w-[900px] sm:h-[900px] md:w-[1100px] md:h-[1100px] xl:w-[1400px] xl:h-[1400px] opacity-[0.12] sm:opacity-[0.18] md:opacity-[0.22] xl:opacity-[0.25] pointer-events-none z-0">
+        <div className="min-h-screen bg-[#f4f6f8] flex flex-col overflow-x-hidden relative">
+            {/* Global Watermarks - Left and Right */}
+            <div className="absolute left-0 top-[300px] md:top-[40%] -translate-x-[15%] sm:-translate-x-[10%] md:-translate-x-[5%] -translate-y-1/2 w-[45vw] h-[45vw] md:w-[35vw] md:h-[35vw] max-w-[700px] max-h-[700px] min-w-[300px] min-h-[300px] opacity-[0.04] pointer-events-none z-0">
                 <img
-                    src="/templeton-logo.png"
+                    src="/templeton_watermark.png"
                     alt=""
-                    className="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] saturate-[2] brightness-[1.1] sepia-[0.5]"
+                    className="w-full h-full object-contain mix-blend-multiply"
+                />
+            </div>
+            <div className="absolute right-0 top-[400px] md:top-[60%] translate-x-[15%] sm:translate-x-[10%] md:translate-x-[5%] -translate-y-1/2 w-[45vw] h-[45vw] md:w-[35vw] md:h-[35vw] max-w-[700px] max-h-[700px] min-w-[300px] min-h-[300px] opacity-[0.04] pointer-events-none z-0">
+                <img
+                    src="/templeton_watermark.png"
+                    alt=""
+                    className="w-full h-full object-contain mix-blend-multiply"
                 />
             </div>
 

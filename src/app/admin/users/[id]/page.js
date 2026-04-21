@@ -267,9 +267,9 @@ export default function UserDetailPage({ params }) {
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         <button
                             onClick={() => router.push(`/admin/users/${userId}/reports`)}
-                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-gradient-premium text-white font-black text-[10px] uppercase tracking-widest hover:scale-105 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-metallic-pill metallic-text-white border border-[#888888] text-white font-black text-[10px] uppercase tracking-widest hover:scale-105 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                             </svg>
                             Reports
@@ -315,13 +315,15 @@ export default function UserDetailPage({ params }) {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Left Column - Basic Info */}
                     <div className="lg:col-span-1 space-y-6">
-                        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-xl flex flex-col items-center text-center">
-                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-premium flex items-center justify-center text-white font-black text-3xl sm:text-4xl shadow-2xl mb-4 sm:mb-6 uppercase">
-                                {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
-                            </div>
-                            <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight">
-                                {user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
-                            </h2>
+                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
+                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-6 sm:p-8 flex flex-col items-center text-center relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-metallic-circle metallic-text-dark border-4 border-[#888888]/20 flex items-center justify-center font-black text-3xl sm:text-4xl shadow-xl mb-4 sm:mb-6 uppercase relative z-10">
+                                    {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
+                                </div>
+                                <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight relative z-10">
+                                    {user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
+                                </h2>
                             <p className="text-gray-400 font-bold mt-1 text-xs sm:text-sm truncate w-full px-2">{user.email}</p>
 
                             <div className="w-full grid grid-cols-2 gap-2 sm:gap-3 mt-6 sm:mt-8">
@@ -336,9 +338,11 @@ export default function UserDetailPage({ params }) {
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-xl">
-                            <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-[0.2em] mb-4 sm:mb-6">Quick Overview</h3>
-                            <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
+                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-6 sm:p-8 relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                                <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-[0.2em] mb-4 sm:mb-6 relative z-10">Quick Overview</h3>
+                                <div className="space-y-3 sm:space-y-4 relative z-10">
                                 <div className="flex justify-between items-center text-xs sm:text-sm">
                                     <span className="text-gray-400 font-bold">Member Since</span>
                                     <span className="text-gray-950 font-black">
@@ -351,14 +355,15 @@ export default function UserDetailPage({ params }) {
                                         {user.updatedAt ? new Date(user.updatedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Recently'}
                                     </span>
                                 </div>
+                                </div>
                             </div>
                         </div>
                         <div className="space-y-3">
                             <button
                                 onClick={() => router.push(`/admin/users/${userId}/memberships`)}
-                                className="w-full px-6 py-4 rounded-2xl bg-gradient-premium text-white font-black text-xs uppercase tracking-widest hover:scale-[1.02] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3"
+                                className="w-full px-6 py-4 rounded-2xl bg-metallic-pill metallic-text-white border border-[#888888] font-black text-xs uppercase tracking-widest hover:scale-[1.02] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3"
                             >
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
                                 </svg>
                                 Memberships
@@ -377,12 +382,14 @@ export default function UserDetailPage({ params }) {
 
                     {/* Right Column - Detailed Info */}
                     <div className="lg:col-span-2 space-y-8">
-                        <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
-                            <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
-                                <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Personal Information</h3>
-                                <button className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest hover:underline">Edit Section</button>
-                            </div>
-                            <div className="p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
+                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                                <div className="px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-100 flex items-center justify-between relative z-10">
+                                    <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Personal Information</h3>
+                                    <button className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest hover:underline">Edit Section</button>
+                                </div>
+                                <div className="p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 relative z-10">
                                 <div>
                                     <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">First Name</label>
                                     <p className="text-sm sm:text-base text-gray-950 font-black">{user.firstName || user.name?.split(' ')[0]}</p>
@@ -470,14 +477,17 @@ export default function UserDetailPage({ params }) {
                                         </button>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
-                            <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100">
-                                <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Account Activity</h3>
-                            </div>
-                            <div className="p-6 sm:p-8">
+                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
+                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                                <div className="px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-100 relative z-10">
+                                    <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Account Activity</h3>
+                                </div>
+                                <div className="p-6 sm:p-8 relative z-10">
                                 <div className="space-y-5 sm:space-y-6">
                                     {user.activities && user.activities.length > 0 ? (
                                         user.activities.map(activity => (
@@ -503,6 +513,8 @@ export default function UserDetailPage({ params }) {
                                     )}
                                 </div>
                             </div>
+                                </div>
+                            </div>
                         </div>
 
                         <UserDocuments
@@ -516,14 +528,16 @@ export default function UserDetailPage({ params }) {
                         />
 
                         {/* Schedules Section */}
-                        <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
-                            <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
-                                <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Schedules</h3>
-                                <span className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest">
-                                    {schedules.length} total
-                                </span>
-                            </div>
-                            <div className="p-6 sm:p-8">
+                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
+                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                                <div className="px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-100 flex items-center justify-between relative z-10">
+                                    <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Schedules</h3>
+                                    <span className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest">
+                                        {schedules.length} total
+                                    </span>
+                                </div>
+                                <div className="p-6 sm:p-8 relative z-10">
                                 {schedulesLoading ? (
                                     <div className="flex items-center justify-center py-6">
                                         <div className="w-6 h-6 border-2 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
@@ -556,6 +570,7 @@ export default function UserDetailPage({ params }) {
                                         ))}
                                     </div>
                                 )}
+                            </div>
                             </div>
                         </div>
                     </div>

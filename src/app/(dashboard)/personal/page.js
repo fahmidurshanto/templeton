@@ -85,37 +85,45 @@ export default function PersonalPage() {
 
                     {/* Left Column - Summary & Overview */}
                     <div className="lg:col-span-1 space-y-6">
-                        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-xl flex flex-col items-center text-center">
-                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-premium flex items-center justify-center text-white font-black text-2xl sm:text-4xl shadow-2xl mb-6 uppercase border-4 border-white">
-                                {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
-                            </div>
-                            <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight">
-                                {user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
-                            </h2>
-                            <p className="text-gray-400 font-bold mt-1 text-xs sm:text-sm">{user.email}</p>
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                            <div className="bg-white rounded-[13px] p-6 sm:p-8 h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden w-full items-center text-center">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+                                <div className="relative z-10 w-full flex flex-col items-center">
+                                    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-metallic-circle flex items-center justify-center metallic-text-dark font-black text-2xl sm:text-4xl shadow-2xl mb-6 uppercase border-4 border-white group-hover:scale-105 transition-transform duration-500">
+                                        {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
+                                    </div>
+                                    <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight">
+                                        {user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
+                                    </h2>
+                                    <p className="text-gray-400 font-bold mt-1 text-xs sm:text-sm">{user.email}</p>
 
-                            <div className="w-full flex justify-center mt-6 sm:mt-8">
-                                <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100 min-w-[120px] sm:min-w-[140px]">
-                                    <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Status</p>
-                                    <span className="text-xs font-black text-green-600 uppercase border-b border-green-100">Active</span>
+                                    <div className="w-full flex justify-center mt-6 sm:mt-8">
+                                        <div className="bg-white rounded-full px-6 py-2 border border-gray-100 shadow-sm flex flex-col items-center">
+                                            <span className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Status</span>
+                                            <span className="text-[10px] sm:text-xs font-black text-white bg-[#153A6A] px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Active</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-xl">
-                            <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-[0.2em] mb-4 sm:mb-6 border-b border-gray-50 pb-2">Quick Overview</h3>
-                            <div className="space-y-4">
-                                <div className="flex justify-between items-center text-sm">
-                                    <span className="text-gray-400 font-bold">Member Since</span>
-                                    <span className="text-gray-950 font-black">
-                                        {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : (user.joined || 'Jan 2025')}
-                                    </span>
-                                </div>
-                                <div className="flex justify-between items-center text-sm">
-                                    <span className="text-gray-400 font-bold">Last Updates</span>
-                                    <span className="text-gray-950 font-black">
-                                        {user.updatedAt ? new Date(user.updatedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Recently'}
-                                    </span>
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                            <div className="bg-white rounded-[13px] p-6 sm:p-8 h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+                                <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-[0.2em] mb-4 sm:mb-6 border-b border-gray-100 pb-2 relative z-10">Quick Overview</h3>
+                                <div className="space-y-4 relative z-10">
+                                    <div className="flex justify-between items-center text-sm">
+                                        <span className="text-gray-400 font-bold">Member Since</span>
+                                        <span className="text-gray-950 font-black">
+                                            {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : (user.joined || 'Jan 2025')}
+                                        </span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-sm">
+                                        <span className="text-gray-400 font-bold">Last Updates</span>
+                                        <span className="text-gray-950 font-black">
+                                            {user.updatedAt ? new Date(user.updatedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Recently'}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -123,76 +131,90 @@ export default function PersonalPage() {
 
                     {/* Right Column - Detailed Info & Activity */}
                     <div className="lg:col-span-2 space-y-8">
-                        <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
-                            <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
-                                <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Personal Information</h3>
-                                <button
-                                    onClick={() => setIsRequestingUpdate(true)}
-                                    className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] border-b border-[#4A4A4A]/30 uppercase tracking-widest hover:text-[#153A6A] transition-colors"
-                                >
-                                    Request Update
-                                </button>
-                            </div>
-                            <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">First Name</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-50 pb-1">{user.firstName || user.name?.split(' ')[0]}</p>
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                            <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+                                <div className="px-6 sm:px-8 pt-5 sm:pt-6 pb-2 relative z-10 flex items-center justify-between">
+                                    <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Personal Information</h3>
+                                    <button
+                                        onClick={() => setIsRequestingUpdate(true)}
+                                        className="text-[9px] sm:text-[10px] font-black text-white bg-metallic-pill px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm hover:brightness-110 transition-all border border-[#888888]"
+                                    >
+                                        Request Update
+                                    </button>
                                 </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Last Name</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-50 pb-1">{user.lastName || user.name?.split(' ').slice(1).join(' ')}</p>
+                                <div className="w-full h-[2px] bg-metallic-divider shadow-sm relative z-10 mb-4">
+                                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
                                 </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Email Address</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-50 pb-1 truncate">{user.email}</p>
-                                </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Contact Number</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-50 pb-1">{user.phone || 'N/A'}</p>
-                                </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">NRIC / Passport</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-50 pb-1">{user.nric || 'N/A'}</p>
-                                </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Nationality</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-50 pb-1">{user.nationality || 'N/A'}</p>
-                                </div>
-                                <div className="md:col-span-2">
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Residential Address</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-50 pb-1">{user.address || 'N/A'}</p>
+                                <div className="px-6 sm:px-8 pb-6 sm:pb-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 relative z-10">
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">First Name</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.firstName || user.name?.split(' ')[0]}</p>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Last Name</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.lastName || user.name?.split(' ').slice(1).join(' ')}</p>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Email Address</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1 truncate">{user.email}</p>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Contact Number</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.phone || 'N/A'}</p>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">NRIC / Passport</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.nric || 'N/A'}</p>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Nationality</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.nationality || 'N/A'}</p>
+                                    </div>
+                                    <div className="md:col-span-2">
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Residential Address</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.address || 'N/A'}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
-                            <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100">
-                                <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Account Activity</h3>
-                            </div>
-                            <div className="p-6 sm:p-8">
-                                <div className="space-y-6 max-h-[400px] overflow-y-auto pr-4 custom-scrollbar">
-                                    {user.activities && user.activities.length > 0 ? (
-                                        user.activities.map(activity => (
-                                            <div key={activity.id} className="flex gap-4 group">
-                                                <div className="w-2 h-2 rounded-full bg-[#4A4A4A] mt-1.5 shrink-0 group-hover:scale-125 transition-all shadow-[0_0_8px_rgba(212,175,55,0.5)]"></div>
-                                                <div>
-                                                    <p className="text-sm text-gray-950 font-bold group-hover:text-[#4A4A4A] transition-colors uppercase tracking-tight">{activity.title}</p>
-                                                    <p className="text-[10px] text-gray-400 font-bold uppercase mt-0.5 tracking-widest">
-                                                        {activity.date} • {activity.time}
-                                                    </p>
-                                                    {activity.description && (
-                                                        <p className="text-[11px] text-gray-500 mt-1 italic leading-relaxed border-l-2 border-gray-50 pl-2">
-                                                            {activity.description}
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                            <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+                                <div className="px-6 sm:px-8 pt-5 sm:pt-6 pb-2 relative z-10">
+                                    <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Account Activity</h3>
+                                </div>
+                                <div className="w-full h-[2px] bg-metallic-divider shadow-sm relative z-10 mb-4">
+                                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
+                                </div>
+                                <div className="px-6 sm:px-8 pb-6 sm:pb-8 relative z-10">
+                                    <div className="space-y-6 max-h-[400px] overflow-y-auto pr-4 custom-scrollbar">
+                                        {user.activities && user.activities.length > 0 ? (
+                                            user.activities.map(activity => (
+                                                <div key={activity.id} className="flex gap-4 group/item">
+                                                    <div className="w-8 h-8 rounded-full bg-metallic-circle border border-[#888888] shadow-sm flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
+                                                        <div className="w-2 h-2 rounded-full bg-[#153A6A]"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm text-gray-950 font-bold group-hover/item:text-[#153A6A] transition-colors uppercase tracking-tight">{activity.title}</p>
+                                                        <p className="text-[10px] text-gray-400 font-bold uppercase mt-0.5 tracking-widest">
+                                                            {activity.date} • {activity.time}
                                                         </p>
-                                                    )}
+                                                        {activity.description && (
+                                                            <p className="text-[11px] text-gray-500 mt-1 italic leading-relaxed border-l-2 border-gray-100 pl-2">
+                                                                {activity.description}
+                                                            </p>
+                                                        )}
+                                                    </div>
                                                 </div>
+                                            ))
+                                        ) : (
+                                            <div className="py-8 text-center bg-gray-50 rounded-2xl border border-gray-200">
+                                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">No activity recorded for this period</p>
                                             </div>
-                                        ))
-                                    ) : (
-                                        <div className="py-8 text-center bg-gray-50 rounded-2xl border-2 border-dashed border-gray-100">
-                                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">No activity recorded for this period</p>
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>

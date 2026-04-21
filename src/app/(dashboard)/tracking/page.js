@@ -52,9 +52,12 @@ export default function TrackingPage() {
     if (!stageVisibility) {
         return (
             <div className="animate__animated animate__fadeIn">
-                <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl border border-gray-50 text-center">
-                    <h2 className="text-[10px] font-black text-gray-950 uppercase tracking-[0.3em] mb-4">Verification Status</h2>
-                    <p className="text-sm font-bold text-gray-500 uppercase tracking-tight">you donot have permission to access stages</p>
+                <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl">
+                    <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-8 md:p-10 flex flex-col relative overflow-hidden text-center">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                        <h2 className="text-[10px] font-black text-gray-950 uppercase tracking-[0.3em] mb-4 relative z-10">Verification Status</h2>
+                        <p className="text-sm font-bold text-gray-500 uppercase tracking-tight relative z-10">you donot have permission to access stages</p>
+                    </div>
                 </div>
             </div>
         );
@@ -63,9 +66,12 @@ export default function TrackingPage() {
     if (stages.length === 0) {
         return (
             <div className="animate__animated animate__fadeIn">
-                <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl border border-gray-50 text-center">
-                    <h2 className="text-[10px] font-black text-gray-950 uppercase tracking-[0.3em] mb-4">Journey Status</h2>
-                    <p className="text-sm font-bold text-gray-500 uppercase tracking-tight">No stage added</p>
+                <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl">
+                    <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-8 md:p-10 flex flex-col relative overflow-hidden text-center">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                        <h2 className="text-[10px] font-black text-gray-950 uppercase tracking-[0.3em] mb-4 relative z-10">Journey Status</h2>
+                        <p className="text-sm font-bold text-gray-500 uppercase tracking-tight relative z-10">No stage added</p>
+                    </div>
                 </div>
             </div>
         );
@@ -75,11 +81,13 @@ export default function TrackingPage() {
         <div className="w-full">
             {/* Journey Progress Section - EXACT MATCH FROM DASHBOARD */}
             <div className="animate__animated animate__fadeIn">
-                <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl border border-gray-50 relative overflow-y-hidden">
-                    <h2 className="text-[10px] font-black text-gray-950 uppercase tracking-[0.3em] mb-12 flex items-center gap-3">
-                        <span className="w-8 h-[2px] bg-[#4A4A4A]"></span>
-                        Your Partnership Journey
-                    </h2>
+                <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl relative">
+                    <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-8 md:p-10 flex flex-col relative overflow-y-hidden">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                        <h2 className="text-[10px] font-black text-gray-950 uppercase tracking-[0.3em] mb-12 flex items-center gap-3 relative z-10">
+                            <span className="w-8 h-[2px] bg-[#4A4A4A]"></span>
+                            Your Partnership Journey
+                        </h2>
 
                     <div className="pb-12 pt-5">
                         <div className="flex flex-col md:flex-row items-start relative px-4 gap-8 md:gap-4 lg:gap-8 overflow-hidden md:overflow-visible">
@@ -130,6 +138,7 @@ export default function TrackingPage() {
                                     </div>
                                 </div>
                             ))}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -117,7 +117,7 @@ export default function ReportsPage() {
                         onClick={() => setViewMode('monthly')}
                         className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2
                             ${viewMode === 'monthly'
-                                ? 'bg-gradient-premium text-white shadow-md scale-[1.03]'
+                                ? 'bg-metallic-pill metallic-text-white shadow-md scale-[1.03] border border-[#888888]'
                                 : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
@@ -130,7 +130,7 @@ export default function ReportsPage() {
                         onClick={() => setViewMode('yearly')}
                         className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2
                             ${viewMode === 'yearly'
-                                ? 'bg-gradient-premium text-white shadow-md scale-[1.03]'
+                                ? 'bg-metallic-pill metallic-text-white shadow-md scale-[1.03] border border-[#888888]'
                                 : 'text-gray-400 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
@@ -156,7 +156,7 @@ export default function ReportsPage() {
                                 onClick={() => setSelectedYear(year)}
                                 className={`px-5 sm:px-6 py-2.5 sm:py-3.5 lg:py-4 rounded-xl font-black text-[10px] sm:text-xs tracking-widest transition-all duration-300 shadow-sm whitespace-nowrap border
                                     ${selectedYear === year
-                                        ? 'bg-gradient-premium text-white border-[#4A4A4A] scale-105 z-10'
+                                        ? 'bg-metallic-pill metallic-text-white border-[#888888] scale-105 z-10'
                                         : 'bg-white text-gray-400 hover:bg-gray-50 border-gray-100'
                                     }`}
                             >
@@ -167,11 +167,14 @@ export default function ReportsPage() {
                 )}
 
                 {/* Right Column: Chart */}
-                <div className="flex-1 bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 sm:p-8 md:p-10 shadow-xl border border-gray-100 relative overflow-hidden mx-2 sm:mx-0">
-                    {/* Subtle Background Pattern */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A4A4A]/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+                <div className="flex-1 rounded-2xl p-[6px] bg-metallic-silver shadow-xl relative overflow-hidden mx-2 sm:mx-0">
+                    <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-5 sm:p-8 md:p-10 flex flex-col relative overflow-hidden">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-20"></div>
+                        
+                        {/* Subtle Background Pattern */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A4A4A]/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
 
-                    <div className="relative z-10 flex flex-col">
+                        <div className="relative z-10 flex flex-col">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
                             <div>
                                 <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-950 leading-tight uppercase tracking-tight">
@@ -193,11 +196,13 @@ export default function ReportsPage() {
                         {viewMode === 'yearly' && !loading && displayData.length > 0 && (
                             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
                                 {displayData.map(d => (
-                                    <div key={d.label} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 text-center hover:border-[#4A4A4A]/40 transition-all">
-                                        <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{d.label}</p>
-                                        <p className="text-sm font-black text-[#4A4A4A] tracking-tight">
-                                            ${d.amount.toLocaleString()}
-                                        </p>
+                                    <div key={d.label} className="bg-metallic-silver p-[3px] rounded-2xl hover:scale-105 transition-all shadow-md">
+                                        <div className="bg-white border border-gray-100 rounded-xl p-4 text-center h-full shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)]">
+                                            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{d.label}</p>
+                                            <p className="text-sm font-black text-gray-900 tracking-tight">
+                                                ${d.amount.toLocaleString()}
+                                            </p>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -250,9 +255,10 @@ export default function ReportsPage() {
                                 </ResponsiveContainer>
                             )}
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </div>{/* end relative z-10 */}
+                </div>{/* end bg-white */}
+            </div>{/* end bg-metallic-silver (right column) */}
+            </div>{/* end flex-col lg:flex-row container */}
         </div>
     );
 }

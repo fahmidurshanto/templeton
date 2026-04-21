@@ -46,6 +46,37 @@
 .bg-gradient-silver-horizontal {
   background: var(--gradient-silver-horizontal);
 }
+
+.bg-metallic-silver {
+  background: linear-gradient(135deg, #e6e6e6 0%, #ffffff 30%, #a8a8a8 50%, #ffffff 70%, #e6e6e6 100%);
+}
+
+.bg-metallic-divider {
+  background: linear-gradient(90deg, transparent 0%, #c0c0c0 20%, #ffffff 50%, #909090 80%, transparent 100%);
+}
+
+.bg-metallic-pill {
+  background: linear-gradient(180deg, #999999 0%, #d4d4d4 25%, #b5b5b5 50%, #808080 75%, #666666 100%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7), inset 0 -1px 3px rgba(0, 0, 0, 0.7), 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #707070;
+}
+
+.bg-metallic-circle {
+  background: conic-gradient(from 180deg at 50% 50%, #a3a3a3 0deg, #e0e0e0 45deg, #808080 90deg, #e0e0e0 135deg, #666666 180deg, #e0e0e0 225deg, #808080 270deg, #e0e0e0 315deg, #a3a3a3 360deg);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), inset 0 -1px 3px rgba(0, 0, 0, 0.7), 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #888888;
+}
+
+.metallic-text-white {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.metallic-text-dark {
+  color: #111827;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
 .text-gradient-silver {
   background: var(--gradient-silver);
   -webkit-background-clip: text;

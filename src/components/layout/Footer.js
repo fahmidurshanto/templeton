@@ -6,9 +6,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="w-full bg-white border-t border-gray-100 mt-20">
-            {/* Top Section — Silver Bar Accents */}
-            <div className="w-full h-1 bg-gradient-silver-horizontal opacity-30"></div>
+        <footer className="w-full bg-transparent mt-20">
 
             <div className="max-w-7xl mx-auto px-6 py-12">
                 <div className="flex flex-col md:flex-row justify-between items-start gap-16">

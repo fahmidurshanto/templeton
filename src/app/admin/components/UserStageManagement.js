@@ -179,33 +179,36 @@ export default function UserStageManagement({ userId, userName }) {
     };
 
     return (
-        <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
-            <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
-                <div>
-                    <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">User Journey Stages</h3>
-                    <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">Manage lifecycle for {userName}</p>
+        <div className="bg-metallic-silver p-[4px] rounded-3xl shadow-xl overflow-hidden">
+            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] overflow-hidden relative">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                
+                <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between relative z-10">
+                    <div>
+                        <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">User Journey Stages</h3>
+                        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">Manage lifecycle for {userName}</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={handleGenerateQR}
+                            disabled={generatingQR}
+                            className="px-4 py-2 bg-metallic-pill text-white border border-[#888888] rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
+                        >
+                            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                            </svg>
+                            {generatingQR ? 'Generating...' : 'Generate QR'}
+                        </button>
+                        <button
+                            onClick={() => handleOpenModal()}
+                            className="px-4 py-2 bg-black text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md"
+                        >
+                            + Assign Stage
+                        </button>
+                    </div>
                 </div>
-                <div className="flex items-center gap-3">
-                    <button
-                        onClick={handleGenerateQR}
-                        disabled={generatingQR}
-                        className="px-4 py-2 bg-gradient-premium text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
-                    >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
-                        </svg>
-                        {generatingQR ? 'Generating...' : 'Generate QR'}
-                    </button>
-                    <button
-                        onClick={() => handleOpenModal()}
-                        className="px-4 py-2 bg-black text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md"
-                    >
-                        + Assign Stage
-                    </button>
-                </div>
-            </div>
 
-            <div className="p-6 sm:p-8">
+                <div className="p-6 sm:p-8 relative z-10">
                 {loading ? (
                     <div className="flex justify-center py-6">
                         <div className="w-6 h-6 border-2 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
@@ -252,9 +255,9 @@ export default function UserStageManagement({ userId, userName }) {
                                                         <div>
                                                             <p className="text-xs sm:text-sm font-black text-gray-950 group-hover:text-[#153A6A] transition-colors">{s.name}</p>
                                                             <div className="flex flex-wrap items-center gap-2 mt-1">
-                                                                <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full border ${
-                                                                    s.status === 'active' ? 'bg-green-50 text-green-600 border-green-100' :
-                                                                    s.status === 'processed' ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                                                                <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full border shadow-sm ${
+                                                                    s.status === 'active' ? 'bg-[#153A6A] text-white border-[#888888]' :
+                                                                    s.status === 'processed' ? 'bg-black text-white border-[#4A4A4A]' :
                                                                     'bg-gray-100 text-gray-400 border-gray-200'
                                                                 }`}>
                                                                     {s.status}
@@ -372,8 +375,8 @@ export default function UserStageManagement({ userId, userName }) {
                 footer={
                     <div className="flex gap-3">
                         <button onClick={() => setIsQRModalOpen(false)} className="px-6 py-2 bg-gray-100 text-gray-500 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-gray-200">Close</button>
-                        <button onClick={handleDownloadQR} className="px-6 py-2 bg-gradient-premium text-black rounded-lg text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center gap-2">
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <button onClick={handleDownloadQR} className="px-6 py-2 bg-metallic-pill text-white border border-[#888888] rounded-lg text-xs font-black uppercase tracking-widest hover:scale-[1.02] shadow-lg flex items-center gap-2">
+                            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
                             Download QR
@@ -395,6 +398,7 @@ export default function UserStageManagement({ userId, userName }) {
                     <p className="text-[9px] text-gray-400 mt-4 uppercase tracking-wider">Share this QR code with the user to grant stage visibility access</p>
                 </div>
             </DashboardModal>
-        </div >
+            </div>
+        </div>
     );
 }

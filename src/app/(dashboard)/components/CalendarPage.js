@@ -200,21 +200,23 @@ export default function CalendarPage({ isAdmin = false }) {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
                     {/* Left: Calendar Component */}
-                    <div className="lg:col-span-8 bg-white rounded-2xl shadow-2xl border-2 border-[#4A4A4A]/30 overflow-hidden">
-                        <div className="bg-gradient-premium px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#1A1A1A]/30 gap-2">
-                            <h2 className="text-white font-black text-xs sm:text-sm tracking-widest uppercase">Monthly Schedule</h2>
-                            <div className="flex items-center gap-3 sm:gap-4">
-                                <div className="flex items-center gap-1.5">
-                                    <span className="w-2 rounded-full bg-[#10b981] aspect-square"></span>
-                                    <span className="text-[9px] sm:text-[10px] text-white font-bold uppercase">Meetings</span>
-                                </div>
-                                <div className="flex items-center gap-1.5">
-                                    <span className="w-2 rounded-full bg-[#3b82f6] aspect-square"></span>
-                                    <span className="text-[9px] sm:text-[10px] text-white font-bold uppercase">Tasks</span>
+                    <div className="lg:col-span-8 rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.01] transition-transform duration-500 group overflow-hidden">
+                        <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+                            <div className="bg-metallic-pill metallic-text-white px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#888888] shadow-sm gap-2 relative z-10">
+                                <h2 className="text-white font-black text-xs sm:text-sm tracking-widest uppercase">Monthly Schedule</h2>
+                                <div className="flex items-center gap-3 sm:gap-4">
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="w-2 rounded-full bg-[#10b981] aspect-square shadow-[0_0_5px_#10b981]"></span>
+                                        <span className="text-[9px] sm:text-[10px] text-white font-bold uppercase">Meetings</span>
+                                    </div>
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="w-2 rounded-full bg-[#3b82f6] aspect-square shadow-[0_0_5px_#3b82f6]"></span>
+                                        <span className="text-[9px] sm:text-[10px] text-white font-bold uppercase">Tasks</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="p-2 sm:p-6 calendar-container overflow-x-auto">
+                            <div className="p-2 sm:p-6 calendar-container overflow-x-auto relative z-10">
                             <FullCalendar
                                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                                 initialView={typeof window !== 'undefined' && window.innerWidth < 768 ? 'dayGridDay' : 'dayGridMonth'}
@@ -233,17 +235,20 @@ export default function CalendarPage({ isAdmin = false }) {
                                 eventClick={handleEventClick}
                                 editable={isAdmin}
                             />
+                            </div>
                         </div>
                     </div>
 
                     {/* Right Panel: Upcoming Sched & Summaries */}
                     <div className="lg:col-span-4 space-y-6 flex flex-col">
                         {/* Upcoming Schedules Section */}
-                        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 flex-1 flex flex-col overflow-hidden">
-                            <div className="px-6 py-4 bg-gray-50 border-b border-gray-100">
-                                <h3 className="text-gray-900 font-bold text-xs uppercase tracking-widest">Upcoming Schedules</h3>
-                            </div>
-                            <div className="p-4 space-y-3 overflow-y-auto max-h-[300px] md:max-h-[500px] custom-scrollbar">
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl flex-1 flex flex-col overflow-hidden hover:scale-[1.02] transition-transform duration-500">
+                            <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
+                                <div className="px-6 py-4 border-b border-gray-100 relative z-10">
+                                    <h3 className="text-gray-900 font-bold text-xs uppercase tracking-widest">Upcoming Schedules</h3>
+                                </div>
+                                <div className="p-4 space-y-3 overflow-y-auto max-h-[300px] md:max-h-[500px] custom-scrollbar relative z-10">
                                 {upcomingSchedules.length === 0 ? (
                                     <div className="text-center py-8 text-gray-400 font-bold uppercase tracking-widest text-xs">
                                         No upcoming schedules
@@ -260,9 +265,10 @@ export default function CalendarPage({ isAdmin = false }) {
                                         </div>
                                     ))
                                 )}
-                            </div>
-                            <div className="p-4 bg-gray-50 border-t border-gray-100">
-                                <button className="w-full text-center text-xs font-bold text-gray-500 hover:text-black transition-colors">View All Schedules</button>
+                                </div>
+                                <div className="p-4 bg-gray-50 border-t border-gray-100 relative z-10 rounded-b-[13px]">
+                                    <button className="w-full text-center text-xs font-bold text-gray-500 hover:text-[#153A6A] transition-colors">View All Schedules</button>
+                                </div>
                             </div>
                         </div>
                     </div>

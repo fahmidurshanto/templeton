@@ -238,9 +238,9 @@ export default function UserManagement() {
                         </div>
                         <button
                             onClick={() => handleOpenModal()}
-                            className="cursor-pointer w-full sm:w-auto px-6 py-3.5 sm:py-3 rounded-xl bg-gradient-premium text-white font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-lg hover:shadow-gold-500/30 hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                            className="cursor-pointer w-full sm:w-auto px-6 py-3.5 sm:py-3 rounded-xl bg-metallic-pill metallic-text-white border border-[#888888] font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
                         >
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                             Register Partner
@@ -262,19 +262,21 @@ export default function UserManagement() {
                     </div>
 
                     {/* Users Table */}
-                    <div className="bg-white rounded-2xl border border-gray-100 shadow-2xl overflow-hidden min-h-[400px] flex flex-col">
-                        <div className="overflow-x-auto flex-1">
-                            <table className="w-full text-sm">
-                                <thead>
-                                    <tr className="border-b border-gray-50 bg-gray-50/50">
-                                        <th className="text-left px-4 sm:px-6 py-4 sm:py-5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Partner</th>
+                    <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.01] transition-transform duration-500 group min-h-[400px] flex flex-col">
+                        <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden flex-1">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-20"></div>
+                            <div className="overflow-x-auto flex-1 relative z-10">
+                                <table className="w-full text-sm">
+                                    <thead>
+                                        <tr className="border-b border-gray-200 bg-transparent">
+                                            <th className="text-left px-4 sm:px-6 py-4 sm:py-5 text-[9px] sm:text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Partner</th>
 
-                                        <th className="text-left px-4 sm:px-6 py-4 sm:py-5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] hidden md:table-cell">Joined</th>
-                                        <th className="text-left px-4 sm:px-6 py-4 sm:py-5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] hidden lg:table-cell">Passcode</th>
-                                        <th className="text-right px-4 sm:px-6 py-4 sm:py-5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-50 relative">
+                                            <th className="text-left px-4 sm:px-6 py-4 sm:py-5 text-[9px] sm:text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] hidden md:table-cell">Joined</th>
+                                            <th className="text-left px-4 sm:px-6 py-4 sm:py-5 text-[9px] sm:text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] hidden lg:table-cell">Passcode</th>
+                                            <th className="text-right px-4 sm:px-6 py-4 sm:py-5 text-[9px] sm:text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100 relative">
                                     {isLoadingUsers ? (
                                         <tr>
                                             <td colSpan="4" className="px-6 py-20 text-center">
@@ -293,7 +295,7 @@ export default function UserManagement() {
                                             >
                                                 <td className="px-4 sm:px-6 py-4 sm:py-5">
                                                     <div className="flex items-center gap-3 sm:gap-4">
-                                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-silver text-gray-700 flex items-center justify-center font-black text-[10px] sm:text-xs flex-shrink-0 shadow-sm border border-gray-100 uppercase">
+                                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-metallic-circle metallic-text-dark flex items-center justify-center font-black text-[10px] sm:text-xs flex-shrink-0 shadow-sm border border-[#888888] uppercase">
                                                             {u.firstName ? (u.firstName[0] + (u.lastName ? u.lastName[0] : '')) : (u.name ? u.name[0] : 'U')}
                                                         </div>
                                                         <div className="min-w-0">
@@ -341,6 +343,7 @@ export default function UserManagement() {
                                     )}
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>

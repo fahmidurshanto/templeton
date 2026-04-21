@@ -221,33 +221,35 @@ export default function ServicesPage() {
 
             {/* Services List Section */}
             <div className="w-full max-w-4xl animate__animated animate__fadeInUp">
-                <div className="bg-white rounded-2xl shadow-2xl border-2 border-[#4A4A4A]/30 overflow-hidden">
-                    <div className="bg-gradient-premium px-8 py-5 flex items-center justify-between border-b border-[#1A1A1A]/30">
-                        <div className="flex flex-col gap-0.5">
-                            <h2 className="text-black font-black text-sm tracking-widest uppercase">Available Services</h2>
-                            <div className="flex items-center gap-2">
-                                <span className="bg-black/10 text-black px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tight">
-                                    Total: {services.length}
-                                </span>
+                <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.01] transition-transform duration-500 group">
+                    <div className="bg-white rounded-[13px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                        <div className="px-8 py-5 flex items-center justify-between border-b border-gray-100 relative z-10">
+                            <div className="flex flex-col gap-0.5">
+                                <h2 className="text-gray-900 font-black text-sm tracking-widest uppercase">Available Services</h2>
+                                <div className="flex items-center gap-2">
+                                    <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tight">
+                                        Total: {services.length}
+                                    </span>
+                                </div>
                             </div>
+                            <button
+                                onClick={() => setIsAdding(true)}
+                                className="bg-metallic-pill metallic-text-white border border-[#888888] px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-200 flex items-center gap-2 shadow-xl active:scale-95 hover:scale-[1.02]"
+                            >
+                                <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                                </svg>
+                                Add Service
+                            </button>
                         </div>
-                        <button
-                            onClick={() => setIsAdding(true)}
-                            className="bg-black text-[#4A4A4A] px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-black/80 transition-all duration-200 flex items-center gap-2 shadow-xl shadow-black/10 active:scale-95"
-                        >
-                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                            </svg>
-                            Add Service
-                        </button>
-                    </div>
 
-                    <div className="divide-y divide-gray-100">
+                        <div className="divide-y divide-gray-100 relative z-10">
                         {services.map((service, idx) => (
                             <div key={idx} className="group p-6 flex flex-col sm:flex-row sm:items-center justify-between hover:bg-gray-50 transition-all duration-300">
                                 <div className="flex items-center gap-4 mb-3 sm:mb-0">
-                                    <div className="w-10 h-10 rounded-full bg-gradient-premium flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                        <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <div className="w-10 h-10 rounded-full bg-metallic-circle metallic-text-dark flex items-center justify-center shadow-md border border-[#888888] group-hover:scale-110 transition-transform">
+                                        <svg className="w-5 h-5 text-[#153A6A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                         </svg>
                                     </div>
@@ -288,10 +290,11 @@ export default function ServicesPage() {
                                 </div>
                             </div>
                         ))}
-                    </div>
+                        </div>
 
-                    <div className="bg-gray-50 px-8 py-4 text-center">
-                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Hutchinson APAC Limited • Precision & Trust</p>
+                        <div className="bg-gray-50 px-8 py-4 text-center relative z-10 border-t border-gray-100 rounded-b-[13px]">
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Hutchinson APAC Limited • Precision & Trust</p>
+                        </div>
                     </div>
                 </div>
             </div>

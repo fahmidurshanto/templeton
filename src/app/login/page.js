@@ -3,14 +3,21 @@ import Link from 'next/link';
 
 export default function Page() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative p-4 bg-white overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center relative p-4 bg-[#f4f6f8] overflow-hidden">
 
-      {/* Global Watermark - hidden on mobile/tablet to avoid overflow and prioritize performance */}
-      <div className="xl:block absolute right-0 bottom-0 translate-x-[10%] translate-y-[25%] w-[1050px] h-[1050px] opacity-[0.35] pointer-events-none z-0 flex items-center justify-center">
+      {/* Global Watermarks - Left and Right */}
+      <div className="hidden xl:flex absolute left-0 top-[40%] -translate-x-[5%] -translate-y-1/2 w-[35vw] h-[35vw] max-w-[700px] max-h-[700px] min-w-[400px] min-h-[400px] opacity-[0.04] pointer-events-none z-0 items-center justify-center">
         <img 
-            src="/templeton-logo.png" 
+            src="/templeton_watermark.png" 
             alt="" 
-            className="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] saturate-[2] brightness-[1.1] sepia-[0.5]" 
+            className="w-full h-full object-contain mix-blend-multiply" 
+        />
+      </div>
+      <div className="hidden xl:flex absolute right-0 top-[60%] translate-x-[5%] -translate-y-1/2 w-[35vw] h-[35vw] max-w-[700px] max-h-[700px] min-w-[400px] min-h-[400px] opacity-[0.04] pointer-events-none z-0 items-center justify-center">
+        <img 
+            src="/templeton_watermark.png" 
+            alt="" 
+            className="w-full h-full object-contain mix-blend-multiply" 
         />
       </div>
 

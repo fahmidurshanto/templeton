@@ -43,7 +43,7 @@ export default function AdminDesktopTopNav({ user, tabs, logout, pathname }) {
             </div>
 
             {/* CONTAINER 2 — Navigation Links */}
-            <div className="w-full bg-gradient-to-r from-[#939391] via-[#b7b8b2] to-[#a4a39f]">
+            <div className="w-full bg-[#181a1f]">
                 <nav className="flex items-stretch h-11 ml-[180px]">
                     {tabs.map((tab) => {
                         const isActive = pathname === tab.href;
@@ -56,8 +56,8 @@ export default function AdminDesktopTopNav({ user, tabs, logout, pathname }) {
                             >
                                 <span className={`flex items-center h-full px-6 font-bold text-xs tracking-[0.08em] whitespace-nowrap border-b-[3px] transition-colors cursor-pointer select-none
                                     ${isActive
-                                        ? 'bg-[linear-gradient(180deg,#1e232d_100%,#2a303c_0%)] text-white border-[#4A4A4A]'
-                                        : 'text-[#4a4a4a] border-transparent hover:bg-black/5'
+                                        ? 'bg-[#181a1f] text-white border-[#568bbb]'
+                                        : 'text-gray-400 border-transparent hover:bg-white/5 hover:text-gray-200'
                                     }`}
                                 >
                                     {tab.name}
