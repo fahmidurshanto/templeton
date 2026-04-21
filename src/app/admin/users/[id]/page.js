@@ -246,28 +246,45 @@ export default function UserDetailPage({ params }) {
                 </div>
             )}
             <div className="w-full space-y-8 animate__animated animate__fadeIn">
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 px-2 sm:px-0">
-                    <div className="flex items-center gap-4">
+                {/* Header Section */}
+                <div className="w-full text-center py-6 md:py-10 mb-2 animate__animated animate__fadeIn relative flex flex-col items-center justify-center">
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block">
                         <button
                             onClick={() => router.push('/admin/users')}
-                            className="p-2.5 hover:bg-white rounded-2xl shadow-sm border border-gray-100 transition-all text-gray-400 hover:text-[#4A4A4A]"
+                            className="p-3 hover:bg-white rounded-2xl shadow-sm border border-gray-100 transition-all text-gray-400 hover:text-[#4A4A4A] bg-gray-50/50"
                         >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                         </button>
-                        <div>
-                            <h1 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tight leading-none mb-1">User Profile</h1>
-                            <p className="text-gray-500 text-[10px] sm:text-xs font-bold uppercase tracking-widest mt-1 opacity-70 truncate max-w-[200px] sm:max-w-none">
-                                {user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
-                            </p>
-                        </div>
                     </div>
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+
+                    <div className="relative z-10 w-full px-4">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-2 tracking-tight text-gradient-premium bg-clip-text uppercase">
+                            User Profile
+                        </h1>
+                        <p className="text-[10px] md:text-base text-gray-500 font-bold uppercase tracking-widest opacity-70">
+                            {user.firstName ? `${user.firstName} ${user.lastName}` : user.name} • Strategic Administration
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 px-2 sm:px-0 mb-8">
+                    <div className="md:hidden">
+                        <button
+                            onClick={() => router.push('/admin/users')}
+                            className="flex items-center gap-2 px-4 py-2 hover:bg-white rounded-xl shadow-sm border border-gray-100 transition-all text-gray-400 hover:text-[#4A4A4A] bg-gray-50/50 text-[10px] font-black uppercase tracking-widest"
+                        >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Back to Users
+                        </button>
+                    </div>
+                    <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3">
                         <button
                             onClick={() => router.push(`/admin/users/${userId}/reports`)}
-                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-metallic-pill metallic-text-white border border-[#888888] text-white font-black text-[10px] uppercase tracking-widest hover:scale-105 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            className="px-4 sm:px-5 py-3 rounded-xl bg-metallic-pill metallic-text-white border border-[#888888] text-white font-black text-[10px] uppercase tracking-widest hover:scale-105 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
                             <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
@@ -283,7 +300,7 @@ export default function UserDetailPage({ params }) {
                                     logger.error('Failed to notify server of QR generation:', err);
                                 }
                             }}
-                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-black text-white font-black text-[10px] uppercase tracking-widest hover:bg-gray-800 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            className="px-4 sm:px-5 py-3 rounded-xl bg-black text-white font-black text-[10px] uppercase tracking-widest hover:bg-gray-800 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM14.625 3.75c-.621 0-1.125.504-1.125 1.125v4.5c0 .621.504 1.125 1.125 1.125h4.5c.621 0 1.125-.504 1.125-1.125v-4.5c0-.621-.504-1.125-1.125-1.125h-4.5zM14.625 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5z" />
@@ -292,7 +309,7 @@ export default function UserDetailPage({ params }) {
                         </button>
                         <button
                             onClick={handleEdit}
-                            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-white border border-gray-200 text-black font-black text-[10px] uppercase tracking-widest hover:border-[#4A4A4A] hover:bg-gray-50 shadow-sm transition-all flex items-center justify-center gap-2"
+                            className="px-4 sm:px-5 py-3 rounded-xl bg-white border border-gray-200 text-black font-black text-[10px] uppercase tracking-widest hover:border-[#4A4A4A] hover:bg-gray-50 shadow-sm transition-all flex items-center justify-center gap-2"
                         >
                             <svg className="w-4 h-4 text-[#153A6A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -301,47 +318,54 @@ export default function UserDetailPage({ params }) {
                         </button>
                         <button
                             onClick={handleDelete}
-                            className="px-3.5 py-3 rounded-xl bg-red-50 text-red-600 border border-red-100 font-black text-[10px] uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all flex items-center justify-center"
+                            className="px-4 sm:px-3.5 py-3 rounded-xl bg-red-50 text-red-600 border border-red-100 font-black text-[10px] uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all flex items-center justify-center gap-2 sm:gap-0"
                             title="Delete User"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
+                            <span className="sm:hidden">Delete</span>
                         </button>
                     </div>
                 </div>
 
                 {/* Profile Content */}
+                {/* User Journey Stages - Full Width Row */}
+                <div className="w-full mb-8">
+                    <UserStageManagement userId={userId} userName={user.firstName ? `${user.firstName} ${user.lastName}` : user.name} />
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Left Column - Basic Info */}
                     <div className="lg:col-span-1 space-y-6">
-                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
-                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-6 sm:p-8 flex flex-col items-center text-center relative overflow-hidden">
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                            <div className="bg-white rounded-[13px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-6 sm:p-8 flex flex-col items-center text-center relative overflow-hidden">
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
-                                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-metallic-circle metallic-text-dark border-4 border-[#888888]/20 flex items-center justify-center font-black text-3xl sm:text-4xl shadow-xl mb-4 sm:mb-6 uppercase relative z-10">
+                                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-metallic-circle metallic-text-dark border-4 border-white flex items-center justify-center font-black text-3xl sm:text-4xl shadow-xl mb-4 sm:mb-6 uppercase relative z-10 group-hover:scale-105 transition-transform duration-500">
                                     {user.firstName ? (user.firstName[0] + (user.lastName ? user.lastName[0] : '')) : (user.name ? user.name[0] : 'U')}
                                 </div>
                                 <h2 className="text-xl sm:text-2xl font-black text-gray-950 uppercase tracking-tight relative z-10">
                                     {user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
                                 </h2>
-                            <p className="text-gray-400 font-bold mt-1 text-xs sm:text-sm truncate w-full px-2">{user.email}</p>
+                                <p className="text-gray-400 font-bold mt-1 text-xs sm:text-sm break-all w-full px-2 relative z-10">{user.email}</p>
 
-                            <div className="w-full grid grid-cols-2 gap-2 sm:gap-3 mt-6 sm:mt-8">
-                                <div className="bg-gray-50 rounded-2xl p-3 sm:p-4 border border-gray-100 text-center">
-                                    <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Status</p>
-                                    <span className={`text-[10px] sm:text-xs font-black uppercase ${user.status === 'active' ? 'text-green-600' : 'text-amber-500'}`}>{user.status}</span>
-                                </div>
-                                <div className="bg-gray-50 rounded-2xl p-3 sm:p-4 border border-gray-100 text-center">
-                                    <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Role</p>
-                                    <span className="text-[10px] sm:text-xs font-black text-[#153A6A] uppercase tracking-widest">{user.role || 'Partner'}</span>
+                                <div className="w-full grid grid-cols-2 gap-2 sm:gap-3 mt-6 sm:mt-8 relative z-10">
+                                    <div className="bg-white rounded-full p-2 border border-gray-100 shadow-sm flex flex-col items-center">
+                                        <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Status</p>
+                                        <span className={`text-[10px] sm:text-[11px] font-black uppercase px-3 py-1 rounded-full text-white ${user.status === 'active' ? 'bg-green-600' : 'bg-amber-500'}`}>{user.status}</span>
+                                    </div>
+                                    <div className="bg-white rounded-full p-2 border border-gray-100 shadow-sm flex flex-col items-center">
+                                        <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Role</p>
+                                        <span className="text-[10px] sm:text-[11px] font-black text-white bg-[#153A6A] px-3 py-1 rounded-full uppercase tracking-widest">{user.role || 'Partner'}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
-                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-6 sm:p-8 relative overflow-hidden">
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                            <div className="bg-white rounded-[13px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] p-6 sm:p-8 relative overflow-hidden">
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
-                                <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-[0.2em] mb-4 sm:mb-6 relative z-10">Quick Overview</h3>
+                                <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-[0.2em] mb-4 sm:mb-6 border-b border-gray-100 pb-2 relative z-10">Quick Overview</h3>
                                 <div className="space-y-3 sm:space-y-4 relative z-10">
                                 <div className="flex justify-between items-center text-xs sm:text-sm">
                                     <span className="text-gray-400 font-bold">Member Since</span>
@@ -382,52 +406,55 @@ export default function UserDetailPage({ params }) {
 
                     {/* Right Column - Detailed Info */}
                     <div className="lg:col-span-2 space-y-8">
-                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
-                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                            <div className="bg-white rounded-[13px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative h-full">
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
-                                <div className="px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-100 flex items-center justify-between relative z-10">
-                                    <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Personal Information</h3>
-                                    <button className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest hover:underline">Edit Section</button>
+                                <div className="px-6 sm:px-8 pt-5 sm:pt-6 pb-2 border-b border-gray-100 flex items-center justify-between relative z-10">
+                                    <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Personal Information</h3>
+                                    <button onClick={handleEdit} className="text-[9px] sm:text-[10px] font-black text-white bg-metallic-pill px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm hover:brightness-110 transition-all border border-[#888888]">Edit Details</button>
                                 </div>
-                                <div className="p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 relative z-10">
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">First Name</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-black">{user.firstName || user.name?.split(' ')[0]}</p>
+                                <div className="w-full h-[2px] bg-metallic-divider shadow-sm relative z-10 mb-4">
+                                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
                                 </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Last Name</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-black">{user.lastName || user.name?.split(' ').slice(1).join(' ')}</p>
-                                </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Email Address</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-black truncate">{user.email}</p>
-                                </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Contact Number</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-black">{user.Phone || 'N/A'}</p>
-                                </div>
-                                <div className="sm:col-span-2 flex flex-col sm:flex-row gap-6 sm:gap-12 border-t border-gray-50 pt-4">
-                                    <div className="flex-1">
-                                        <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Secondary Email</label>
-                                        <p className="text-sm sm:text-base text-gray-950 font-black truncate">{user.secondaryEmail || 'N/A'}</p>
+                                <div className="px-6 sm:px-8 pb-6 sm:pb-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 relative z-10">
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">First Name</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.firstName || user.name?.split(' ')[0]}</p>
                                     </div>
-                                    <div className="flex-1">
-                                        <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Secondary Phone</label>
-                                        <p className="text-sm sm:text-base text-gray-950 font-black">{user.secondaryPhone || 'N/A'}</p>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Last Name</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.lastName || user.name?.split(' ').slice(1).join(' ')}</p>
                                     </div>
-                                </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">NRIC / Passport</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-black">{user.nric || 'N/A'}</p>
-                                </div>
-                                <div>
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Nationality</label>
-                                    <p className="text-sm sm:text-base text-gray-950 font-black">{user.nationality || 'N/A'}</p>
-                                </div>
-                                <div className="sm:col-span-2">
-                                    <label className="block text-[9px] sm:text-[10px] font-black text-gradient-premium uppercase tracking-widest mb-1.5 sm:mb-2">Residential Address</label>
-                                    <p className="text-xs sm:text-sm text-gray-600 font-bold leading-relaxed">{user.address || 'N/A'}</p>
-                                </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Email Address</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1 truncate">{user.email}</p>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Contact Number</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.Phone || 'N/A'}</p>
+                                    </div>
+                                    <div className="sm:col-span-2 flex flex-col sm:flex-row gap-6 sm:gap-12 border-t border-gray-50 pt-4">
+                                        <div className="flex-1">
+                                            <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Secondary Email</label>
+                                            <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1 truncate">{user.secondaryEmail || 'N/A'}</p>
+                                        </div>
+                                        <div className="flex-1">
+                                            <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Secondary Phone</label>
+                                            <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.secondaryPhone || 'N/A'}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">NRIC / Passport</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.nric || 'N/A'}</p>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Nationality</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.nationality || 'N/A'}</p>
+                                    </div>
+                                    <div className="sm:col-span-2">
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Residential Address</label>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.address || 'N/A'}</p>
+                                    </div>
                                 <div className="sm:col-span-2 border-t border-gray-100 pt-6 mt-2">
                                     <label className="block text-[9px] sm:text-[10px] font-black text-amber-500 uppercase tracking-widest mb-1.5 sm:mb-2 flex items-center gap-2">
                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -481,14 +508,17 @@ export default function UserDetailPage({ params }) {
                             </div>
                         </div>
 
-                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
-                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
+                        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                            <div className="bg-white rounded-[13px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
-                                <div className="px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-100 relative z-10">
-                                    <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Account Activity</h3>
+                                <div className="px-6 sm:px-8 pt-5 sm:pt-6 pb-2 relative z-10">
+                                    <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Account Activity</h3>
                                 </div>
-                                <div className="p-6 sm:p-8 relative z-10">
-                                <div className="space-y-5 sm:space-y-6">
+                                <div className="w-full h-[2px] bg-metallic-divider shadow-sm relative z-10 mb-4">
+                                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
+                                </div>
+                                <div className="px-6 sm:px-8 pb-6 sm:pb-8 relative z-10">
+                                <div className="space-y-6 max-h-[400px] overflow-y-auto pr-4 custom-scrollbar">
                                     {user.activities && user.activities.length > 0 ? (
                                         user.activities.map(activity => (
                                             <div key={activity.id} className="flex gap-3 sm:gap-4 group">
@@ -517,68 +547,67 @@ export default function UserDetailPage({ params }) {
                             </div>
                         </div>
 
-                        <UserDocuments
-                            targetUserId={userId}
-                            userName={user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
-                        />
+                    </div>
+                </div>
 
-                        <UserStageManagement
-                            userId={userId}
-                            userName={user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
-                        />
+                {/* Bottom Full-Width 50/50 Modules */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <UserDocuments
+                        targetUserId={userId}
+                        userName={user.firstName ? `${user.firstName} ${user.lastName}` : user.name}
+                    />
 
-                        {/* Schedules Section */}
-                        <div className="bg-metallic-silver p-[6px] rounded-3xl shadow-xl">
-                            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
-                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
-                                <div className="px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-100 flex items-center justify-between relative z-10">
-                                    <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">Schedules</h3>
-                                    <span className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest">
-                                        {schedules.length} total
-                                    </span>
+                    {/* Schedules Section */}
+                    <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group">
+                        <div className="bg-white rounded-[13px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative h-full">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
+                            <div className="px-6 sm:px-8 pt-5 sm:pt-6 pb-2 border-b border-gray-100 flex items-center justify-between relative z-10">
+                                <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Schedules</h3>
+                                <span className="text-[9px] sm:text-[10px] font-black text-[#4A4A4A] uppercase tracking-widest">
+                                    {schedules.length} total
+                                </span>
+                            </div>
+                            <div className="w-full h-[2px] bg-metallic-divider shadow-sm relative z-10 mb-4">
+                                <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
+                            </div>
+                            <div className="p-6 sm:p-8 relative z-10">
+                            {schedulesLoading ? (
+                                <div className="flex items-center justify-center py-6">
+                                    <div className="w-6 h-6 border-2 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
                                 </div>
-                                <div className="p-6 sm:p-8 relative z-10">
-                                {schedulesLoading ? (
-                                    <div className="flex items-center justify-center py-6">
-                                        <div className="w-6 h-6 border-2 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
-                                    </div>
-                                ) : schedules.length === 0 ? (
-                                    <div className="py-6 text-center">
-                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">No schedules assigned yet</p>
-                                    </div>
-                                ) : (
-                                    <div className="space-y-3 sm:space-y-4">
-                                        {schedules.map((s) => (
-                                            <div key={s._id} className="flex gap-3 sm:gap-4 group p-3 sm:p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-[#4A4A4A]/30 transition-all">
-                                                <div className="flex-shrink-0">
-                                                    <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 text-[8px] sm:text-[10px] font-black uppercase tracking-widest rounded-full border ${s.type === 'Meeting'
-                                                        ? 'bg-green-50 text-green-600 border-green-100'
-                                                        : 'bg-gray-100 text-gray-500 border-gray-200'
-                                                        }`}>
-                                                        {s.type}
-                                                    </span>
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                    <p className="text-xs sm:text-sm font-black text-gray-900 group-hover:text-[#153A6A] transition-colors leading-tight">{s.title}</p>
-                                                    <p className="text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-0.5">
-                                                        {new Date(s.time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                                                        {' • '}
-                                                        {new Date(s.time).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
-                                                    </p>
-                                                </div>
+                            ) : schedules.length === 0 ? (
+                                <div className="py-6 text-center">
+                                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">No schedules assigned yet</p>
+                                </div>
+                            ) : (
+                                <div className="space-y-3 sm:space-y-4">
+                                    {schedules.map((s) => (
+                                        <div key={s._id} className="flex gap-3 sm:gap-4 group p-3 sm:p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-[#4A4A4A]/30 transition-all">
+                                            <div className="flex-shrink-0">
+                                                <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 text-[8px] sm:text-[10px] font-black uppercase tracking-widest rounded-full border ${s.type === 'Meeting'
+                                                    ? 'bg-green-50 text-green-600 border-green-100'
+                                                    : 'bg-gray-100 text-gray-500 border-gray-200'
+                                                    }`}>
+                                                    {s.type}
+                                                </span>
                                             </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs sm:text-sm font-black text-gray-900 group-hover:text-[#153A6A] transition-colors leading-tight">{s.title}</p>
+                                                <p className="text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-0.5">
+                                                    {new Date(s.time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+                                                    {' • '}
+                                                    {new Date(s.time).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
 
-            </div>
-
-            <DashboardModal
+                <DashboardModal
                 isOpen={isQRModalOpen}
                 onClose={() => setIsQRModalOpen(false)}
                 title="Verification QR Code"
@@ -620,7 +649,8 @@ export default function UserDetailPage({ params }) {
                         </button>
                     </div>
                 </div>
-            </DashboardModal>
+                </DashboardModal>
+            </div>
         </>
     );
 }

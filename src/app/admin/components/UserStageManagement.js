@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import api from '@/lib/api';
 import Swal from 'sweetalert2';
@@ -15,6 +15,17 @@ export default function UserStageManagement({ userId, userName }) {
     const [isQRModalOpen, setIsQRModalOpen] = useState(false);
     const [qrCodeData, setQrCodeData] = useState(null);
     const [generatingQR, setGeneratingQR] = useState(false);
+    const scrollContainerRef = useRef(null);
+
+    const scroll = (direction) => {
+        if (scrollContainerRef.current) {
+            const scrollAmount = 300;
+            scrollContainerRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     const [formData, setFormData] = useState({
         stage: '',
@@ -57,6 +68,17 @@ export default function UserStageManagement({ userId, userName }) {
             fetchGlobalStages();
         }
     }, [userId]);
+
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth >= 768);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const fetchUserStages = async () => {
         try {
@@ -179,33 +201,37 @@ export default function UserStageManagement({ userId, userName }) {
     };
 
     return (
-        <div className="bg-metallic-silver p-[4px] rounded-3xl shadow-xl overflow-hidden">
-            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] overflow-hidden relative">
+        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group overflow-hidden">
+            <div className="bg-white rounded-[13px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
                 
-                <div className="px-6 sm:px-8 py-5 sm:py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between relative z-10">
+                <div className="px-6 sm:px-8 pt-5 sm:pt-6 pb-2 flex items-center justify-between relative z-10">
                     <div>
-                        <h3 className="text-[10px] sm:text-xs font-black text-gray-950 uppercase tracking-widest">User Journey Stages</h3>
-                        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">Manage lifecycle for {userName}</p>
+                        <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">User Journey Stages</h3>
+                        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">Strategic Lifecycle Management</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <button
                             onClick={handleGenerateQR}
                             disabled={generatingQR}
-                            className="px-4 py-2 bg-metallic-pill text-white border border-[#888888] rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
+                            className="px-4 py-2 bg-metallic-pill text-white border border-[#888888] rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
                         >
                             <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                             </svg>
-                            {generatingQR ? 'Generating...' : 'Generate QR'}
+                            {generatingQR ? '...' : 'QR'}
                         </button>
                         <button
                             onClick={() => handleOpenModal()}
                             className="px-4 py-2 bg-black text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md"
                         >
-                            + Assign Stage
+                            + Assign
                         </button>
                     </div>
+                </div>
+
+                <div className="w-full h-[2px] bg-metallic-divider shadow-sm relative z-10 mb-4">
+                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
                 </div>
 
                 <div className="p-6 sm:p-8 relative z-10">
@@ -221,13 +247,39 @@ export default function UserStageManagement({ userId, userName }) {
                         </button>
                     </div>
                 ) : (
-                    <DragDropContext onDragEnd={handleDragEnd}>
-                        <Droppable droppableId="stages">
+                    <div className="relative group/carousel">
+                        {/* Carousel Controls */}
+                        <div className="absolute top-1/2 -left-4 -translate-y-1/2 z-20 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 hidden sm:block">
+                            <button
+                                onClick={() => scroll('left')}
+                                className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-gray-100 shadow-xl flex items-center justify-center text-gray-400 hover:text-black hover:scale-110 transition-all cursor-pointer"
+                            >
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="absolute top-1/2 -right-4 -translate-y-1/2 z-20 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 hidden sm:block">
+                            <button
+                                onClick={() => scroll('right')}
+                                className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-gray-100 shadow-xl flex items-center justify-center text-gray-400 hover:text-black hover:scale-110 transition-all cursor-pointer"
+                            >
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <DragDropContext onDragEnd={handleDragEnd}>
+                        <Droppable droppableId="stages" direction="horizontal">
                             {(provided) => (
                                 <div
                                     {...provided.droppableProps}
-                                    ref={provided.innerRef}
-                                    className="space-y-4"
+                                    ref={(el) => {
+                                        provided.innerRef(el);
+                                        scrollContainerRef.current = el;
+                                    }}
+                                    className="flex flex-row gap-6 overflow-x-auto pb-6 no-scrollbar w-full scroll-smooth"
                                 >
                                     {[...stages].sort((a, b) => a.sequence - b.sequence).map((s, index) => (
                                         <Draggable key={s._id} draggableId={s._id} index={index}>
@@ -235,27 +287,35 @@ export default function UserStageManagement({ userId, userName }) {
                                                 <div
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
-                                                    className={`group relative flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-2xl border transition-all gap-4 ${
+                                                    className={`group relative flex flex-col min-w-[240px] max-w-[240px] items-center text-center p-4 bg-gray-50 rounded-2xl border transition-all gap-4 ${
                                                         snapshot.isDragging ? 'shadow-2xl border-[#4A4A4A] bg-white ring-2 ring-[#4A4A4A]/10' : 'border-gray-100 hover:border-[#4A4A4A]/30'
                                                     }`}
                                                 >
-                                                    <div className="flex items-center gap-4">
-                                                        {/* Drag Handle */}
-                                                        <div
-                                                            {...provided.dragHandleProps}
-                                                            className="text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing p-1"
-                                                        >
-                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
-                                                            </svg>
+                                                    {/* Connector Line */}
+                                                    {index < stages.length - 1 && (
+                                                        <div className="absolute top-1/2 -right-6 w-6 h-[2px] bg-gray-200 z-0"></div>
+                                                    )}
+
+                                                    <div className="flex flex-col items-center gap-4 w-full">
+                                                        <div className="flex items-center gap-3 w-full justify-center">
+                                                            {/* Drag Handle */}
+                                                            <div
+                                                                {...provided.dragHandleProps}
+                                                                className="text-gray-300 hover:text-[#4A4A4A] cursor-grab active:cursor-grabbing p-1"
+                                                            >
+                                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
+                                                                </svg>
+                                                            </div>
+                                                            <div className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center font-black text-[10px] text-gray-400 shrink-0">
+                                                                {index + 1}
+                                                            </div>
                                                         </div>
-                                                        <div className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center font-black text-[10px] text-gray-400">
-                                                            {index + 1}
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-xs sm:text-sm font-black text-gray-950 group-hover:text-[#153A6A] transition-colors">{s.name}</p>
-                                                            <div className="flex flex-wrap items-center gap-2 mt-1">
-                                                                <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full border shadow-sm ${
+
+                                                        <div className="w-full space-y-3">
+                                                            <p className="text-sm font-black text-gray-950 group-hover:text-[#153A6A] transition-colors truncate px-2">{s.name}</p>
+                                                            <div className="flex flex-col items-center gap-2">
+                                                                <span className={`text-[8px] font-black uppercase px-3 py-1 rounded-full border shadow-sm ${
                                                                     s.status === 'active' ? 'bg-[#153A6A] text-white border-[#888888]' :
                                                                     s.status === 'processed' ? 'bg-black text-white border-[#4A4A4A]' :
                                                                     'bg-gray-100 text-gray-400 border-gray-200'
@@ -263,13 +323,13 @@ export default function UserStageManagement({ userId, userName }) {
                                                                     {s.status}
                                                                 </span>
                                                                 <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider">
-                                                                    {new Date(s.time).toLocaleDateString()} {new Date(s.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                                    {new Date(s.time).toLocaleDateString()}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex items-center gap-2 self-end sm:self-center">
+                                                    <div className={`flex items-center gap-2 ${isDesktop ? 'w-full justify-center pt-2 border-t border-gray-100' : 'self-end sm:self-center'}`}>
                                                         <button onClick={() => handleOpenModal(s)} className="p-2 text-gray-400 hover:text-[#4A4A4A] hover:bg-white rounded-lg border border-transparent hover:border-gray-200 transition-all">
                                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                                                         </button>
@@ -285,7 +345,8 @@ export default function UserStageManagement({ userId, userName }) {
                                 </div>
                             )}
                         </Droppable>
-                    </DragDropContext>
+                        </DragDropContext>
+                    </div>
                 )}
             </div>
 

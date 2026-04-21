@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
-import { 
-    BarChart, 
-    Bar, 
-    XAxis, 
-    YAxis, 
-    CartesianGrid, 
-    Tooltip, 
+import {
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
     ResponsiveContainer,
     Cell
 } from 'recharts';
@@ -57,7 +57,7 @@ export default function AdminUserReportsPage({ params }) {
             if (res.data.success) {
                 const data = res.data.data;
                 setReportsData(data);
-                
+
                 const availableYears = Object.keys(data);
                 if (availableYears.length > 0) {
                     setYears(prev => {
@@ -124,10 +124,10 @@ export default function AdminUserReportsPage({ params }) {
                     }
                     return { ...prev, [selectedYear]: newData };
                 });
-                
+
                 setEditingMonth(null);
                 setEditAmount("");
-                
+
                 Swal.fire({
                     title: 'Saved!',
                     text: `${monthStr} ${selectedYear} amount has been updated to $${Number(editAmount).toLocaleString()}.`,
@@ -175,7 +175,7 @@ export default function AdminUserReportsPage({ params }) {
         <div className="w-full max-w-7xl mx-auto space-y-8 animate__animated animate__fadeIn">
             {/* Header */}
             <div className="flex items-center gap-4 border-b border-gray-100 pb-6">
-                <button 
+                <button
                     onClick={() => router.back()}
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500"
                 >
@@ -227,7 +227,7 @@ export default function AdminUserReportsPage({ params }) {
                     <div className="w-full md:w-48 flex flex-col gap-3">
                         <h3 className="text-lg font-bold text-gray-800 mb-2 border-b-2 border-[#4A4A4A]/20 pb-2 flex justify-between items-center">
                             Select Year
-                            <button 
+                            <button
                                 className="text-[#4A4A4A] hover:text-[#1A1A1A] p-1 rounded-full hover:bg-[#4A4A4A]/10 transition-colors"
                                 onClick={async () => {
                                     const { value: newYear } = await Swal.fire({
@@ -273,8 +273,8 @@ export default function AdminUserReportsPage({ params }) {
                                 key={year}
                                 onClick={() => setSelectedYear(year)}
                                 className={`px-6 py-4 rounded-xl font-bold text-sm tracking-widest transition-all duration-300 shadow-sm
-                                    ${selectedYear === year 
-                                        ? 'bg-metallic-pill metallic-text-white border border-[#888888] scale-105' 
+                                    ${selectedYear === year
+                                        ? 'bg-metallic-pill metallic-text-white border border-[#888888] scale-105'
                                         : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-100 hover:border-[#4A4A4A]/30'
                                     }`}
                             >
@@ -289,87 +289,87 @@ export default function AdminUserReportsPage({ params }) {
                     <div className="bg-white rounded-[22px] p-6 md:p-10 h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col relative overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A4A4A]/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-                        
+
                         <div className="relative z-10 flex flex-col">
-                        <div className="flex justify-between items-center mb-10">
-                            <div>
-                                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                                    {viewMode === 'monthly'
-                                        ? <>Investment Analysis <span className="text-[#4A4A4A]">{selectedYear}</span></>
-                                        : <>Yearly <span className="text-[#4A4A4A]">Overview</span></>
-                                    }
-                                </h2>
-                                <p className="text-gray-500 mt-1">
-                                    {viewMode === 'monthly'
-                                        ? 'Review the charted performance below.'
-                                        : 'Annual total disbursements across all tracked years.'
-                                    }
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Yearly summary stats cards - yearly mode only */}
-                        {viewMode === 'yearly' && !loading && displayData.length > 0 && (
-                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
-                                {displayData.map(d => (
-                                    <div key={d.label} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 text-center hover:border-[#4A4A4A]/40 transition-all">
-                                        <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{d.label}</p>
-                                        <p className="text-sm font-black text-[#4A4A4A] tracking-tight">
-                                            ${d.amount.toLocaleString()}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-
-                        <div className="w-full h-[350px] md:h-[450px]">
-                            {loading ? (
-                                <div className="w-full h-full flex items-center justify-center">
-                                    <div className="w-8 h-8 border-4 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
+                            <div className="flex justify-between items-center mb-10">
+                                <div>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                                        {viewMode === 'monthly'
+                                            ? <>Investment Analysis <span className="text-[#4A4A4A]">{selectedYear}</span></>
+                                            : <>Yearly <span className="text-[#4A4A4A]">Overview</span></>
+                                        }
+                                    </h2>
+                                    <p className="text-gray-500 mt-1">
+                                        {viewMode === 'monthly'
+                                            ? 'Review the charted performance below.'
+                                            : 'Annual total disbursements across all tracked years.'
+                                        }
+                                    </p>
                                 </div>
-                            ) : isMounted && (
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart
-                                        data={displayData}
-                                        margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                                    >
-                                        <defs>
-                                            <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="0%" stopColor="#E5E4E2" />
-                                                <stop offset="100%" stopColor="#1A1A1A" />
-                                            </linearGradient>
-                                        </defs>
-                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                                        <XAxis 
-                                            dataKey="label" 
-                                            axisLine={false} 
-                                            tickLine={false} 
-                                            tick={{ fill: '#9ca3af', fontSize: 12, fontWeight: 600 }}
-                                            dy={10}
-                                        />
-                                        <YAxis 
-                                            axisLine={false} 
-                                            tickLine={false} 
-                                            tick={{ fill: '#9ca3af', fontSize: 12, fontWeight: 600 }}
-                                            tickFormatter={(value) => `$${value/1000}k`}
-                                        />
-                                        <Tooltip content={<CustomTooltip />} cursor={{ fill: '#f9fafb' }} />
-                                        <Bar 
-                                            dataKey="amount" 
-                                            radius={[10, 10, 0, 0]}
-                                            animationDuration={1500}
-                                        >
-                                            {displayData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill="url(#barGradient)" />
-                                            ))}
-                                        </Bar>
-                                    </BarChart>
-                                </ResponsiveContainer>
+                            </div>
+
+                            {/* Yearly summary stats cards - yearly mode only */}
+                            {viewMode === 'yearly' && !loading && displayData.length > 0 && (
+                                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
+                                    {displayData.map(d => (
+                                        <div key={d.label} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 text-center hover:border-[#4A4A4A]/40 transition-all">
+                                            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{d.label}</p>
+                                            <p className="text-sm font-black text-[#4A4A4A] tracking-tight">
+                                                ${d.amount.toLocaleString()}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
                             )}
+
+                            <div className="w-full h-[350px] md:h-[450px]">
+                                {loading ? (
+                                    <div className="w-full h-full flex items-center justify-center">
+                                        <div className="w-8 h-8 border-4 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
+                                    </div>
+                                ) : isMounted && (
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart
+                                            data={displayData}
+                                            margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+                                        >
+                                            <defs>
+                                                <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stopColor="#E5E4E2" />
+                                                    <stop offset="100%" stopColor="#1A1A1A" />
+                                                </linearGradient>
+                                            </defs>
+                                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                                            <XAxis
+                                                dataKey="label"
+                                                axisLine={false}
+                                                tickLine={false}
+                                                tick={{ fill: '#9ca3af', fontSize: 12, fontWeight: 600 }}
+                                                dy={10}
+                                            />
+                                            <YAxis
+                                                axisLine={false}
+                                                tickLine={false}
+                                                tick={{ fill: '#9ca3af', fontSize: 12, fontWeight: 600 }}
+                                                tickFormatter={(value) => `$${value / 1000}k`}
+                                            />
+                                            <Tooltip content={<CustomTooltip />} cursor={{ fill: '#f9fafb' }} />
+                                            <Bar
+                                                dataKey="amount"
+                                                radius={[10, 10, 0, 0]}
+                                                animationDuration={1500}
+                                            >
+                                                {displayData.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill="url(#barGradient)" />
+                                                ))}
+                                            </Bar>
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>{/* end flex-row container (L224) */}
 
             {/* Monthly Editor Grid - only visible in Monthly mode */}
@@ -378,83 +378,83 @@ export default function AdminUserReportsPage({ params }) {
                     <div className="bg-white rounded-[22px] p-8 shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] relative overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
                         <div className="relative z-10">
-                    <div className="mb-6">
-                        <h2 className="text-xl font-bold text-gray-900 uppercase tracking-widest">Edit Monthly Data — {selectedYear}</h2>
-                        <p className="text-gray-500 text-sm mt-1">Set the specific investment values for each month. The chart will update automatically.</p>
-                    </div>
-                    
-                    {loading ? (
-                        <div className="w-full py-12 flex items-center justify-center">
-                            <div className="w-6 h-6 border-4 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                            {displayData.map((data) => (
-                                <div key={data.label} className="p-5 border border-gray-100 rounded-2xl bg-gray-50 hover:bg-gray-100/50 hover:border-[#4A4A4A]/30 transition-all flex flex-col justify-between group">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <span className="text-lg font-black text-gray-900 uppercase tracking-widest">{data.label}</span>
-                                        {editingMonth !== data.label && (
-                                            <button 
-                                                onClick={() => handleEditClick(data.label, data.amount)}
-                                                className="text-gray-400 hover:text-[#4A4A4A] transition-colors p-1"
-                                                title="Edit Amount"
-                                            >
-                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                                </svg>
-                                            </button>
-                                        )}
-                                    </div>
-                                    
-                                    {editingMonth === data.label ? (
-                                        <div className="flex flex-col gap-2">
-                                            <div className="relative">
-                                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-bold">$</span>
-                                                <input 
-                                                    type="number"
-                                                    value={editAmount}
-                                                    onChange={(e) => setEditAmount(e.target.value)}
-                                                    className="w-full pl-7 pr-3 py-2 rounded-xl border-2 border-[#4A4A4A] focus:outline-none focus:ring-0 text-sm font-bold text-gray-900 shadow-inner"
-                                                    placeholder="Amount"
-                                                    autoFocus
-                                                    onKeyDown={(e) => {
-                                                        if (e.key === 'Enter') handleSaveAmount(data.label);
-                                                        if (e.key === 'Escape') setEditingMonth(null);
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="flex gap-2 mt-1">
-                                                <button 
-                                                    onClick={() => handleSaveAmount(data.label)}
-                                                    disabled={isSaving}
-                                                    className="flex-1 bg-[#4A4A4A] text-white py-2 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
-                                                >
-                                                    {isSaving ? 'Saving...' : 'Save'}
-                                                </button>
-                                                <button 
-                                                    onClick={() => setEditingMonth(null)}
-                                                    disabled={isSaving}
-                                                    className="flex-1 bg-white border border-gray-200 text-gray-600 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-gray-50 transition-colors disabled:opacity-50"
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div className="flex items-end gap-1">
-                                            <span className="text-xs text-gray-500 font-bold mb-1">$</span>
-                                            <span className={`text-2xl font-black tracking-tight ${data.amount > 0 ? 'text-[#4A4A4A]' : 'text-gray-300'}`}>
-                                                {data.amount.toLocaleString()}
-                                            </span>
-                                        </div>
-                                    )}
+                            <div className="mb-6">
+                                <h2 className="text-xl font-bold text-gray-900 uppercase tracking-widest">Edit Monthly Data — {selectedYear}</h2>
+                                <p className="text-gray-500 text-sm mt-1">Set the specific investment values for each month. The chart will update automatically.</p>
+                            </div>
+
+                            {loading ? (
+                                <div className="w-full py-12 flex items-center justify-center">
+                                    <div className="w-6 h-6 border-4 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
                                 </div>
-                            ))}
+                            ) : (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                    {displayData.map((data) => (
+                                        <div key={data.label} className="p-5 border border-gray-100 rounded-2xl bg-gray-50 hover:bg-gray-100/50 hover:border-[#4A4A4A]/30 transition-all flex flex-col justify-between group">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <span className="text-lg font-black text-gray-900 uppercase tracking-widest">{data.label}</span>
+                                                {editingMonth !== data.label && (
+                                                    <button
+                                                        onClick={() => handleEditClick(data.label, data.amount)}
+                                                        className="text-gray-400 hover:text-[#4A4A4A] transition-colors p-1"
+                                                        title="Edit Amount"
+                                                    >
+                                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                        </svg>
+                                                    </button>
+                                                )}
+                                            </div>
+
+                                            {editingMonth === data.label ? (
+                                                <div className="flex flex-col gap-2">
+                                                    <div className="relative">
+                                                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-bold">$</span>
+                                                        <input
+                                                            type="number"
+                                                            value={editAmount}
+                                                            onChange={(e) => setEditAmount(e.target.value)}
+                                                            className="w-full pl-7 pr-3 py-2 rounded-xl border-2 border-[#4A4A4A] focus:outline-none focus:ring-0 text-sm font-bold text-gray-900 shadow-inner"
+                                                            placeholder="Amount"
+                                                            autoFocus
+                                                            onKeyDown={(e) => {
+                                                                if (e.key === 'Enter') handleSaveAmount(data.label);
+                                                                if (e.key === 'Escape') setEditingMonth(null);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className="flex gap-2 mt-1">
+                                                        <button
+                                                            onClick={() => handleSaveAmount(data.label)}
+                                                            disabled={isSaving}
+                                                            className="flex-1 bg-[#4A4A4A] text-white py-2 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+                                                        >
+                                                            {isSaving ? 'Saving...' : 'Save'}
+                                                        </button>
+                                                        <button
+                                                            onClick={() => setEditingMonth(null)}
+                                                            disabled={isSaving}
+                                                            className="flex-1 bg-white border border-gray-200 text-gray-600 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-gray-50 transition-colors disabled:opacity-50"
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-end gap-1">
+                                                    <span className="text-xs text-gray-500 font-bold mb-1">$</span>
+                                                    <span className={`text-2xl font-black tracking-tight ${data.amount > 0 ? 'text-[#4A4A4A]' : 'text-gray-300'}`}>
+                                                        {data.amount.toLocaleString()}
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
-                    )}
-                        </div>{/* end relative z-10 */}
-                    </div>{/* end bg-white */}
-                </div>{/* end bg-metallic-silver */}
+                    </div>
+                </div>
             )}
 
             {/* Yearly Summary Table - visible in Yearly mode */}
@@ -463,67 +463,67 @@ export default function AdminUserReportsPage({ params }) {
                     <div className="bg-white rounded-[22px] p-8 shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] relative overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
                         <div className="relative z-10">
-                    <div className="mb-6">
-                        <h2 className="text-xl font-bold text-gray-900 uppercase tracking-widest">Annual Summary</h2>
-                        <p className="text-gray-500 text-sm mt-1">
-                            Overview of total investment disbursements per year. To edit, switch to Monthly View and select the year.
-                        </p>
-                    </div>
+                            <div className="mb-6">
+                                <h2 className="text-xl font-bold text-gray-900 uppercase tracking-widest">Annual Summary</h2>
+                                <p className="text-gray-500 text-sm mt-1">
+                                    Overview of total investment disbursements per year. To edit, switch to Monthly View and select the year.
+                                </p>
+                            </div>
 
-                    {loading ? (
-                        <div className="w-full py-12 flex items-center justify-center">
-                            <div className="w-6 h-6 border-4 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
-                        </div>
-                    ) : displayData.length === 0 ? (
-                        <div className="text-center py-12 border-2 border-dashed border-gray-100 rounded-2xl">
-                            <p className="text-gray-400 font-black text-xs uppercase tracking-widest">No yearly data available</p>
-                        </div>
-                    ) : (
-                        <div className="overflow-x-auto">
-                            <table className="w-full">
-                                <thead>
-                                    <tr className="border-b border-gray-100">
-                                        <th className="text-left py-3 px-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Year</th>
-                                        <th className="text-right py-3 px-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Disbursement</th>
-                                        <th className="text-right py-3 px-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Months With Data</th>
-                                        <th className="text-right py-3 px-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {displayData.map((d) => {
-                                        const monthsWithData = (reportsData[d.label] || []).filter(m => m.amount > 0).length;
-                                        return (
-                                            <tr key={d.label} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
-                                                <td className="py-4 px-4">
-                                                    <span className="text-base font-black text-gray-900">{d.label}</span>
-                                                </td>
-                                                <td className="py-4 px-4 text-right">
-                                                    <span className="text-base font-black text-[#4A4A4A]">${d.amount.toLocaleString()}</span>
-                                                </td>
-                                                <td className="py-4 px-4 text-right">
-                                                    <span className="text-sm font-bold text-gray-500">{monthsWithData} / 12</span>
-                                                </td>
-                                                <td className="py-4 px-4 text-right">
-                                                    <button
-                                                        onClick={() => {
-                                                            setSelectedYear(d.label);
-                                                            setViewMode('monthly');
-                                                        }}
-                                                        className="px-4 py-1.5 text-[9px] font-black uppercase tracking-widest rounded-lg border border-[#4A4A4A]/40 text-[#153A6A] hover:bg-[#153A6A] hover:text-white transition-all"
-                                                    >
-                                                        Edit Months
-                                                    </button>
-                                                </td>
+                            {loading ? (
+                                <div className="w-full py-12 flex items-center justify-center">
+                                    <div className="w-6 h-6 border-4 border-gray-200 border-t-[#4A4A4A] rounded-full animate-spin"></div>
+                                </div>
+                            ) : displayData.length === 0 ? (
+                                <div className="text-center py-12 border-2 border-dashed border-gray-100 rounded-2xl">
+                                    <p className="text-gray-400 font-black text-xs uppercase tracking-widest">No yearly data available</p>
+                                </div>
+                            ) : (
+                                <div className="overflow-x-auto">
+                                    <table className="w-full">
+                                        <thead>
+                                            <tr className="border-b border-gray-100">
+                                                <th className="text-left py-3 px-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Year</th>
+                                                <th className="text-right py-3 px-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Disbursement</th>
+                                                <th className="text-right py-3 px-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Months With Data</th>
+                                                <th className="text-right py-3 px-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Action</th>
                                             </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
+                                        </thead>
+                                        <tbody>
+                                            {displayData.map((d) => {
+                                                const monthsWithData = (reportsData[d.label] || []).filter(m => m.amount > 0).length;
+                                                return (
+                                                    <tr key={d.label} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
+                                                        <td className="py-4 px-4">
+                                                            <span className="text-base font-black text-gray-900">{d.label}</span>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right">
+                                                            <span className="text-base font-black text-[#4A4A4A]">${d.amount.toLocaleString()}</span>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right">
+                                                            <span className="text-sm font-bold text-gray-500">{monthsWithData} / 12</span>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right">
+                                                            <button
+                                                                onClick={() => {
+                                                                    setSelectedYear(d.label);
+                                                                    setViewMode('monthly');
+                                                                }}
+                                                                className="px-4 py-1.5 text-[9px] font-black uppercase tracking-widest rounded-lg border border-[#4A4A4A]/40 text-[#153A6A] hover:bg-[#153A6A] hover:text-white transition-all"
+                                                            >
+                                                                Edit Months
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )}
                         </div>
-                    )}
-                        </div>{/* end relative z-10 */}
-                    </div>{/* end bg-white */}
-                </div>{/* end bg-metallic-silver */}
+                    </div>
+                </div>
             )}
         </div>
     );

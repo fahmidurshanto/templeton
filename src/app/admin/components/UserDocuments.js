@@ -110,27 +110,31 @@ export default function UserDocuments({ targetUserId, userName }) {
     const categories = [...new Set(userSpecificDocs.map(d => d.category))];
 
     return (
-        <div className="bg-metallic-silver p-[4px] rounded-3xl shadow-xl overflow-hidden animate__animated animate__fadeIn">
-            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] overflow-hidden relative">
+        <div className="rounded-2xl p-[6px] bg-metallic-silver shadow-xl hover:scale-[1.02] transition-transform duration-500 group animate__animated animate__fadeIn">
+            <div className="bg-white rounded-[13px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] overflow-hidden relative">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none z-10"></div>
                 <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
 
-                <div className="px-8 py-6 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between relative z-10">
+                <div className="px-6 sm:px-8 pt-5 sm:pt-6 pb-2 flex items-center justify-between relative z-10">
                     <div className="flex items-center gap-3">
                         <svg className="w-5 h-5 text-[#4A4A4A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                         </svg>
-                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest text-[11px]">Vault & Documents</h3>
+                        <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Vault & Documents</h3>
                     </div>
                     <button
                         onClick={handleUploadClick}
-                        className="px-4 py-2 bg-metallic-pill text-white border border-[#888888] rounded-lg text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all flex items-center gap-2"
+                        className="px-4 py-2 bg-metallic-pill text-white border border-[#888888] rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-sm flex items-center gap-2"
                     >
                         <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                         Upload
                     </button>
+                </div>
+
+                <div className="w-full h-[2px] bg-metallic-divider shadow-sm relative z-10 mb-4">
+                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
                 </div>
 
                 <div className="p-8 relative z-10">
