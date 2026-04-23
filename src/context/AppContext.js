@@ -37,15 +37,15 @@ export function AppProvider({ children }) {
                     setCurrentUser(null);
                     
                     const currentPath = window.location.pathname + window.location.search;
-                    if (currentPath !== '/login') {
+                    if (currentPath !== '/login' && !currentPath.startsWith('/login')) {
                         const loginUrl = (currentPath && currentPath !== '/') 
                             ? `/login?redirect=${encodeURIComponent(currentPath)}` 
                             : '/login';
                         router.push(loginUrl);
+                        error.silent = true;
                     }
                     
-                    // Return a rejected promise with a silent flag to stop caller execution
-                    return Promise.reject({ ...error, silent: true });
+                    return Promise.reject(error);
                 }
                 return Promise.reject(error);
             }
@@ -208,14 +208,13 @@ export function AppProvider({ children }) {
             }
 
             // If the interceptor handled a 401 and returned silent: true, exit gracefully
-            if (data.silent) return null;
-
+            // fetchCurrentUser won't reach here if status is 401, it goes to catch
             const err = new Error(data.message || 'Could not fetch profile');
             err.data = data;
             throw err;
         } catch (error) {
             // Only log if it's NOT a silent auth failure
-            if (error?.data?.silent !== true && error?.response?.status !== 401) {
+            if (error?.silent !== true && error?.response?.status !== 401) {
                 logger.error('Fetch profile error:', error);
             }
             // Do not re-throw to prevent Red Screen overlay

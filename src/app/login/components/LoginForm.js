@@ -72,10 +72,15 @@ export default function LoginForm() {
             }
         } catch (error) {
             console.log(error);
+            
+            // Extract message from Axios error
+            const backendMessage = error.response?.data?.message || error.message;
+            const isAuthError = error.response?.status === 401 || error.response?.status === 400;
+
             Swal.fire({
                 icon: 'error',
-                title: 'System Error',
-                text: 'Connection to corporate servers failed.',
+                title: isAuthError ? 'Login Failed' : 'System Error',
+                text: isAuthError ? (backendMessage || 'Invalid credentials') : 'Connection to corporate servers failed.',
                 confirmButtonColor: '#D33'
             });
         } finally {
