@@ -36,10 +36,11 @@ const TrackingIcon = (
 
 export default function DashboardHomePage() {
     const router = useRouter();
-    const { user, documents, fetchFinancialSummary, fetchUserDocuments } = useAppContext();
+    const { user, fetchFinancialSummary } = useAppContext();
     const [financialData, setFinancialData] = useState([]);
     const [totalDisbursement, setTotalDisbursement] = useState('USD 0');
     const [memberships, setMemberships] = useState([]);
+    const [docs, setDocs] = useState([]);
     const [stages, setStages] = useState([]);
     const [stageVisibility, setStageVisibility] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -73,6 +74,21 @@ export default function DashboardHomePage() {
                                 setStages(stageRes.data.stage || []);
                             }
                         }
+
+                        // Fetch real documents for user
+                        const docRes = await api.get(`/document/user/${userId}`);
+                        if (docRes.data.success) {
+                            const mapped = docRes.data.documents.map(doc => ({
+                                id: doc._id,
+                                userId: doc.user,
+                                name: doc.name,
+                                date: new Date(doc.createdAt).toISOString().split('T')[0],
+                                size: doc.size || 'N/A',
+                                category: 'Documents',
+                                hasUserSeen: doc.hasUserSeen || false
+                            }));
+                            setDocs(mapped);
+                        }
                     } catch (err) {
                         console.error('Data fetch error:', err);
                     }
@@ -90,10 +106,7 @@ export default function DashboardHomePage() {
     }, [user?.id, user?._id]);
 
     // Filter documents belonging to current user
-    const userId = user?._id || user?.id;
-    const userDocs = documents.filter(doc =>
-        !doc.userId || String(doc.userId) === String(userId)
-    );
+    const userDocs = docs;
 
     const recentDocs = userDocs.filter(doc => {
         const docDate = new Date(doc.date);

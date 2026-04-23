@@ -14,7 +14,6 @@ export function AppProvider({ children }) {
     const pathname = usePathname();
     const router = useRouter();
 
-    const [documents, setDocuments] = useState([]);
     const [userList, setUserList] = useState([]);
     const [isLoadingUsers, setIsLoadingUsers] = useState(false);
     const [activeTab, setActiveTab] = useState('DASHBOARD');
@@ -108,17 +107,6 @@ export function AppProvider({ children }) {
 
             const data = response.data;
             if (data.success) {
-                const newDoc = {
-                    id: data.document._id,
-                    userId: targetUserId || currentUser?.id,
-                    name: data.document.name,
-                    date: new Date(data.document.createdAt).toISOString().split('T')[0],
-                    size: 'N/A',
-                    category: 'Recent Uploads',
-                    hasUserSeen: data.document.hasUserSeen || false
-                };
-                setDocuments(prev => [newDoc, ...prev]);
-
                 // Log Activity
                 logActivity(targetUserId || currentUser?.id, 'Document Uploaded', `File "${file.name}" was added to the vault.`);
 
@@ -137,7 +125,6 @@ export function AppProvider({ children }) {
             const response = await api.delete(`/document/delete/${docId}`);
             const data = response.data;
             if (data.success) {
-                setDocuments(prev => prev.filter(doc => doc.id !== docId));
                 return data;
             }
             throw new Error(data.message || 'Deletion failed');
@@ -348,35 +335,6 @@ export function AppProvider({ children }) {
         }
     };
 
-    // API: Fetch Documents for user (Admin Only as requested)
-    const fetchUserDocuments = async (userId) => {
-        if (!userId) return;
-
-        // Prevent execution if user is not an admin
-        if (currentUser?.role !== 'admin' && currentUser?.role !== 'superadmin') {
-            return;
-        }
-
-        try {
-            const response = await api.get(`/document/getall?id=${userId}`);
-            const data = response.data;
-            if (data.success) {
-                const mapped = data.documents.map(doc => ({
-                    id: doc._id,
-                    userId: doc.user,
-                    name: doc.name,
-                    date: new Date(doc.createdAt).toISOString().split('T')[0],
-                    size: doc.size || 'N/A',
-                    category: 'Documents',
-                    hasUserSeen: doc.hasUserSeen || false
-                }));
-                setDocuments(mapped);
-            }
-        } catch (error) {
-            console.error('Fetch user documents error:', error);
-        }
-    };
-
     useEffect(() => {
         // Initial load of user if session exists and not on login page
         if (pathname !== '/login') {
@@ -392,9 +350,6 @@ export function AppProvider({ children }) {
         if (currentUser?.role === 'admin') {
             fetchAllUsers().catch(() => { });
         }
-        if (currentUser?.id) {
-            fetchUserDocuments(currentUser.id).catch(() => { });
-        }
     }, [currentUser]);
 
 
@@ -403,7 +358,6 @@ export function AppProvider({ children }) {
             user: currentUser,
             setUser: setCurrentUser,
             logout,
-            documents,
             addDocument,
             deleteDocument,
             viewDocument,
@@ -426,7 +380,6 @@ export function AppProvider({ children }) {
             setAdminTab,
             theme,
             setTheme,
-            fetchUserDocuments,
             isAuthChecked
         }}>
             {children}

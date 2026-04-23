@@ -1,14 +1,49 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import Swal from 'sweetalert2';
+import api from '@/lib/api';
 
 export default function DocumentsPage() {
-    const { user, documents, addDocument, viewDocument } = useAppContext();
+    const { user, addDocument, viewDocument } = useAppContext();
+    const [documents, setDocuments] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const fileInputRef = useRef(null);
 
     const isAdmin = user?.role === 'admin';
+
+    const fetchDocs = useCallback(async () => {
+        const userId = user?._id || user?.id;
+        if (!userId) {
+            setIsLoading(false);
+            return;
+        }
+        setIsLoading(true);
+        try {
+            const response = await api.get(`/document/user/${userId}`);
+            if (response.data.success) {
+                const mapped = response.data.documents.map(doc => ({
+                    id: doc._id,
+                    userId: doc.user,
+                    name: doc.name,
+                    date: new Date(doc.createdAt).toISOString().split('T')[0],
+                    size: doc.size || 'N/A',
+                    category: 'Documents',
+                    hasUserSeen: doc.hasUserSeen || false
+                }));
+                setDocuments(mapped);
+            }
+        } catch (error) {
+            console.error('Fetch docs error:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [user]);
+
+    useEffect(() => {
+        fetchDocs();
+    }, [fetchDocs]);
 
     const handleUploadClick = () => {
         fileInputRef.current?.click();
@@ -25,7 +60,10 @@ export default function DocumentsPage() {
             });
 
             try {
-                await addDocument(file);
+                const response = await addDocument(file);
+                if (response && response.success) {
+                    await fetchDocs();
+                }
                 Swal.fire({
                     icon: 'success',
                     title: 'Asset Secured',
@@ -67,8 +105,6 @@ export default function DocumentsPage() {
                 onChange={handleFileChange}
             />
 
-
-
             {/* Header Section */}
             <div className="w-full text-center py-8 md:py-14 animate__animated animate__fadeIn relative flex flex-col items-center justify-center min-h-[15vh] md:min-h-[25vh]">
                 <div className="relative z-10 w-full px-4">
@@ -103,48 +139,53 @@ export default function DocumentsPage() {
                             <h3 className="font-black text-xs uppercase tracking-[0.2em] text-gray-500">All Files & Documents</h3>
                         </div>
                         <div className="divide-y divide-gray-50 relative z-10">
-                        {documents.map((doc, dIdx) => {
-                            const isViewed = !isAdmin && doc.hasUserSeen;
-
-                            return (
-                                <div key={dIdx} className="p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between hover:bg-gray-50 transition-colors group gap-4">
-                                    <div className="flex items-center gap-3 sm:gap-5">
-                                        <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0
-                                            ${isViewed ? 'bg-gray-100 text-gray-300' : 'bg-gray-50 text-gray-400 group-hover:bg-gradient-premium group-hover:text-black'}`}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                            </svg>
-                                        </div>
-                                        <div className="min-w-0 flex-1">
-                                            <p className={`font-bold tracking-tight truncate transition-colors ${isViewed ? 'text-gray-300' : 'text-gray-900 group-hover:text-[#153A6A]'}`}>{doc.name}</p>
-                                            <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase mt-0.5 sm:mt-1 truncate">
-                                                {doc.date} • {doc.size}
-                                                {isViewed && <span className="ml-2 text-red-300">• VIEWED</span>}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center sm:justify-end">
-                                        <button
-                                            disabled={isViewed}
-                                            onClick={() => handleView(doc)}
-                                            className={`w-full sm:w-auto px-6 py-2 rounded-lg font-black text-[10px] uppercase tracking-widest transition-all text-center
-                                                ${isViewed
-                                                    ? 'bg-gray-100 text-gray-300 border border-gray-100 cursor-not-allowed'
-                                                    : 'bg-white text-black border-2 border-gray-100 hover:border-[#4A4A4A] hover:shadow-md cursor-pointer'}`}
-                                        >
-                                            {isViewed ? 'Viewed' : 'View Content'}
-                                        </button>
-                                    </div>
+                            {isLoading ? (
+                                <div className="p-12 text-center">
+                                    <div className="w-8 h-8 border-4 border-[#4A4A4A] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Accessing Vault...</p>
                                 </div>
-                            );
-                        })}
+                            ) : (documents || []).map((doc, dIdx) => {
+                                const isViewed = !isAdmin && doc.hasUserSeen;
 
-                        {documents.length === 0 && (
-                            <div className="p-12 text-center">
-                                <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">No documents available in the vault</p>
-                            </div>
-                        )}
+                                return (
+                                    <div key={dIdx} className="p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between hover:bg-gray-50 transition-colors group gap-4">
+                                        <div className="flex items-center gap-3 sm:gap-5 min-w-0 flex-1">
+                                            <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0
+                                                ${isViewed ? 'bg-gray-100 text-gray-300' : 'bg-gray-50 text-gray-400 group-hover:bg-gradient-premium group-hover:text-black'}`}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                                </svg>
+                                            </div>
+                                            <div className="min-w-0 flex-1">
+                                                <p className={`font-bold tracking-tight truncate transition-colors ${isViewed ? 'text-gray-300' : 'text-gray-900 group-hover:text-[#153A6A]'}`}>{doc.name}</p>
+                                                <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase mt-0.5 sm:mt-1 truncate">
+                                                    {doc.date} • {doc.size}
+                                                    {isViewed && <span className="ml-2 text-red-300">• VIEWED</span>}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-center sm:justify-end flex-shrink-0">
+                                            <button
+                                                disabled={isViewed}
+                                                onClick={() => handleView(doc)}
+                                                className={`w-full sm:w-auto px-6 py-2 rounded-lg font-black text-[10px] uppercase tracking-widest transition-all text-center
+                                                    ${isViewed
+                                                        ? 'bg-gray-100 text-gray-300 border border-gray-100 cursor-not-allowed'
+                                                        : 'bg-white text-black border-2 border-gray-100 hover:border-[#4A4A4A] hover:shadow-md cursor-pointer'}`}
+                                            >
+                                                {isViewed ? 'Viewed' : 'View Content'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+
+                            {(!isLoading && (documents || []).length === 0) && (
+                                <div className="p-12 text-center">
+                                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">No documents available in the vault</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -156,5 +197,3 @@ export default function DocumentsPage() {
         </div>
     );
 }
-
-
