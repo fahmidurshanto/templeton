@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState('');
+    const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
@@ -21,10 +21,10 @@ export default function LoginForm() {
         setIsLoading(true);
 
         try {
-            const loginUrl = redirectParam 
-                ? `/auth/login?redirect=${encodeURIComponent(redirectParam)}` 
+            const loginUrl = redirectParam
+                ? `/auth/login?redirect=${encodeURIComponent(redirectParam)}`
                 : '/auth/login';
-            const response = await api.post(loginUrl, { email, password });
+            const response = await api.post(loginUrl, { userId, password });
             const data = response.data;
             console.log(data);
             if (data.success) {
@@ -89,17 +89,17 @@ export default function LoginForm() {
             <div className="w-full mb-4">
                 <div className="relative">
                     <input
-                        id="email"
-                        type="email"
+                        id="userId"
+                        type="text"
                         required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="your.name@Templeton.apac"
+                        value={userId}
+                        onChange={(e) => setUserId(e.target.value)}
+                        placeholder="[EMAIL_ADDRESS]"
                         className="w-full px-3 py-2.5 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors text-black placeholder-gray-500 bg-white text-[14px]"
                     />
                 </div>
-                <label htmlFor="email" className="block mt-1 text-[13px] font-medium text-brand-muted">
-                    Username or Email Address
+                <label htmlFor="userId" className="block mt-1 text-[13px] font-medium text-brand-muted">
+                    Employee ID or Username
                 </label>
             </div>
 
@@ -143,7 +143,8 @@ export default function LoginForm() {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-3.5 px-4 rounded-[10px] flex items-center justify-center gap-3 shadow-[inset_0_2px_2px_rgba(0,0,0,0.3),inset_0_2px_0_rgba(255,255,255,0.4)] bg-gradient-premium"
+                    className="w-full justify-center shadow-[inset_0_2px_2px_rgba(0,0,0,0.3),inset_0_2px_0_rgba(255,255,255,0.4)] bg-gradient-premium 
+                    px-6 py-2 rounded-lg bg-metallic-pill metallic-text-white text-[11px] font-bold tracking-wide hover:brightness-105 transition-all active:scale-95 flex items-center gap-2"
                 >
                     <span className="text-[17px] font-black text-white tracking-[0.1em]">{isLoading ? 'AUTHENTICATING...' : 'LOGIN'}</span>
                     {!isLoading && (

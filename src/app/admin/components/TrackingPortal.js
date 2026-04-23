@@ -751,7 +751,7 @@ export default function TrackingPortal() {
                         />
                         <button
                             onClick={handleAddGlobal}
-                            className="px-4 py-2 bg-gradient-premium text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 shadow-md"
+                            className="px-6 py-2 rounded-lg bg-metallic-pill metallic-text-white text-[11px] font-bold tracking-wide hover:brightness-105 transition-all active:scale-95"
                         >
                             Add
                         </button>
@@ -823,11 +823,11 @@ export default function TrackingPortal() {
                 icon={<span>📱</span>}
                 footer={
                     <div className="flex gap-3">
-                        <button onClick={() => setIsQRModalOpen(false)} className="px-6 py-2 bg-gray-100 text-gray-500 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-gray-200 transition-all">
+                        <button onClick={() => setIsQRModalOpen(false)} className="px-6 py-2 rounded-lg bg-metallic-pill metallic-text-white text-[11px] font-bold tracking-wide hover:brightness-105 transition-all active:scale-95">
                             Close
                         </button>
                         {qrCodeData && (
-                            <button onClick={handleDownloadQR} className="px-6 py-2 bg-gradient-premium text-black rounded-lg text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center gap-2">
+                            <button onClick={handleDownloadQR} className="px-6 py-2 rounded-lg bg-metallic-pill metallic-text-white text-[11px] font-bold tracking-wide hover:brightness-105 transition-all active:scale-95 flex items-center gap-2">
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                 </svg>
@@ -867,7 +867,7 @@ export default function TrackingPortal() {
                             <button
                                 onClick={handleGenerateQR}
                                 disabled={generatingQR || !selectedUserId}
-                                className="flex-1 py-3 bg-gradient-premium text-black rounded-xl text-xs font-black uppercase tracking-widest hover:brightness-110 shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="flex-1 py-3 rounded-lg bg-metallic-pill metallic-text-white text-[11px] font-bold tracking-wide hover:brightness-105 transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {generatingQR ? (
                                     <>

@@ -17,6 +17,7 @@ export default function UserManagement() {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
+        userId: '',
         email: '',
         password: '',
         Phone: '',
@@ -31,7 +32,8 @@ export default function UserManagement() {
 
     const filtered = userList.filter(u =>
         (u.firstName + ' ' + u.lastName).toLowerCase().includes(search.toLowerCase()) ||
-        u.email.toLowerCase().includes(search.toLowerCase())
+        (u.email && u.email.toLowerCase().includes(search.toLowerCase())) ||
+        (u.userId && u.userId.toLowerCase().includes(search.toLowerCase()))
     ).sort((a, b) => {
         const nameA = (a.firstName + ' ' + a.lastName).toLowerCase();
         const nameB = (b.firstName + ' ' + b.lastName).toLowerCase();
@@ -42,6 +44,7 @@ export default function UserManagement() {
         setFormData({
             firstName: '',
             lastName: '',
+            userId: '',
             email: '',
             password: '',
             Phone: '',
@@ -187,7 +190,11 @@ export default function UserManagement() {
                                                 </select>
                                             </div>
                                             <div>
-                                                <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Security Key</label>
+                                                <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">User ID (Login Username)</label>
+                                                <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" placeholder="e.g. EMP001" value={formData.userId} onChange={(e) => setFormData({ ...formData, userId: e.target.value })} />
+                                            </div>
+                                            <div>
+                                                <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Security Key (Password)</label>
                                                 <input required type="password" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" placeholder="Min. 6 chars" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
                                             </div>
                                         </div>

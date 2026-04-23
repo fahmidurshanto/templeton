@@ -61,6 +61,7 @@ export default function UserDetailPage({ params }) {
     const [formData, setFormData] = useState({
         firstName: user?.firstName || user?.name?.split(' ')[0] || '',
         lastName: user?.lastName || user?.name?.split(' ').slice(1).join(' ') || '',
+        userId: user?.userId || '',
         email: user?.email || '',
         status: user?.status || 'active',
         Phone: user?.Phone || '',
@@ -111,6 +112,7 @@ export default function UserDetailPage({ params }) {
         setFormData({
             firstName: user.firstName || user.name?.split(' ')[0] || '',
             lastName: user.lastName || user.name?.split(' ').slice(1).join(' ') || '',
+            userId: user.userId || '',
             email: user.email,
             status: user.status,
             Phone: user.Phone || '',
@@ -201,13 +203,19 @@ export default function UserDetailPage({ params }) {
 
                                     <div className="space-y-6 sm:space-y-8">
                                         <h4 className="text-[10px] sm:text-[12px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">Status & Contact</h4>
-                                        <div>
-                                            <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Account Status</label>
-                                            <select className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black cursor-pointer" value={formData.status} onChange={(e) => setFormData({ ...formData, status: e.target.value })}>
-                                                <option value="active">Active</option>
-                                                <option value="pending">Pending</option>
-                                                <option value="suspended">Suspended</option>
-                                            </select>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                                            <div>
+                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Account Status</label>
+                                                <select className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black cursor-pointer" value={formData.status} onChange={(e) => setFormData({ ...formData, status: e.target.value })}>
+                                                    <option value="active">Active</option>
+                                                    <option value="pending">Pending</option>
+                                                    <option value="suspended">Suspended</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">User ID (Login Username)</label>
+                                                <input required type="text" className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black" value={formData.userId} onChange={(e) => setFormData({ ...formData, userId: e.target.value })} />
+                                            </div>
                                         </div>
                                         <div>
                                             <label className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gradient-premium mb-1.5 sm:mb-2">Email Address</label>
@@ -424,6 +432,10 @@ export default function UserDetailPage({ params }) {
                                     <div>
                                         <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Last Name</label>
                                         <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.lastName || user.name?.split(' ').slice(1).join(' ')}</p>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">User ID</label>
+                                        <p className="text-sm sm:text-base text-[#153A6A] font-black border-b border-gray-100 pb-1">{user.userId || 'N/A'}</p>
                                     </div>
                                     <div>
                                         <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Email Address</label>

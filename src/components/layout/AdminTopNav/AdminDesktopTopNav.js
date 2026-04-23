@@ -16,7 +16,9 @@ export default function AdminDesktopTopNav({ user, tabs, logout, pathname }) {
                 </div>
 
                 <div className="ml-[180px] flex-1 flex items-center justify-end pr-6 gap-3 h-full">
-                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-premium text-white text-[10px] font-black tracking-widest shadow-sm">
+                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-white text-[10px] font-black tracking-widest shadow-sm  
+                     bg-metallic-pill metallic-text-white hover:brightness-105 transition-all active:scale-95
+                    ">
                         <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2L22 6v6.5C22 17.74 17.65 22.53 12 24 6.35 22.53 2 17.74 2 12.5V6l10-4z" />
                         </svg>
@@ -27,15 +29,15 @@ export default function AdminDesktopTopNav({ user, tabs, logout, pathname }) {
                         <span className="font-bold text-sm text-[#3a3a3a]">{user?.name}</span>
                     </div>
 
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md bg-gradient-premium">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                            <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
-                        </svg>
-                    </div>
+                 <div className="w-11 h-11 rounded-full flex items-center justify-center bg-metallic-circle metallic-text-white group-hover:scale-105 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 drop-shadow-sm">
+                                    <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
+                                </svg>
+                            </div>
 
                     <button
                         onClick={logout}
-                        className="px-5 cursor-pointer py-1.5 rounded-full bg-gradient-premium text-white text-xs font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all mr-2"
+                        className="px-6 py-2 rounded-full bg-metallic-pill metallic-text-white text-[11px] font-bold tracking-wide hover:brightness-105 transition-all active:scale-95"
                     >
                         Logout
                     </button>
