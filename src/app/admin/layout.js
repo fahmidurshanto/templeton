@@ -35,14 +35,14 @@ export default function AdminLayout({ children }) {
     return (
         <div className="min-h-screen bg-[#f4f6f8] flex flex-col overflow-x-hidden relative">
             {/* Global Watermarks - Left and Right */}
-            <div className="absolute left-0 top-[300px] md:top-[40%] -translate-x-[15%] sm:-translate-x-[10%] md:-translate-x-[5%] -translate-y-1/2 w-[45vw] h-[45vw] md:w-[35vw] md:h-[35vw] max-w-[700px] max-h-[700px] min-w-[300px] min-h-[300px] opacity-[0.04] pointer-events-none z-0">
+            <div className="fixed left-0 top-[300px] md:top-[40%] -translate-x-[15%] sm:-translate-x-[10%] md:-translate-x-[5%] -translate-y-1/2 w-[45vw] h-[45vw] md:w-[35vw] md:h-[35vw] max-w-[700px] max-h-[700px] min-w-[300px] min-h-[300px] opacity-[0.04] pointer-events-none z-0">
                 <img
                     src="/templeton_watermark.png"
                     alt=""
                     className="w-full h-full object-contain mix-blend-multiply"
                 />
             </div>
-            <div className="absolute right-0 top-[400px] md:top-[60%] translate-x-[15%] sm:translate-x-[10%] md:translate-x-[5%] -translate-y-1/2 w-[45vw] h-[45vw] md:w-[35vw] md:h-[35vw] max-w-[700px] max-h-[700px] min-w-[300px] min-h-[300px] opacity-[0.04] pointer-events-none z-0">
+            <div className="fixed right-0 top-[400px] md:top-[60%] translate-x-[15%] sm:translate-x-[10%] md:translate-x-[5%] -translate-y-1/2 w-[45vw] h-[45vw] md:w-[35vw] md:h-[35vw] max-w-[700px] max-h-[700px] min-w-[300px] min-h-[300px] opacity-[0.04] pointer-events-none z-0">
                 <img
                     src="/templeton_watermark.png"
                     alt=""
