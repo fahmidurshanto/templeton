@@ -10,13 +10,13 @@ export default function Footer() {
 
             <div className="max-w-7xl mx-auto px-6 py-12">
                 <div className="flex flex-col md:flex-row justify-between items-start gap-16">
-                    
+
                     {/* Brand & Identity Section */}
                     <div className="space-y-8 flex-1">
                         <div className="flex items-center gap-3">
-                            <img 
-                                src="/templeton-logo.png" 
-                                alt="Templeton APAC Ltd." 
+                            <img
+                                src="/templeton-logo.png"
+                                alt="Templeton APAC Ltd."
                                 className="h-40 w-auto object-contain"
                             />
                         </div>
@@ -35,11 +35,13 @@ export default function Footer() {
                     <div className="space-y-6 md:text-right pt-4">
                         <h4 className="text-[10px] font-black text-gray-900 uppercase tracking-[0.2em] border-b border-gray-50 pb-3 inline-block">Support & Contact</h4>
                         <div className="space-y-4">
-                            <div className="flex items-center gap-3 text-gray-400">
+                            <div className="flex items-center gap-3 text-gray-400 cursor-pointer">
                                 <svg className="w-4 h-4 text-[#4A4A4A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                 </svg>
-                                <span className="text-[10px] font-black tracking-widest">portal@templeton.com</span>
+                                <span className="text-[10px] font-black tracking-widest" onClick={() => window.open('https://templetontrusteesltd.com', '_blank')}>
+                                    https://templetontrusteesltd.com
+                                </span>
                             </div>
                             <div className="flex items-center gap-3 text-gray-400">
                                 <svg className="w-4 h-4 text-[#4A4A4A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
