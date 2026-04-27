@@ -26,7 +26,7 @@ export default function Footer() {
                             </p>
                             <div className="hidden md:block w-px h-8 bg-gray-100 flex-shrink-0"></div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] whitespace-nowrap">
-                                © {currentYear} Templeton APAC LTD. ALL RIGHTS RESERVED.
+                                © {currentYear} Templeton Trustees (S) Ltd. ALL RIGHTS RESERVED.
                             </p>
                         </div>
                     </div>
