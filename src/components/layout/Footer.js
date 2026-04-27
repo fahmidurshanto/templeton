@@ -22,7 +22,7 @@ export default function Footer() {
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
                             <p className="text-gray-500 text-[10px] font-bold leading-relaxed tracking-wide uppercase max-w-sm">
-                                Providing secure and premium partnership solutions across the APAC region. Empowering businesses through technical excellence.
+                                Providing secure and premium partnership solutions across the region. Empowering businesses through technical excellence.
                             </p>
                             <div className="hidden md:block w-px h-8 bg-gray-100 flex-shrink-0"></div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] whitespace-nowrap">

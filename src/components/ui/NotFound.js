@@ -51,7 +51,7 @@ export default function NotFound({
                 </div>
 
                 <div className="mt-16 pt-8 border-t border-gray-100">
-                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.4em] opacity-60 italic">Templeton APAC • Privilege Redefined</p>
+                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.4em] opacity-60 italic">Templeton Trustees (S) • Privilege Redefined</p>
                 </div>
             </div>
         </div>
