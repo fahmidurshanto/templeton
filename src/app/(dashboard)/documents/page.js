@@ -192,7 +192,7 @@ export default function DocumentsPage() {
             </div>
 
             <div className="w-full text-center py-12 mt-8">
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Templeton APAC Limited • Secure Infrastructure</p>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Templeton Trustees (S) Ltd. • Secure Infrastructure</p>
             </div>
         </div>
     );
