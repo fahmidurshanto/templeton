@@ -285,12 +285,19 @@ export default function DashboardHomePage() {
                                 { link: '/reports', label: 'Financials', icon: FinancialIcon },
                                 { link: '/memberships', label: 'Access', icon: MembershipIcon },
                                 { link: '/documents', label: 'The Vault', icon: DocumentIcon },
-                                { link: '/tracking', label: 'The Journey', icon: TrackingIcon }
+                                { link: '/tracking', label: 'The Journey', icon: TrackingIcon },
+                                { link: '/profile-requests', label: 'Requests', icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-gray-900">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                    </svg>
+                                ) }
                             ].map((action, idx) => (
                                 <div
                                     key={idx}
                                     onClick={() => router.push(action.link)}
-                                    className="rounded-[2rem] p-[4px] bg-metallic-silver shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group cursor-pointer"
+                                    className={`rounded-[2rem] p-[4px] bg-metallic-silver shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group cursor-pointer ${
+                                        idx === 5 ? 'col-span-2 md:col-span-1' : ''
+                                    }`}
                                 >
                                     <div className="relative overflow-hidden p-8 bg-white rounded-[30px] h-full shadow-[inset_0_2px_10px_rgba(255,255,255,0.9),inset_0_-2px_10px_rgba(0,0,0,0.02)] flex flex-col items-center">
                                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>

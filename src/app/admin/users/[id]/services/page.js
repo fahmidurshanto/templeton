@@ -175,7 +175,9 @@ export default function ServicesPage() {
 
     const handleDeleteService = async () => {
         try {
-            const response = await api.delete(`/user/user-services/${userId}/${deleteTarget.name}`);
+            const response = await api.delete(`/user/user-services/${userId}`, {
+                data: { serviceName: deleteTarget.name }
+            });
 
             if (response.data.success) {
                 setServices(response.data.data);

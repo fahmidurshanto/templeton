@@ -5,11 +5,13 @@ import { createPortal } from 'react-dom';
 import Swal from 'sweetalert2';
 import UserDocuments from '../../admin/components/UserDocuments';
 import { useRouter } from 'next/navigation';
+import api from '@/lib/api';
 
 export default function PersonalPage() {
     const router = useRouter();
     const { user } = useAppContext();
     const [isRequestingUpdate, setIsRequestingUpdate] = useState(false);
+    const [isChangingPassword, setIsChangingPassword] = useState(false);
     const [updateData, setUpdateData] = useState({
         firstName: '',
         lastName: '',
@@ -21,13 +23,41 @@ export default function PersonalPage() {
         address: ''
     });
 
+    const [passwordData, setPasswordData] = useState({
+        oldPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+    });
+
+    const [showPassword, setShowPassword] = useState({
+        old: false,
+        new: false,
+        confirm: false
+    });
+
+    const [errors, setErrors] = useState({});
+
+    // SVG Icons
+    const EyeIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.644C3.399 8.049 7.311 4.5 12 4.5c4.689 0 8.601 3.549 9.964 7.178.07.186.07.39 0 .576-1.363 3.63-5.275 7.178-12 7.178-4.689 0-8.601-3.549-9.964-7.178z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+    );
+
+    const EyeOffIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+        </svg>
+    );
+
     useEffect(() => {
         if (user) {
             setUpdateData({
                 firstName: user.firstName || '',
                 lastName: user.lastName || '',
                 gender: user.gender || '',
-                phone: user.phone || '',
+                phone: user.Phone || user.phone || '',
                 email: user.email || '',
                 nric: user.nric || '',
                 nationality: user.nationality || '',
@@ -35,8 +65,6 @@ export default function PersonalPage() {
             });
         }
     }, [user]);
-
-
 
     const handleRequestSubmit = async (e) => {
         e.preventDefault();
@@ -49,24 +77,87 @@ export default function PersonalPage() {
             didOpen: () => { Swal.showLoading(); }
         });
 
-        // Simulate API call to send request to admin
-        setTimeout(() => {
+        try {
+            const response = await api.post('/profile-updates', updateData);
+            
+            if (response.data.success) {
+                Swal.fire({
+                    title: 'Request Transmitted',
+                    text: 'Your profile update request has been successfully transmitted to the Strategic Administrator. You will be notified once the changes are verified and applied.',
+                    icon: 'success',
+                    confirmButtonColor: '#153A6A'
+                });
+                setIsRequestingUpdate(false);
+            }
+        } catch (error) {
+            console.error('Profile update request error:', error);
+            const errorMessage = error.response?.data?.message || 'Strategic update failed. Please try again later.';
             Swal.fire({
-                title: 'Request Transmitted',
-                text: 'Your profile update request has been successfully transmitted to the Strategic Administrator. You will be notified once the changes are verified and applied.',
-                icon: 'success',
-                confirmButtonColor: '#4A4A4A'
+                title: 'Transmission Failed',
+                text: errorMessage,
+                icon: 'error',
+                confirmButtonColor: '#153A6A'
             });
-            setIsRequestingUpdate(false);
-        }, 2000);
+        }
+    };
+
+    const handleChangePasswordSubmit = async (e) => {
+        e.preventDefault();
+        setErrors({});
+
+        let newErrors = {};
+        if (!passwordData.oldPassword) newErrors.oldPassword = 'Current password is required';
+        if (!passwordData.newPassword) newErrors.newPassword = 'New password is required';
+        if (!passwordData.confirmPassword) newErrors.confirmPassword = 'Confirmation is required';
+        if (passwordData.newPassword !== passwordData.confirmPassword) {
+            newErrors.confirmPassword = 'Passwords do not match';
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        // Dynamic loading state for premium feel
+        Swal.fire({
+            title: 'Encrypting...',
+            text: 'Securing your new credentials with institutional-grade protocols.',
+            allowOutsideClick: false,
+            didOpen: () => { Swal.showLoading(); }
+        });
+
+        try {
+            const response = await api.post('/user/change-password', {
+                oldPassword: passwordData.oldPassword,
+                newPassword: passwordData.newPassword
+            });
+
+            if (response.data.success) {
+                Swal.fire({
+                    title: 'Security Updated',
+                    text: 'Your security credentials have been successfully updated in our strategic core.',
+                    icon: 'success',
+                    confirmButtonColor: '#153A6A'
+                });
+                setIsChangingPassword(false);
+                setPasswordData({ oldPassword: '', newPassword: '', confirmPassword: '' });
+            }
+        } catch (error) {
+            console.error('Password change error:', error);
+            const errorMessage = error.response?.data?.message || 'Update failed. Please check your current password.';
+            Swal.fire({
+                title: 'Update Failed',
+                text: errorMessage,
+                icon: 'error',
+                confirmButtonColor: '#153A6A'
+            });
+        }
     };
 
     if (!user) return <div className="p-20 text-center font-bold text-gradient-premium">Loading Profile...</div>;
 
     return (
         <div className="w-full h-full flex flex-col items-center relative overflow-visible">
-
-
             {/* Header Section */}
             <div className="w-full text-center py-6 md:py-10 mb-2 animate__animated animate__fadeIn relative flex flex-col items-center justify-center">
                 <div className="relative z-10 w-full px-4">
@@ -136,12 +227,20 @@ export default function PersonalPage() {
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-white/80 to-transparent pointer-events-none"></div>
                                 <div className="px-6 sm:px-8 pt-5 sm:pt-6 pb-2 relative z-10 flex items-center justify-between">
                                     <h3 className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-widest">Personal Information</h3>
-                                    <button
-                                        onClick={() => setIsRequestingUpdate(true)}
-                                        className="text-[9px] sm:text-[10px] font-black text-white bg-metallic-pill px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm hover:brightness-110 transition-all border border-[#888888]"
-                                    >
-                                        Request Update
-                                    </button>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => setIsChangingPassword(true)}
+                                            className="text-[9px] sm:text-[10px] font-black text-gray-500 border border-gray-200 px-4 py-1.5 rounded-full uppercase tracking-widest hover:bg-gray-50 transition-all"
+                                        >
+                                            Change Password
+                                        </button>
+                                        <button
+                                            onClick={() => setIsRequestingUpdate(true)}
+                                            className="text-[9px] sm:text-[10px] font-black text-white bg-metallic-pill px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm hover:brightness-110 transition-all border border-[#888888]"
+                                        >
+                                            Request Update
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="w-full h-[2px] bg-metallic-divider shadow-sm relative z-10 mb-4">
                                     <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60"></div>
@@ -161,7 +260,7 @@ export default function PersonalPage() {
                                     </div>
                                     <div>
                                         <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">Contact Number</label>
-                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.phone || 'N/A'}</p>
+                                        <p className="text-sm sm:text-base text-gray-950 font-bold border-b border-gray-100 pb-1">{user.Phone || user.phone || 'N/A'}</p>
                                     </div>
                                     <div>
                                         <label className="block text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">NRIC / Passport</label>
@@ -227,9 +326,7 @@ export default function PersonalPage() {
                 </div>
             </div>
 
-
-
-            {/* Information Update Request Modal - Moved to Portal to prevent stacking context traps */}
+            {/* Information Update Request Modal */}
             {isRequestingUpdate && typeof window !== 'undefined' && createPortal(
                 <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[9999] flex items-center justify-center p-4 animate__animated animate__fadeIn">
                     <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-2xl border-2 border-[#4A4A4A]/50 w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col animate__animated animate__zoomIn">
@@ -344,6 +441,109 @@ export default function PersonalPage() {
                                     type="button"
                                     onClick={() => setIsRequestingUpdate(false)}
                                     className="px-6 md:px-12 py-4 sm:py-5 bg-gray-100 text-gray-500 font-black uppercase tracking-widest rounded-xl hover:bg-gray-200 transition-all cursor-pointer text-[10px] sm:text-xs md:text-sm"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            , document.body)}
+
+            {/* Change Password Modal */}
+            {isChangingPassword && typeof window !== 'undefined' && createPortal(
+                <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[9999] flex items-center justify-center p-4 animate__animated animate__fadeIn">
+                    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-2xl border-2 border-[#4A4A4A]/50 w-full max-w-2xl overflow-hidden flex flex-col animate__animated animate__zoomIn">
+                        <div className="bg-gradient-premium px-6 sm:px-8 py-4 sm:py-6 flex items-center justify-between border-b border-[#1A1A1A]/30">
+                            <div>
+                                <h2 className="text-white font-black text-sm sm:text-base md:text-lg tracking-widest uppercase">Change Password</h2>
+                                <p className="text-[8px] sm:text-[9px] md:text-[10px] text-white/60 font-black uppercase tracking-widest mt-0.5 md:mt-1">Institutional security protocol</p>
+                            </div>
+                            <button onClick={() => setIsChangingPassword(false)} className="bg-black/10 hover:bg-black/20 p-2 rounded-full transition-colors group">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:rotate-90 transition-transform">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <form onSubmit={handleChangePasswordSubmit} className="p-6 sm:p-8 space-y-6">
+                            <div className="space-y-4">
+                                <div className="space-y-1.5">
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#153A6A] uppercase tracking-widest">Current Password</label>
+                                    <div className="relative">
+                                        <input
+                                            type={showPassword.old ? "text" : "password"}
+                                            required
+                                            className={`w-full bg-gray-50 border-2 ${errors.oldPassword ? 'border-red-400' : 'border-gray-100'} rounded-xl px-4 py-3 text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black pr-12`}
+                                            placeholder="••••••••"
+                                            value={passwordData.oldPassword}
+                                            onChange={(e) => setPasswordData({ ...passwordData, oldPassword: e.target.value })}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword({ ...showPassword, old: !showPassword.old })}
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#153A6A] transition-colors"
+                                        >
+                                            {showPassword.old ? <EyeOffIcon /> : <EyeIcon />}
+                                        </button>
+                                    </div>
+                                    {errors.oldPassword && <p className="text-[10px] text-red-500 font-bold uppercase tracking-tight ml-1 animate__animated animate__headShake">{errors.oldPassword}</p>}
+                                </div>
+                                <div className="space-y-1.5">
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#153A6A] uppercase tracking-widest">New Password</label>
+                                    <div className="relative">
+                                        <input
+                                            type={showPassword.new ? "text" : "password"}
+                                            required
+                                            className={`w-full bg-gray-50 border-2 ${errors.newPassword ? 'border-red-400' : 'border-gray-100'} rounded-xl px-4 py-3 text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black pr-12`}
+                                            placeholder="••••••••"
+                                            value={passwordData.newPassword}
+                                            onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword({ ...showPassword, new: !showPassword.new })}
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#153A6A] transition-colors"
+                                        >
+                                            {showPassword.new ? <EyeOffIcon /> : <EyeIcon />}
+                                        </button>
+                                    </div>
+                                    {errors.newPassword && <p className="text-[10px] text-red-500 font-bold uppercase tracking-tight ml-1 animate__animated animate__headShake">{errors.newPassword}</p>}
+                                </div>
+                                <div className="space-y-1.5">
+                                    <label className="text-[9px] sm:text-[10px] font-black text-[#153A6A] uppercase tracking-widest">Confirm New Password</label>
+                                    <div className="relative">
+                                        <input
+                                            type={showPassword.confirm ? "text" : "password"}
+                                            required
+                                            className={`w-full bg-gray-50 border-2 ${errors.confirmPassword ? 'border-red-400' : 'border-gray-100'} rounded-xl px-4 py-3 text-sm focus:border-[#4A4A4A] outline-none transition-all font-bold text-black pr-12`}
+                                            placeholder="••••••••"
+                                            value={passwordData.confirmPassword}
+                                            onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword({ ...showPassword, confirm: !showPassword.confirm })}
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#153A6A] transition-colors"
+                                        >
+                                            {showPassword.confirm ? <EyeOffIcon /> : <EyeIcon />}
+                                        </button>
+                                    </div>
+                                    {errors.confirmPassword && <p className="text-[10px] text-red-500 font-bold uppercase tracking-tight ml-1 animate__animated animate__headShake">{errors.confirmPassword}</p>}
+                                </div>
+                            </div>
+
+                            <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                                <button
+                                    type="submit"
+                                    className="flex-1 py-4 bg-gradient-premium text-white font-black uppercase tracking-widest rounded-xl shadow-lg hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer text-xs"
+                                >
+                                    Confirm Security Update
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsChangingPassword(false)}
+                                    className="px-8 py-4 bg-gray-100 text-gray-500 font-black uppercase tracking-widest rounded-xl hover:bg-gray-200 transition-all cursor-pointer text-xs"
                                 >
                                     Cancel
                                 </button>
