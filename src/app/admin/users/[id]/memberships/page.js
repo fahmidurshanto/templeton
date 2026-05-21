@@ -397,7 +397,8 @@ export default function MembershipsPage() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await api.delete(`/user/memberships/${userId}/${encodeURIComponent(tierName)}`);
+                    const formattedTierName = tierName.toLowerCase().replace(/\s+/g, '_');
+                    const response = await api.delete(`/user/memberships/${userId}/${encodeURIComponent(formattedTierName)}`);
                     if (response.data.success) {
                         setTiers(response.data.data);
                         Swal.fire({

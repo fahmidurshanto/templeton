@@ -16,6 +16,7 @@ export default function AdminTopNav() {
         { name: 'ACTIVITIES', href: '/admin/activities' },
         { name: 'SCHEDULE', href: '/admin/schedule' },
         { name: 'TRACKING', href: '/admin/tracking' },
+        { name: 'PROFILE REQUESTS', href: '/admin/profile-requests' },
     ];
 
     const commonProps = {
